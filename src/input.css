@@ -10,12 +10,7 @@
 
 /* Custom Font Families */
 .font-roboto {
-  font-family:
-    "Roboto",
-    -apple-system,
-    Roboto,
-    Helvetica,
-    sans-serif;
+  font-family: "Roboto", -apple-system, Roboto, Helvetica, sans-serif;
 }
 
 .font-inter {
@@ -57,9 +52,7 @@ html {
 
 /* Product card hover effects */
 .product-card {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .product-card:hover {
@@ -165,9 +158,7 @@ html {
 
 /* Social media hover effects */
 .social-link {
-  transition:
-    transform 0.3s ease,
-    opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .social-link:hover {
