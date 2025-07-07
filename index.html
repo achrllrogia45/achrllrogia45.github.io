@@ -11,57 +11,111 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
+    <script src="./src/carousel.js" defer></script>
+    <script src="./src/product-carousel.js" defer></script>
   </head>
   <body class="font-roboto text-base">
     <!-- Header -->
     <header
       class="absolute z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5"
     >
-      <div class="flex items-center justify-between px-4 py-4 w-full mx-auto">
+      <div
+        class="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]"
+      >
         <!-- Logo -->
         <div class="flex items-center">
           <img
             src="images/hg_logo_header.svg"
             alt="HumanGreatness Logo"
-            class="h-10 w-auto"
+            class="h-8 sm:h-10 w-auto"
           />
         </div>
 
-        <!-- Navigation -->
-        <nav class="hidden md:flex items-center gap-[52px]">
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center gap-8 xl:gap-[52px]">
           <a
             href="#"
-            class="text-cream hover:text-white transition-colors nav-link"
+            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
             >SHOP</a
           >
           <a
             href="#"
-            class="text-cream hover:text-white transition-colors nav-link"
+            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
             >ABOUT US</a
           >
           <a
             href="#"
-            class="text-cream hover:text-white transition-colors nav-link"
+            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
             >COOLNESS</a
-          >
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link"
-            >EN | IN</a
           >
         </nav>
 
-        <!-- Shop Icon -->
-        <div class="flex items-center">
-          <img src="images/shop_icon_header.svg" alt="Shop" class="h-6 w-6" />
+        <!-- Language and Shop Icon -->
+        <div class="flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
+            >EN / IN</a
+          >
+          <img
+            src="images/shop_icon_header.svg"
+            alt="Shop"
+            class="h-5 sm:h-6 w-5 sm:w-6"
+          />
         </div>
+
+        <!-- Mobile Menu Button -->
+        <button
+          class="lg:hidden text-cream hover:text-white transition-colors"
+          id="mobile-menu-button"
+          aria-label="Toggle mobile menu"
+        >
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Navigation Menu -->
+      <div
+        class="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transform -translate-y-full opacity-0 invisible transition-all duration-300 ease-in-out"
+        id="mobile-menu"
+      >
+        <nav class="flex flex-col items-center py-8 space-y-6">
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link text-lg"
+            >SHOP</a
+          >
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link text-lg"
+            >ABOUT US</a
+          >
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link text-lg"
+            >COOLNESS</a
+          >
+        </nav>
       </div>
     </header>
 
     <main class="relative">
       <!-- Hero Section -->
       <section
-        class="hero-section relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       >
         <!-- Breadcrumb -->
         <div
@@ -70,8 +124,18 @@
           HOME /
         </div>
 
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 w-full h-full">
+          <img
+            src="images/POSTER.png"
+            alt="Hero Background"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+
         <div
-          class="text-center px-4 mx-auto gap-[280px] grid flex-col h-auto self-center justify-center items-center"
+          class="relative z-10 text-center px-4 mx-auto gap-[210px] grid flex-col h-auto self-center justify-center items-center"
         >
           <!-- Main Heading -->
           <h1
@@ -87,9 +151,9 @@
             <!-- Logo -->
             <div class="mb-8">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/74846106dd0b58bd6f600a09850b1f7549ce476f?width=1016"
+                src="images/hg_logotext.svg"
                 alt="HeaderLogo"
-                class="mx-auto max-w-md h-auto"
+                class="mx-auto max-w-md h-auto filter brightness-0 invert"
               />
             </div>
 
@@ -130,12 +194,16 @@
               >
                 COOLTECH
               </h2>
-              <p class="text-lg text-black leading-relaxed tracking-wide">
+              <p
+                class="text-xl md:text-2xl text-black leading-relaxed tracking-wide"
+              >
                 Jenis bahan yang didesain untuk memberikan sensasi dingin dan
                 nyaman saat digunakan, terutama saat cuaca panas atau saat
                 beraktivitas fisik.
               </p>
-              <p class="text-lg text-black leading-relaxed tracking-wide">
+              <p
+                class="text-xl md:text-2xl text-black leading-relaxed tracking-wide"
+              >
                 Bahan ini biasanya memiliki teknologi pendingin (cooling
                 technology) yang membantu melancarkan sirkulasi udara dan
                 membuat pemakainya merasa lebih sejuk
@@ -161,11 +229,11 @@
           </h2>
 
           <!-- Background Image with Overlay Text -->
-          <div class="relative">
+          <div class="relative quality-carousel">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f4c846d47ddf5b41de3d67e344b3af286304aa9?width=2244"
               alt="Global Quality Background"
-              class="w-full h-80 md:h-96 object-cover rounded-lg"
+              class="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-300"
             />
 
             <!-- Overlay Text -->
@@ -173,7 +241,7 @@
               class="absolute inset-0 flex items-center justify-center gradient-overlay"
             >
               <p
-                class="text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4"
+                class="carousel-text text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4 transition-opacity duration-300"
               >
                 dibuat di bandung dengan kualitas internasional cotton s24
                 berbahan cooltech
@@ -184,9 +252,15 @@
             <div
               class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4"
             >
-              <div class="progress-bar w-20 h-1 bg-white"></div>
-              <div class="progress-bar w-20 h-1 bg-white/50"></div>
-              <div class="progress-bar w-20 h-1 bg-white/50"></div>
+              <div
+                class="progress-bar w-20 h-1 bg-white transition-all duration-300 hover:bg-white/80 cursor-pointer"
+              ></div>
+              <div
+                class="progress-bar w-20 h-1 bg-white/50 transition-all duration-300 hover:bg-white/80 cursor-pointer"
+              ></div>
+              <div
+                class="progress-bar w-20 h-1 bg-white/50 transition-all duration-300 hover:bg-white/80 cursor-pointer"
+              ></div>
             </div>
           </div>
         </div>
@@ -217,15 +291,15 @@
           </div>
 
           <!-- Carousel Container -->
-          <div class="relative">
+          <div class="relative product-carousel-container overflow-hidden">
             <!-- Navigation Arrows -->
             <button
-              class="carousel-nav absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
               aria-label="Previous"
             >
               <svg
-                width="69"
-                height="97"
+                width="32"
+                height="32"
                 viewBox="0 0 69 97"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -234,18 +308,18 @@
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z"
-                  fill="black"
+                  fill="white"
                 />
               </svg>
             </button>
 
             <button
-              class="carousel-nav absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
               aria-label="Next"
             >
               <svg
-                width="69"
-                height="97"
+                width="32"
+                height="32"
                 viewBox="0 0 69 97"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -254,124 +328,17 @@
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z"
-                  fill="black"
+                  fill="white"
                 />
               </svg>
             </button>
 
-            <!-- Product Cards -->
+            <!-- Carousel Track -->
             <div
-              class="carousel-container flex overflow-x-auto gap-6 pb-4 px-16"
+              class="carousel-track flex gap-8 py-8"
+              style="width: max-content"
             >
-              <!-- SHIRT Card -->
-              <div
-                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-              >
-                <div class="relative h-96">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/e386efd00903b70bd1fcb669c929137b703f2be0?width=1271"
-                    alt="Shirt"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
-                  >
-                    <h3 class="text-3xl font-medium uppercase mb-2">SHIRT</h3>
-                    <p class="text-sm mb-4 leading-relaxed">
-                      Alpen Shirt kami hadir dengan material micro cotton 24s
-                      yang lembut dan breathable,
-                    </p>
-                    <button
-                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
-                    >
-                      See more
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- HOODIE Card -->
-              <div
-                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-              >
-                <div class="relative h-96">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/aadf956c9d70e4bf179691b3b238fd929c67d387?width=1037"
-                    alt="Hoodie"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
-                  >
-                    <h3 class="text-3xl font-medium uppercase mb-2">HOODIE</h3>
-                    <p class="text-sm mb-4 leading-relaxed">
-                      Basic Hoodie dengan 100% berbahan katun fleech dan pola
-                      regular fit
-                    </p>
-                    <button
-                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
-                    >
-                      See more
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- OVERSIZED T-SHIRT Card -->
-              <div
-                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-              >
-                <div class="relative h-96">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ac8a1aa8a52d5ac4e2a27df97930d89ae9b8841?width=1388"
-                    alt="Oversized T-Shirt"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
-                  >
-                    <h3 class="text-2xl font-medium uppercase mb-2">
-                      OVERSIZED T-SHIRT
-                    </h3>
-                    <p class="text-sm mb-4 leading-relaxed">
-                      Soft, wrinkle free, and effortlessly stylish!
-                    </p>
-                    <button
-                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
-                    >
-                      See more
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <!-- CREWNECK Card -->
-              <div
-                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-              >
-                <div class="relative h-96">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/31b7658431005cf116b8928469558fb7e5fdacbd?width=1283"
-                    alt="Crewneck"
-                    class="w-full h-full object-cover"
-                  />
-                  <div
-                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
-                  >
-                    <h3 class="text-3xl font-medium uppercase mb-2">
-                      CREWNECK
-                    </h3>
-                    <p class="text-sm mb-4 leading-relaxed">
-                      A relaxed sweater for all day comfortable fit.
-                    </p>
-                    <button
-                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
-                    >
-                      See more
-                    </button>
-                  </div>
-                </div>
-              </div>
+              <!-- Products will be dynamically inserted here -->
             </div>
           </div>
         </div>
@@ -680,5 +647,45 @@
         </div>
       </div>
     </footer>
+
+    <!-- JavaScript for Mobile Menu -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        if (mobileMenuButton && mobileMenu) {
+          mobileMenuButton.addEventListener("click", function () {
+            const isOpen = mobileMenu.classList.contains("translate-y-0");
+
+            if (isOpen) {
+              // Close menu
+              mobileMenu.classList.remove(
+                "translate-y-0",
+                "opacity-100",
+                "visible"
+              );
+              mobileMenu.classList.add(
+                "-translate-y-full",
+                "opacity-0",
+                "invisible"
+              );
+            } else {
+              // Open menu
+              mobileMenu.classList.remove(
+                "-translate-y-full",
+                "opacity-0",
+                "invisible"
+              );
+              mobileMenu.classList.add(
+                "translate-y-0",
+                "opacity-100",
+                "visible"
+              );
+            }
+          });
+        }
+      });
+    </script>
   </body>
 </html>
