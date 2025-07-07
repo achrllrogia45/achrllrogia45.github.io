@@ -1,265 +1,672 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HumanGreatness - Cool Tech Inside Greatness Outside</title>
     <link href="./output.css" rel="stylesheet" />
-    <title>HumanGreatness</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --hg-black: #000;
+        --hg-cream: #fffcee;
+        --color-white-solid: #fff;
+        --color-black-solid: #000;
+      }
+    </style>
   </head>
-  <body>
-    <header
-      class="w-full h-[71px] relative bg-gradient-to-b from-black/80 to-transparent z-50"
-    >
+  <body class="font-roboto text-base">
+    <!-- Header -->
+    <header class="relative z-50 bg-gradient-to-b from-black/80 to-transparent">
       <div
-        class="absolute left-[264px] top-0 flex items-center gap-[52px] w-[508px] h-[70px] px-5 py-[15px] rounded-[5px] overflow-hidden"
+        class="flex items-center justify-between px-4 py-4 max-w-screen-xl mx-auto"
       >
-        <div
-          class="flex items-center h-[41px] pl-5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
-        >
-          SHOP
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img
+            src="images/hg_logo_header.svg"
+            alt="HumanGreatness Logo"
+            class="h-10 w-auto"
+          />
         </div>
-        <div
-          class="flex items-center h-[41px] pl-5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
-        >
-          ABOUT US
-        </div>
-        <div
-          class="flex items-center h-[41px] pl-2.5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
-        >
-          COOLNESS
-        </div>
-      </div>
-      <div
-        class="absolute left-[792px] top-0 flex items-center gap-[41px] w-[243px] py-3"
-      >
-        <div
-          class="text-[#FFFCEE] text-base font-medium leading-6 py-[29.5px] px-5"
-        >
-          EN | IN
-        </div>
-        <div class="w-[31.04px] h-[24.22px] bg-[#FFFCEE]"></div>
-      </div>
-      <div class="absolute left-0 top-[-1px] w-[244px] h-[71px]">
-        <div
-          class="absolute left-[23.23px] top-[14.22px] w-[19.12px] h-[43.6px] bg-[#FFFCEE]"
-        ></div>
-        <div
-          class="absolute left-[23px] top-[14px] w-[25px] h-[43px] overflow-hidden"
-        >
-          <div
-            class="absolute bg-[#FFFCEE] rounded-full w-[1.83px] h-[3.36px] left-[21.19px] top-[25.76px]"
-          ></div>
-          <div
-            class="absolute bg-[#FFFCEE] rounded-full w-[1.71px] h-[3.29px] left-[14.15px] top-[25.81px]"
-          ></div>
-          <div
-            class="absolute bg-[#FFFCEE] rounded-full w-[2.07px] h-[3.30px] left-[16.30px] top-[25.80px]"
-          ></div>
-          <div
-            class="absolute bg-[#FFFCEE] rounded-full w-[1.84px] h-[3.30px] left-[18.88px] top-[25.80px]"
-          ></div>
-          <div
-            class="absolute bg-[#FFFCEE] rounded-full w-[0.52px] h-[0.54px] left-[23.44px] top-[28.52px]"
-          ></div>
+
+        <!-- Navigation -->
+        <nav class="hidden md:flex items-center space-x-12">
+          <a href="#" class="text-cream hover:text-white transition-colors"
+            >SHOP</a
+          >
+          <a href="#" class="text-cream hover:text-white transition-colors"
+            >ABOUT US</a
+          >
+          <a href="#" class="text-cream hover:text-white transition-colors"
+            >COOLNESS</a
+          >
+          <a href="#" class="text-cream hover:text-white transition-colors"
+            >EN | IN</a
+          >
+        </nav>
+
+        <!-- Shop Icon -->
+        <div class="flex items-center">
+          <img src="images/shop_icon_header.svg" alt="Shop" class="h-6 w-6" />
         </div>
       </div>
     </header>
 
-    <main>
+    <main class="relative">
       <!-- Hero Section -->
       <section
-        class="relative h-screen flex items-center justify-center bg-cover bg-center"
-        style="background-image: url('images/v71_791.png')"
+        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
+        style="
+          background-image:
+            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url(&quot;https://cdn.builder.io/api/v1/image/assets/TEMP/b7c25c50b233b5e72b65ab6b9015f6cc61f3b7c6?width=2578&quot;);
+        "
       >
-        <div class="absolute inset-0 bg-black/50 z-0"></div>
-        <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
-          <p class="text-sm tracking-widest mb-6 text-gray-200">HOME /</p>
+        <!-- Breadcrumb -->
+        <div
+          class="absolute top-20 left-1/2 transform -translate-x-1/2 text-cream text-base"
+        >
+          HOME /
+        </div>
+
+        <div class="text-center px-4 max-w-4xl mx-auto">
+          <!-- Main Heading -->
           <h1
-            class="text-5xl md:text-6xl font-bold leading-tight mb-6 text-white tracking-wider"
+            class="text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase"
           >
-            COOL TECH INSIDE<br />GREATNESS OUTSIDE
+            cool tech inside<br />
+            greatness outside
           </h1>
-          <h2
-            class="text-3xl md:text-4xl font-bold mb-10 text-white tracking-wide"
-          >
-            HumanGreatness<span class="align-super text-lg">®</span>
-          </h2>
+
+          <!-- Logo -->
+          <div class="mb-8">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/74846106dd0b58bd6f600a09850b1f7549ce476f?width=1016"
+              alt="HeaderLogo"
+              class="mx-auto max-w-md h-auto"
+            />
+          </div>
+
+          <!-- CTA Button -->
           <a
             href="#"
-            class="inline-block px-10 py-3 border-2 border-white text-white font-bold tracking-widest hover:bg-white hover:text-black transition"
-            >SHOP NOW</a
+            class="inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
           >
+            Shop now
+          </a>
         </div>
       </section>
 
-      <!-- Cooltech Section -->
-      <section
-        class="flex flex-col md:flex-row gap-16 md:gap-24 max-w-6xl mx-auto py-24 px-4 items-center"
-      >
-        <div class="relative w-full md:w-1/2">
-          <img
-            src="images/v114_124.png"
-            alt="Cooltech"
-            class="w-full rounded-xl shadow-lg"
-          />
-          <div class="absolute top-8 left-8 text-white font-semibold space-y-2">
-            <p class="text-lg">KERJA NYAMAN DINGIN DI DALAM</p>
-            <p class="italic opacity-90">#coolabicy</p>
-            <p class="text-2xl mt-2">HumanGreatness</p>
-            <p class="text-lg opacity-80">hg</p>
-          </div>
-        </div>
-        <div class="w-full md:w-1/2">
-          <h2 class="text-4xl font-bold mb-6 text-black">COOLTECH</h2>
-          <p class="text-lg text-gray-700 mb-4">
-            Jenis bahan yang didesain untuk memberikan sensasi dingin dan nyaman
-            saat digunakan, terutama saat cuaca panas atau saat beraktivitas
-            fisik.
-          </p>
-          <p class="text-lg text-gray-700">
-            Bahan ini biasanya memiliki teknologi pendingin (cooling technology)
-            yang membantu melancarkan sirkulasi udara dan membuat pemakainya
-            merasa lebih sejuk
-          </p>
-        </div>
-      </section>
+      <!-- Section 2: COOLTECH -->
+      <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Divider -->
+          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"></div>
 
-      <!-- Local Pride Section -->
-      <section class="max-w-6xl mx-auto py-24 px-4 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
-          LOCAL PRIDE GLOBAL QUALITY
-        </h2>
-        <div class="flex flex-col md:flex-row justify-center gap-8">
-          <img
-            src="images/v107_132.png"
-            alt="Quality Product 1"
-            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
-          />
-          <img
-            src="images/v107_138.png"
-            alt="Quality Product 2"
-            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
-          />
-          <img
-            src="images/v107_144.png"
-            alt="Quality Product 3"
-            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
-          />
-        </div>
-      </section>
-
-      <!-- Product Carousel Section -->
-      <section class="max-w-6xl mx-auto py-24 px-4 text-center">
-        <h2 class="text-4xl md:text-5xl font-bold mb-6">
-          OUR COOLNESS OUR GREATNESS
-        </h2>
-        <p class="max-w-2xl mx-auto text-lg text-gray-700 mb-12">
-          Serat berbahan katun S24 Fleece yang bukan kalteng-kaleng, dipadukan
-          dengan material berbahan inovatif berbahan COOLTECH, yang tak hanya
-          nyaman tapi juga sejuk untuk dipakai seharian.
-        </p>
-        <div class="relative flex items-center justify-center">
-          <button
-            class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl hover:bg-black transition"
-          >
-            &lt;
-          </button>
-          <div
-            class="flex flex-col md:flex-row gap-8 w-full md:w-auto justify-center"
-          >
-            <div
-              class="bg-white rounded-xl shadow-lg p-6 text-left w-full md:w-80 hover:-translate-y-2 transition"
-            >
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <!-- Image Container -->
+            <div class="relative">
               <img
-                src="images/v114_127.png"
-                alt="Hoodie"
-                class="w-full rounded-lg mb-6"
+                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cde2837f6888802d56a0c6f5322eb0ab8ad30924?width=1017"
+                alt="COOLTECH Billboard"
+                class="w-full h-auto rounded-lg"
               />
-              <h3 class="text-xl font-bold mb-2 text-black">HOODIE</h3>
-              <p class="text-gray-600 mb-4">
-                Basic Hoodie dengan 100% berbahan katun fleech dan pola regular
-                fit
-              </p>
-              <a
-                href="#"
-                class="inline-block px-6 py-2 border-2 border-black text-black font-semibold rounded hover:bg-black hover:text-white transition"
-                >See more</a
-              >
             </div>
-            <div
-              class="bg-white rounded-xl shadow-lg p-6 text-left w-full md:w-80 hover:-translate-y-2 transition"
-            >
-              <img
-                src="images/v114_124.png"
-                alt="Oversized T-Shirt"
-                class="w-full rounded-lg mb-6"
-              />
-              <h3 class="text-xl font-bold mb-2 text-black">
-                OVERSIZED T-SHIRT
-              </h3>
-              <p class="text-gray-600 mb-4">
-                Soft, wrinkle free, and effortlessly stylish!
-              </p>
-              <a
-                href="#"
-                class="inline-block px-6 py-2 border-2 border-black text-black font-semibold rounded hover:bg-black hover:text-white transition"
-                >See more</a
+
+            <!-- Content -->
+            <div class="space-y-6">
+              <h2
+                class="text-5xl md:text-6xl font-bold text-black leading-tight"
               >
+                COOLTECH
+              </h2>
+              <p class="text-lg text-black leading-relaxed tracking-wide">
+                Jenis bahan yang didesain untuk memberikan sensasi dingin dan
+                nyaman saat digunakan, terutama saat cuaca panas atau saat
+                beraktivitas fisik.
+              </p>
+              <p class="text-lg text-black leading-relaxed tracking-wide">
+                Bahan ini biasanya memiliki teknologi pendingin (cooling
+                technology) yang membantu melancarkan sirkulasi udara dan
+                membuat pemakainya merasa lebih sejuk
+              </p>
             </div>
           </div>
-          <button
-            class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl hover:bg-black transition"
+        </div>
+      </section>
+
+      <!-- Section 3: Local Pride Global Quality -->
+      <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Divider -->
+          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
+
+          <!-- Heading -->
+          <h2
+            class="text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16"
           >
-            &gt;
-          </button>
+            local pride global quality
+          </h2>
+
+          <!-- Background Image with Overlay Text -->
+          <div class="relative">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f4c846d47ddf5b41de3d67e344b3af286304aa9?width=2244"
+              alt="Global Quality Background"
+              class="w-full h-80 md:h-96 object-cover rounded-lg"
+            />
+
+            <!-- Overlay Text -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <p
+                class="text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4"
+              >
+                dibuat di bandung dengan kualitas internasional cotton s24
+                berbahan cooltech
+              </p>
+            </div>
+
+            <!-- Progress Indicators -->
+            <div
+              class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4"
+            >
+              <div class="w-20 h-1 bg-white"></div>
+              <div class="w-20 h-1 bg-white/50"></div>
+              <div class="w-20 h-1 bg-white/50"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Product Carousel -->
+      <section class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+          <!-- Divider -->
+          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"></div>
+
+          <!-- Heading -->
+          <div class="text-center mb-16">
+            <h2
+              class="text-4xl md:text-5xl font-bold text-black uppercase tracking-wider mb-6"
+            >
+              our coolness our greatness
+            </h2>
+            <p
+              class="text-lg text-black max-w-4xl mx-auto leading-relaxed tracking-wide"
+            >
+              serat berbahan katun S24 Fleece yang bukan kalteng-kaleng,
+              dipadukan dengan material berbahan inovatif berbahan COOLTECH,
+              yang tak hanya nyaman tapi juga sejuk untuk dipakai seharian.
+            </p>
+          </div>
+
+          <!-- Carousel Container -->
+          <div class="relative">
+            <!-- Navigation Arrows -->
+            <button
+              class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              aria-label="Previous"
+            >
+              <svg
+                width="69"
+                height="97"
+                viewBox="0 0 69 97"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              aria-label="Next"
+            >
+              <svg
+                width="69"
+                height="97"
+                viewBox="0 0 69 97"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z"
+                  fill="black"
+                />
+              </svg>
+            </button>
+
+            <!-- Product Cards -->
+            <div
+              class="flex overflow-x-auto gap-6 pb-4 px-16"
+              style="scroll-snap-type: x mandatory"
+            >
+              <!-- SHIRT Card -->
+              <div
+                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
+                style="scroll-snap-align: center"
+              >
+                <div class="relative h-96">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/e386efd00903b70bd1fcb669c929137b703f2be0?width=1271"
+                    alt="Shirt"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
+                  >
+                    <h3 class="text-3xl font-medium uppercase mb-2">SHIRT</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                      Alpen Shirt kami hadir dengan material micro cotton 24s
+                      yang lembut dan breathable,
+                    </p>
+                    <button
+                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                      See more
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- HOODIE Card -->
+              <div
+                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
+                style="scroll-snap-align: center"
+              >
+                <div class="relative h-96">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/aadf956c9d70e4bf179691b3b238fd929c67d387?width=1037"
+                    alt="Hoodie"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
+                  >
+                    <h3 class="text-3xl font-medium uppercase mb-2">HOODIE</h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                      Basic Hoodie dengan 100% berbahan katun fleech dan pola
+                      regular fit
+                    </p>
+                    <button
+                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                      See more
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OVERSIZED T-SHIRT Card -->
+              <div
+                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
+                style="scroll-snap-align: center"
+              >
+                <div class="relative h-96">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/5ac8a1aa8a52d5ac4e2a27df97930d89ae9b8841?width=1388"
+                    alt="Oversized T-Shirt"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
+                  >
+                    <h3 class="text-2xl font-medium uppercase mb-2">
+                      OVERSIZED T-SHIRT
+                    </h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                      Soft, wrinkle free, and effortlessly stylish!
+                    </p>
+                    <button
+                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                      See more
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- CREWNECK Card -->
+              <div
+                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
+                style="scroll-snap-align: center"
+              >
+                <div class="relative h-96">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/31b7658431005cf116b8928469558fb7e5fdacbd?width=1283"
+                    alt="Crewneck"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 text-white text-center"
+                  >
+                    <h3 class="text-3xl font-medium uppercase mb-2">
+                      CREWNECK
+                    </h3>
+                    <p class="text-sm mb-4 leading-relaxed">
+                      A relaxed sweater for all day comfortable fit.
+                    </p>
+                    <button
+                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                    >
+                      See more
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Decorative Section -->
+      <section class="py-20">
+        <div
+          class="max-w-6xl mx-auto flex items-center justify-center bg-gradient-to-b from-black/20 to-white/20 h-96 rounded-lg"
+        >
+          <svg
+            width="156"
+            height="110"
+            viewBox="0 0 156 110"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+              fill="white"
+            />
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+              fill="white"
+            />
+          </svg>
         </div>
       </section>
     </main>
 
-    <footer class="bg-black text-white pt-20 pb-8">
-      <div
-        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 items-start"
-      >
-        <div>
-          <div class="text-3xl font-bold mb-6">HumanGreatness</div>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4 tracking-wider">NAVIGATION</h3>
-          <ul class="space-y-2">
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition">Home</a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition">Shop</a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition"
+    <!-- Footer -->
+    <footer class="bg-black text-white">
+      <div class="max-w-6xl mx-auto px-4 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <!-- Logo -->
+          <div class="text-center md:text-left">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/caf064cc643820405bbd440c0de3200c0682dbbf?width=384"
+              alt="HumanGreatness Logo"
+              class="h-80 mx-auto md:mx-0"
+            />
+          </div>
+
+          <!-- Customer Care -->
+          <div>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1c864a14f80618dc9fdf71751b3c58793203ace1?width=482"
+              alt="HGN Logo"
+              class="h-8 mb-8"
+            />
+            <div class="space-y-4">
+              <p class="text-white text-sm">
+                Online Customer Care:<br />
+                <a
+                  href="tel:+6282126610201"
+                  class="underline hover:text-cream transition-colors"
+                  >+62 821 2661 0201</a
+                >
+              </p>
+
+              <!-- Social Media -->
+              <div class="space-y-3">
+                <div class="flex items-center space-x-3">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 25 25"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M7.28 0C3.2648 0 0 3.2648 0 7.28V17.36C0 21.3752 3.2648 24.64 7.28 24.64H17.36C21.3752 24.64 24.64 21.3752 24.64 17.36V7.28C24.64 3.2648 21.3752 0 17.36 0H7.28ZM19.04 4.48C19.656 4.48 20.16 4.984 20.16 5.6C20.16 6.216 19.656 6.72 19.04 6.72C18.424 6.72 17.92 6.216 17.92 5.6C17.92 4.984 18.424 4.48 19.04 4.48ZM12.32 6.16C15.7192 6.16 18.48 8.9208 18.48 12.32C18.48 15.7192 15.7192 18.48 12.32 18.48C8.9208 18.48 6.16 15.7192 6.16 12.32C6.16 8.9208 8.9208 6.16 12.32 6.16ZM12.32 7.28C9.5424 7.28 7.28 9.5424 7.28 12.32C7.28 15.0976 9.5424 17.36 12.32 17.36C15.0976 17.36 17.36 15.0976 17.36 12.32C17.36 9.5424 15.0976 7.28 12.32 7.28Z"
+                      fill="#FFFCEE"
+                    />
+                  </svg>
+                  <a
+                    href="#"
+                    class="text-white underline hover:text-cream transition-colors"
+                    >@hgbasiclabs</a
+                  >
+                </div>
+
+                <div class="flex items-center space-x-3">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.96 0.408203H3.03999C1.49439 0.408203 0.23999 1.6626 0.23999 3.2082V21.1282C0.23999 22.6738 1.49439 23.9282 3.03999 23.9282H20.96C22.5056 23.9282 23.76 22.6738 23.76 21.1282V3.2082C23.76 1.6626 22.5056 0.408203 20.96 0.408203ZM18.72 8.8082H17.6C16.4016 8.8082 15.92 9.0882 15.92 9.9282V11.6082H18.72L18.16 14.4082H15.92V22.8082H13.12V14.4082H10.88V11.6082H13.12V9.9282C13.12 7.6882 14.24 6.0082 16.48 6.0082C18.104 6.0082 18.72 6.5682 18.72 6.5682V8.8082Z"
+                      fill="#FFFCEE"
+                    />
+                  </svg>
+                  <a
+                    href="#"
+                    class="text-white underline hover:text-cream transition-colors"
+                    >Human Greatness</a
+                  >
+                </div>
+
+                <div class="flex items-center space-x-3">
+                  <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M20.96 0.408203H3.03999C1.49607 0.408203 0.23999 1.66428 0.23999 3.2082V21.1282C0.23999 22.6721 1.49607 23.9282 3.03999 23.9282H20.96C22.5039 23.9282 23.76 22.6721 23.76 21.1282V3.2082C23.76 1.66428 22.5039 0.408203 20.96 0.408203ZM18.7233 10.6691C18.5962 10.6808 18.4674 10.6887 18.337 10.6887C16.8681 10.6887 15.5773 9.93324 14.8263 8.7914C14.8263 11.7868 14.8263 15.195 14.8263 15.2521C14.8263 17.8892 12.6882 20.0272 10.0512 20.0272C7.41415 20.0272 5.27607 17.8892 5.27607 15.2521C5.27607 12.6151 7.41415 10.477 10.0512 10.477C10.1509 10.477 10.2483 10.486 10.3463 10.4921V12.8452C10.2483 12.8335 10.152 12.8156 10.0512 12.8156C8.70495 12.8156 7.61407 13.9064 7.61407 15.2527C7.61407 16.5989 8.70495 17.6898 10.0512 17.6898C11.3974 17.6898 12.5863 16.6292 12.5863 15.2829C12.5863 15.2297 12.6098 4.31028 12.6098 4.31028H14.8588C15.0705 6.32124 16.6939 7.90828 18.7233 8.05388V10.6691Z"
+                      fill="#FFFCEE"
+                    />
+                  </svg>
+                  <a
+                    href="#"
+                    class="text-white underline hover:text-cream transition-colors"
+                    >@hgbasiclabs</a
+                  >
+                </div>
+              </div>
+
+              <!-- Shopping Icons -->
+              <div class="flex space-x-4 mt-6">
+                <svg
+                  width="37"
+                  height="42"
+                  viewBox="0 0 37 42"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_72_859)">
+                    <path
+                      d="M31.5141 41.9202H5.42022C3.22293 41.9202 1.41242 40.2035 1.30955 38.0215L0.00105322 10.2717C-0.0267215 9.68889 0.441335 9.20117 1.02872 9.20117H35.9056C36.493 9.20117 36.961 9.68889 36.9333 10.2717L35.6248 38.0215C35.5219 40.2035 33.7114 41.9202 31.5141 41.9202Z"
+                      fill="#F4511E"
+                    />
+                    <path
+                      d="M27.2111 9.71249H25.1537C25.1537 5.48355 22.154 2.04396 18.4672 2.04396C14.7803 2.04396 11.7807 5.48355 11.7807 9.71249H9.72327C9.72327 4.35679 13.6457 -0.000976562 18.4672 -0.000976562C23.2887 -0.000976562 27.2111 4.35679 27.2111 9.71249Z"
+                      fill="#F4511E"
+                    />
+                    <path
+                      d="M18.7223 24.2193C15.9026 23.1948 14.1909 22.4372 14.1909 20.5619C14.1909 18.6693 16.0178 17.2952 18.5361 17.2952C20.2694 17.2952 21.7857 17.97 22.5356 18.3708C22.6632 18.4393 23.0232 18.654 23.2269 18.79L23.3607 18.879L24.3461 17.2859L24.1846 17.1806C23.3905 16.6479 21.2487 15.4087 18.5371 15.4087C14.9789 15.4087 12.296 17.6234 12.296 20.5609C12.296 23.8911 15.3646 25.0056 18.0721 25.9892C21.2302 27.1364 23.1477 28.0086 23.1477 30.4359C23.1477 32.305 21.0214 33.8244 18.4065 33.8244C15.4603 33.8244 12.9276 31.6721 12.904 31.6517L12.7723 31.531L11.6963 33.1077L11.8053 33.1966C12.5378 33.7866 15.1753 35.7098 18.4054 35.7098C22.1283 35.7098 25.0446 33.3929 25.0446 30.4359C25.0436 26.5148 21.6849 25.296 18.7223 24.2193Z"
+                      fill="#FAFAFA"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_72_859">
+                      <rect width="37" height="42" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <svg
+                  width="34"
+                  height="39"
+                  viewBox="0 0 34 39"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_72_868)">
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M1.95435 9.09414H13.0527L16.9683 10.2786L22.8418 9.30462L32.3479 9.39336L32.6145 20.1359L32.5256 29.5619C32.5256 29.5619 29.4324 37.4321 22.8418 37.4341C20.5265 37.4341 5.49139 37.4053 5.49139 37.4053L1.11182 37.461V9.07764L1.95435 9.09414Z"
+                      fill="#4D984C"
+                    />
+                    <path
+                      d="M22.1887 38.9734H1.30522C0.588653 38.9734 0 38.3875 0 37.6743V9.09356C0 8.38034 0.588653 7.79443 1.30522 7.79443H11.5838C13.4398 7.79703 15.2763 8.19067 16.9678 8.95195C18.6594 8.19067 20.4958 7.79703 22.3518 7.79443H32.6304C33.347 7.79443 33.9356 8.38034 33.9356 9.09356V27.2813C33.9291 33.6924 28.6299 38.9669 22.1887 38.9734ZM2.61043 36.3751H22.1887C27.1981 36.3686 31.3187 32.2673 31.3252 27.2813V10.3927H22.3518C20.7308 10.394 19.1319 10.7707 17.6818 11.4904L17.5512 11.5554C17.1845 11.7373 16.7511 11.7373 16.3831 11.5554L16.2526 11.4904C14.8025 10.7707 13.2049 10.3953 11.5838 10.3927H2.61043V36.3751Z"
+                      fill="#4D984D"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_72_868">
+                      <rect width="34" height="39" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+
+                <svg
+                  width="33"
+                  height="26"
+                  viewBox="0 0 33 26"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clip-path="url(#clip0_72_895)">
+                    <path
+                      d="M25.8869 0.00146484C25.9669 0.00146484 26.045 0.0228721 26.1128 0.0637752L32.5551 3.92816C32.7943 4.07152 32.943 4.33108 32.943 4.60478V15.7232C32.943 15.9999 32.799 16.2522 32.5578 16.3983L16.8857 25.8805C16.7614 25.9558 16.6183 25.9956 16.472 25.9956C16.3257 25.9956 16.1826 25.9558 16.0582 25.8805L0.385727 16.3986C0.144539 16.2526 0.000610352 16.0003 0.000610352 15.7235V4.60517C0.000610352 4.33146 0.149245 4.0719 0.388472 3.92855L6.83074 0.064158C6.89858 0.0232549 6.97702 0.00184763 7.05663 0.00184763C7.13703 0.00184763 7.21585 0.0236368 7.28409 0.0649221L13.3056 3.70797C14.257 4.28368 15.3519 4.58796 16.4716 4.58796C17.5912 4.58796 18.6862 4.28368 19.6376 3.70797L25.6591 0.0649221C25.7281 0.0232545 25.8065 0.00146484 25.8869 0.00146484Z"
+                      fill="#F9B621"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_72_895">
+                      <rect width="33" height="26" fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <div>
+            <h3
+              class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
+            >
+              Navigation
+            </h3>
+            <nav class="space-y-3">
+              <a
+                href="#"
+                class="block text-white hover:text-cream transition-colors text-sm"
+                >Home</a
+              >
+              <a
+                href="#"
+                class="block text-white hover:text-cream transition-colors text-sm"
+                >Shop</a
+              >
+              <a
+                href="#"
+                class="block text-white hover:text-cream transition-colors text-sm"
                 >Catalogues</a
               >
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition"
+              <a
+                href="#"
+                class="block text-white hover:text-cream transition-colors text-sm"
                 >Sale Items</a
               >
-            </li>
-            <li>
-              <a href="#" class="hover:text-yellow-400 transition">About Us</a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="text-lg font-semibold mb-4 tracking-wider">ADDRESS</h3>
-          <p class="mb-1">Jl. Hasanudin No 9, Lebak Gede</p>
-          <p class="mb-1">Kota Bandung</p>
-          <p class="mb-1">Jawa Barat</p>
-          <p>Indonesia</p>
+              <a
+                href="#"
+                class="block text-white hover:text-cream transition-colors text-sm"
+                >About Us</a
+              >
+            </nav>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <h3
+              class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
+            >
+              Address
+            </h3>
+            <address class="not-italic text-white text-sm leading-relaxed">
+              Jl. Hasanudin No 9, Lebak Gede<br />
+              Kota Bandung<br />
+              Jawa Barat<br />
+              Indonesia
+            </address>
+
+            <!-- Help Button -->
+            <button
+              class="mt-8 bg-cream text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors flex items-center space-x-2"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_72_982)">
+                  <path
+                    d="M11 12.3V13H8.99998V12.4C8.99998 11.8 9.09998 11 9.79998 10.3C10.5 9.6 11.4 9.1 11.4 8.2C11.4 7.3 10.7 6.8 9.99998 6.8C8.69998 6.8 8.59998 8.2 8.49998 8.5H6.59998C6.59998 7.1 7.19998 5 9.99998 5C12.4 5 13.4 6.6 13.4 8C13.4 10.4 11 10.8 11 12.3Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M10 16C10.5523 16 11 15.5523 11 15C11 14.4477 10.5523 14 10 14C9.44772 14 9 14.4477 9 15C9 15.5523 9.44772 16 10 16Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2ZM10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0Z"
+                    fill="black"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_72_982">
+                    <rect width="20" height="20" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+              <span>Help</span>
+            </button>
+          </div>
         </div>
       </div>
-      <div
-        class="border-t border-white/10 mt-12 pt-6 text-center text-sm text-white/60"
-      >
-        © 2025. Made in Bandung by Hilman Nur Firdaus
+
+      <!-- Copyright -->
+      <div class="border-t border-cream bg-cream">
+        <div class="max-w-6xl mx-auto px-4 py-6 text-center">
+          <p class="text-black text-sm">
+            © 2025. Made in Bandung by Hilman Nur Firdaus
+          </p>
+        </div>
       </div>
     </footer>
   </body>
