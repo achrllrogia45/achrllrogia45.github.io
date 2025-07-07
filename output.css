@@ -425,6 +425,47 @@ body {
 }
 
 .font-inter {
+  font-family: "Inter", sans-serif;
+}
+
+/* Custom spacing utilities */
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.gap-\[52px\] {
+  gap: 52px;
+}
+
+.gap-\[280px\] {
+  gap: 280px;
+}
+
+.tracking-\[15px\] {
+  letter-spacing: 15px;
+}
+
+.tracking-\[6px\] {
+  letter-spacing: 6px;
+}
+
+.pl-\[100px\] {
+  padding-left: 100px;
+}
+
+.-mr-1 {
+  margin-right: -0.25rem;
+}
+
+.self-center {
+  align-self: center;
+}
+
+.translate-x-\[-28\.0312px\] {
+  transform: translateX(-28.0312px);
+}
+
+.font-inter {
   font-family:
     "Inter",
     -apple-system,
