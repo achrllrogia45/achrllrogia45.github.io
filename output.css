@@ -543,6 +543,95 @@ body {
   transform: translateX(-50%);
 }
 
+/* Hero Section Background */
+.hero-section {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://cdn.builder.io/api/v1/image/assets/TEMP/b7c25c50b233b5e72b65ab6b9015f6cc61f3b7c6?width=2578");
+}
+
+/* Custom component classes for better organization */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--hg-cream);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.button-primary {
+  transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.product-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.product-btn {
+  transition: all 0.3s ease;
+}
+
+.product-btn:hover {
+  transform: translateY(-1px);
+}
+
+.carousel-nav {
+  transition: opacity 0.3s ease;
+}
+
+.carousel-nav:hover {
+  opacity: 0.8;
+}
+
+.social-link {
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.social-link:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.help-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.nav-item:hover {
+  padding-left: 0.5rem;
+  transition: padding-left 0.3s ease;
+}
+
+.divider {
+  opacity: 0.8;
+}
+
 /* Scroll behavior */
 .scroll-snap-type-x {
   scroll-snap-type: x mandatory;
