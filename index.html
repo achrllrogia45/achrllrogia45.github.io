@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HumanGreatness - Cool Tech Inside Greatness Outside</title>
     <link href="././src/output.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,22 +21,25 @@
   <body class="font-roboto text-base">
     <!-- Header -->
     <header
-      class="absolute z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5"
+      class="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5"
     >
       <div
         class="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]"
       >
         <!-- Logo -->
-        <div class="flex items-center">
+        <a
+          href="/"
+          class="flex items-center hover:opacity-80 transition-opacity"
+        >
           <img
             src="images/hg_logo_header.svg"
             alt="HumanGreatness Logo"
             class="h-8 sm:h-10 w-auto"
           />
-        </div>
+        </a>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-8 xl:gap-[52px]">
+        <nav class="hidden lg:flex items-center gap-8 xl:gap-[152px]">
           <a
             href="#"
             class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
@@ -50,41 +57,86 @@
           >
         </nav>
 
-        <!-- Language and Shop Icon -->
-        <div class="flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >EN / IN</a
-          >
+        <!-- Language and Shop Icon - Desktop -->
+        <div class="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
+          <div class="flex items-center gap-[10px] text-sm lg:text-base">
+            <a href="#" class="text-cream relative group px-1">
+              <span
+                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
+                >EN</span
+              >
+              <span
+                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              ></span>
+            </a>
+            <span class="text-cream mx-1">/</span>
+            <a href="#" class="text-cream relative group px-1">
+              <span
+                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
+                >IN</span
+              >
+              <span
+                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              ></span>
+            </a>
+          </div>
           <img
             src="images/shop_icon_header.svg"
             alt="Shop"
-            class="h-5 sm:h-6 w-5 sm:w-6"
+            class="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
           />
         </div>
 
-        <!-- Mobile Menu Button -->
-        <button
-          class="lg:hidden text-cream hover:text-white transition-colors"
-          id="mobile-menu-button"
-          aria-label="Toggle mobile menu"
-        >
-          <svg
-            class="h-6 w-6"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
+        <!-- Mobile Header Right Group (Language, Shop, Menu) -->
+        <div class="flex lg:hidden items-center gap-4">
+          <div class="flex items-center gap-[6px] text-sm">
+            <a href="#" class="text-cream relative group px-1">
+              <span
+                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
+                >EN</span
+              >
+              <span
+                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              ></span>
+            </a>
+            <span class="text-cream mx-1">/</span>
+            <a href="#" class="text-cream relative group px-1">
+              <span
+                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
+                >IN</span
+              >
+              <span
+                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+              ></span>
+            </a>
+          </div>
+          <img
+            src="images/shop_icon_header.svg"
+            alt="Shop"
+            class="h-5 w-5 invert"
+          />
+          <!-- Mobile Menu Button -->
+          <button
+            class="text-cream hover:text-white transition-colors"
+            id="mobile-menu-button"
+            aria-label="Toggle mobile menu"
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
-            ></path>
-          </svg>
-        </button>
+            <svg
+              class="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
       <!-- Mobile Navigation Menu -->
@@ -117,13 +169,6 @@
       <section
         class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       >
-        <!-- Breadcrumb -->
-        <div
-          class="fixed top-20 left-0 text-cream text-base w-full h-6 pl-[100px] transform translate-x-[-28.0312px]"
-        >
-          HOME /
-        </div>
-
         <!-- Background Image with Overlay -->
         <div class="absolute inset-0 w-full h-full">
           <img
@@ -167,6 +212,21 @@
             </a>
           </div>
         </div>
+        <!-- Breadcrumb -->
+        <div
+          class="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]"
+        >
+          <div class="max-w-6xl mx-auto">
+            <p class="text-sm sm:text-base">
+              <a
+                href="/"
+                class="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
+                >HOME</a
+              >
+              /
+            </p>
+          </div>
+        </div>
       </section>
 
       <!-- Section 2: COOLTECH -->
@@ -181,7 +241,7 @@
             <!-- Image Container -->
             <div class="relative">
               <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/cde2837f6888802d56a0c6f5322eb0ab8ad30924?width=1017"
+                src="images/vertical.poster.png"
                 alt="COOLTECH Billboard"
                 class="w-full h-auto rounded-lg"
               />
@@ -231,9 +291,9 @@
           <!-- Background Image with Overlay Text -->
           <div class="relative quality-carousel">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/2f4c846d47ddf5b41de3d67e344b3af286304aa9?width=2244"
+              src="images/vertical.poster.png"
               alt="Global Quality Background"
-              class="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-300"
+              class="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-[1500ms]"
             />
 
             <!-- Overlay Text -->
@@ -241,7 +301,7 @@
               class="absolute inset-0 flex items-center justify-center gradient-overlay"
             >
               <p
-                class="carousel-text text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4 transition-opacity duration-300"
+                class="carousel-text text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4 transition-opacity duration-[1500ms]"
               >
                 dibuat di bandung dengan kualitas internasional cotton s24
                 berbahan cooltech
@@ -376,25 +436,26 @@
     <!-- Footer -->
     <footer class="bg-black text-white">
       <div class="max-w-6xl mx-auto px-4 py-16">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-          <!-- Logo -->
-          <div class="footer-logo text-center md:text-left">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/caf064cc643820405bbd440c0de3200c0682dbbf?width=384"
-              alt="HumanGreatness Logo"
-              class="h-80 mx-auto md:mx-0"
-            />
-          </div>
+        <!-- Logo section above -->
+        <div class="mb-12 text-center">
+          <img
+            src="images/hg_logo_header.svg"
+            alt="HumanGreatness Logo"
+            class="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert"
+          />
+        </div>
 
+        <!-- Three columns section for services, navigation and address -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8">
           <!-- Customer Care -->
-          <div class="footer-contact">
+          <div class="footer-contact text-center md:text-left">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets/TEMP/1c864a14f80618dc9fdf71751b3c58793203ace1?width=482"
+              src="images/hg_logotext.svg"
               alt="HGN Logo"
-              class="h-8 mb-8"
+              class="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
             />
-            <div class="space-y-4">
-              <p class="text-white text-sm">
+            <div class="space-y-4 flex flex-col items-center md:items-start">
+              <p class="text-white text-sm text-center md:text-left">
                 Online Customer Care:<br />
                 <a
                   href="tel:+6282126610201"
@@ -404,8 +465,10 @@
               </p>
 
               <!-- Social Media -->
-              <div class="social-links space-y-3">
-                <div class="flex items-center space-x-3">
+              <div class="social-links space-y-3 w-full">
+                <div
+                  class="flex items-center space-x-3 justify-center md:justify-start"
+                >
                   <svg
                     class="social-icon"
                     width="24"
@@ -426,7 +489,9 @@
                   >
                 </div>
 
-                <div class="flex items-center space-x-3">
+                <div
+                  class="flex items-center space-x-3 justify-center md:justify-start"
+                >
                   <svg
                     class="social-icon"
                     width="24"
@@ -447,7 +512,9 @@
                   >
                 </div>
 
-                <div class="flex items-center space-x-3">
+                <div
+                  class="flex items-center space-x-3 justify-center md:justify-start"
+                >
                   <svg
                     class="social-icon"
                     width="24"
@@ -470,7 +537,9 @@
               </div>
 
               <!-- Shopping Icons -->
-              <div class="shopping-icons flex space-x-4 mt-6">
+              <div
+                class="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start"
+              >
                 <svg
                   class="platform-icon"
                   width="37"
@@ -552,88 +621,56 @@
           </div>
 
           <!-- Navigation -->
-          <div class="footer-nav">
+          <div class="footer-nav text-center md:text-left">
             <h3
-              class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
+              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
             >
               Navigation
             </h3>
-            <nav class="space-y-3">
+            <nav class="space-y-3 flex flex-col items-center md:items-start">
               <a
                 href="#"
-                class="nav-item block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item text-white hover:text-cream transition-colors text-sm"
                 >Home</a
               >
               <a
                 href="#"
-                class="nav-item block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item text-white hover:text-cream transition-colors text-sm"
                 >Shop</a
               >
               <a
                 href="#"
-                class="nav-item block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item text-white hover:text-cream transition-colors text-sm"
                 >Catalogues</a
               >
               <a
                 href="#"
-                class="nav-item block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item text-white hover:text-cream transition-colors text-sm"
                 >Sale Items</a
               >
               <a
                 href="#"
-                class="nav-item block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item text-white hover:text-cream transition-colors text-sm"
                 >About Us</a
               >
             </nav>
           </div>
 
           <!-- Address -->
-          <div class="footer-address">
+          <div class="footer-address text-center md:text-left">
             <h3
-              class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
+              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
             >
               Address
             </h3>
-            <address class="not-italic text-white text-sm leading-relaxed">
+            <address
+              class="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs"
+            >
               Jl. Hasanudin No 9, Lebak Gede<br />
               Kota Bandung<br />
               Jawa Barat<br />
               Indonesia
             </address>
-
-            <!-- Help Button -->
-            <button
-              class="help-btn mt-8 bg-cream text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors flex items-center space-x-2"
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_72_982)">
-                  <path
-                    d="M11 12.3V13H8.99998V12.4C8.99998 11.8 9.09998 11 9.79998 10.3C10.5 9.6 11.4 9.1 11.4 8.2C11.4 7.3 10.7 6.8 9.99998 6.8C8.69998 6.8 8.59998 8.2 8.49998 8.5H6.59998C6.59998 7.1 7.19998 5 9.99998 5C12.4 5 13.4 6.6 13.4 8C13.4 10.4 11 10.8 11 12.3Z"
-                    fill="black"
-                  />
-                  <path
-                    d="M10 16C10.5523 16 11 15.5523 11 15C11 14.4477 10.5523 14 10 14C9.44772 14 9 14.4477 9 15C9 15.5523 9.44772 16 10 16Z"
-                    fill="black"
-                  />
-                  <path
-                    d="M10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2ZM10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_72_982">
-                    <rect width="20" height="20" fill="white" />
-                  </clipPath>
-                </defs>
-              </svg>
-              <span>Help</span>
-            </button>
           </div>
         </div>
       </div>

@@ -9,28 +9,28 @@ class ProductCarousel {
     this.products = [
       {
         id: 'shirt',
-        image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/e386efd00903b70bd1fcb669c929137b703f2be0?width=1271',
+        image: 'images/model.shirt.png',
         title: 'SHIRT',
         description: 'Alpen Shirt kami hadir dengan material micro cotton 24s yang lembut dan breathable,',
         alignment: 'bottom' // y-position offset
       },
       {
         id: 'hoodie',
-        image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/aadf956c9d70e4bf179691b3b238fd929c67d387?width=1037',
+        image: 'images/model.hoodie.png',
         title: 'HOODIE',
         description: 'Basic Hoodie dengan 100% berbahan katun fleech dan pola regular fit',
         alignment: 'middle'
       },
       {
         id: 'oversized',
-        image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/5ac8a1aa8a52d5ac4e2a27df97930d89ae9b8841?width=1388',
+        image: 'images/model.oversizedtshirt.png',
         title: 'OVERSIZED T-SHIRT',
         description: 'Soft, wrinkle free, and effortlessly stylish!',
         alignment: 'top'
       },
       {
         id: 'crewneck',
-        image: 'https://cdn.builder.io/api/v1/image/assets/TEMP/31b7658431005cf116b8928469558fb7e5fdacbd?width=1283',
+        image: 'images/model.crewneck.png',
         title: 'CREWNECK',
         description: 'A relaxed sweater for all day comfortable fit.',
         alignment: 'top'
@@ -79,18 +79,18 @@ class ProductCarousel {
     slide.className = `carousel-slide flex-none ${this.getAlignmentClass(product.alignment)}`;
     
     slide.innerHTML = `
-      <div class="product-card w-[320px] bg-white shadow-lg rounded-lg overflow-hidden relative">
-        <div class="relative h-[400px] md:h-[500px]">
+      <div class="product-card w-[480px] bg-white shadow-lg rounded-lg overflow-hidden relative">
+        <div class="relative h-[600px] md:h-[750px]">
           <img
             src="${product.image}"
             alt="${product.title}"
             class="w-full h-full object-cover"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
-          <div class="absolute bottom-0 left-0 right-0 p-6 text-white text-center">
-            <h3 class="text-2xl md:text-3xl font-medium uppercase mb-2">${product.title}</h3>
-            <p class="text-sm mb-4 leading-relaxed">${product.description}</p>
-            <button class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300">
+          <div class="absolute bottom-0 left-0 right-0 p-8 text-white text-center">
+            <h3 class="text-3xl md:text-4xl font-medium uppercase mb-3">${product.title}</h3>
+            <p class="text-base mb-6 leading-relaxed">${product.description}</p>
+            <button class="product-btn px-12 py-4 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300 text-lg">
               See more
             </button>
           </div>
@@ -213,7 +213,7 @@ class ProductCarousel {
     this.isAnimating = animate;
     
     // Calculate translation - show 3 cards at a time, centered
-    const slideWidth = 350; // 320px card + 30px gap
+    const slideWidth = 525; // 480px card + 45px gap (1.5x bigger)
     const visibleCards = 3;
     const centerOffset = (visibleCards - 1) / 2;
     const translateX = -(this.currentIndex - centerOffset) * slideWidth;

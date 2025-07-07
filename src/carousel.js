@@ -4,20 +4,20 @@ class QualityCarousel {
     this.currentSlide = 0;
     this.totalSlides = 3;
     this.autoSlideInterval = null;
-    this.slideInterval = 2000; // 2 seconds
+    this.slideInterval = 5000; // 5 seconds
     this.isAutoPlaying = true;
     
     this.slides = [
       {
-        image: "https://cdn.builder.io/api/v1/image/assets/TEMP/2f4c846d47ddf5b41de3d67e344b3af286304aa9?width=2244",
+        image: "images/vertical.poster.png",
         text: "dibuat di bandung dengan kualitas internasional cotton s24 berbahan cooltech"
       },
       {
-        image: "https://cdn.builder.io/api/v1/image/assets/TEMP/cde2837f6888802d56a0c6f5322eb0ab8ad30924?width=1017",
+        image: "images/v114_124.png",
         text: "material premium dengan teknologi cooltech untuk kenyamanan maksimal"
       },
       {
-        image: "https://cdn.builder.io/api/v1/image/assets/TEMP/e386efd00903b70bd1fcb669c929137b703f2be0?width=1271",
+        image: "images/v71_791.png",
         text: "inovasi terdepan dalam industri fashion dengan standar global"
       }
     ];
@@ -95,21 +95,23 @@ class QualityCarousel {
     const textElement = document.querySelector('.carousel-text');
     
     if (imageElement) {
-      // Add fade transition
+      // Add fade transition with longer duration (1.5s)
+      imageElement.style.transition = 'opacity 1500ms ease-in-out';
       imageElement.style.opacity = '0';
       setTimeout(() => {
         imageElement.src = this.slides[this.currentSlide].image;
         imageElement.style.opacity = '1';
-      }, 150);
+      }, 1500); // Wait for full fade out before changing content
     }
     
     if (textElement) {
-      // Add fade transition
+      // Add fade transition with longer duration (1.5s)
+      textElement.style.transition = 'opacity 1500ms ease-in-out';
       textElement.style.opacity = '0';
       setTimeout(() => {
         textElement.textContent = this.slides[this.currentSlide].text;
         textElement.style.opacity = '1';
-      }, 150);
+      }, 1500); // Wait for full fade out before changing content
     }
   }
   
