@@ -1,113 +1,265 @@
-<!-- Tessstttt -->
-<!-- Tessstttt 2 via vsc -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="./output.css" rel="stylesheet" />
     <title>HumanGreatness</title>
-    <link rel="stylesheet" href="css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
-    <header>
-      <div class="container header-container">
-        <div class="logo">hg</div>
-        <nav>
-          <ul class="nav-links">
-            <li><a href="#">SHOP</a></li>
-            <li><a href="#">ABOUT US</a></li>
-            <li><a href="#">COOLNESS</a></li>
-            <li><a href="#">EN</a></li>
-          </ul>
-        </nav>
+    <header
+      class="w-full h-[71px] relative bg-gradient-to-b from-black/80 to-transparent z-50"
+    >
+      <div
+        class="absolute left-[264px] top-0 flex items-center gap-[52px] w-[508px] h-[70px] px-5 py-[15px] rounded-[5px] overflow-hidden"
+      >
+        <div
+          class="flex items-center h-[41px] pl-5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
+        >
+          SHOP
+        </div>
+        <div
+          class="flex items-center h-[41px] pl-5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
+        >
+          ABOUT US
+        </div>
+        <div
+          class="flex items-center h-[41px] pl-2.5 text-[#FFFCEE] text-base font-medium leading-6 cursor-pointer"
+        >
+          COOLNESS
+        </div>
+      </div>
+      <div
+        class="absolute left-[792px] top-0 flex items-center gap-[41px] w-[243px] py-3"
+      >
+        <div
+          class="text-[#FFFCEE] text-base font-medium leading-6 py-[29.5px] px-5"
+        >
+          EN | IN
+        </div>
+        <div class="w-[31.04px] h-[24.22px] bg-[#FFFCEE]"></div>
+      </div>
+      <div class="absolute left-0 top-[-1px] w-[244px] h-[71px]">
+        <div
+          class="absolute left-[23.23px] top-[14.22px] w-[19.12px] h-[43.6px] bg-[#FFFCEE]"
+        ></div>
+        <div
+          class="absolute left-[23px] top-[14px] w-[25px] h-[43px] overflow-hidden"
+        >
+          <div
+            class="absolute bg-[#FFFCEE] rounded-full w-[1.83px] h-[3.36px] left-[21.19px] top-[25.76px]"
+          ></div>
+          <div
+            class="absolute bg-[#FFFCEE] rounded-full w-[1.71px] h-[3.29px] left-[14.15px] top-[25.81px]"
+          ></div>
+          <div
+            class="absolute bg-[#FFFCEE] rounded-full w-[2.07px] h-[3.30px] left-[16.30px] top-[25.80px]"
+          ></div>
+          <div
+            class="absolute bg-[#FFFCEE] rounded-full w-[1.84px] h-[3.30px] left-[18.88px] top-[25.80px]"
+          ></div>
+          <div
+            class="absolute bg-[#FFFCEE] rounded-full w-[0.52px] h-[0.54px] left-[23.44px] top-[28.52px]"
+          ></div>
+        </div>
       </div>
     </header>
+
     <main>
-      <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="breadcrumb">HOME /</p>
-          <h1>COOL TECH INSIDE<br />GREATNESS OUTSIDE</h1>
-          <h2>HumanGreatness<span>®</span></h2>
-          <a href="#" class="btn-shop">SHOP NOW</a>
+      <!-- Hero Section -->
+      <section
+        class="relative h-screen flex items-center justify-center bg-cover bg-center"
+        style="background-image: url('images/v71_791.png')"
+      >
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+        <div class="relative z-10 text-center max-w-2xl mx-auto px-4">
+          <p class="text-sm tracking-widest mb-6 text-gray-200">HOME /</p>
+          <h1
+            class="text-5xl md:text-6xl font-bold leading-tight mb-6 text-white tracking-wider"
+          >
+            COOL TECH INSIDE<br />GREATNESS OUTSIDE
+          </h1>
+          <h2
+            class="text-3xl md:text-4xl font-bold mb-10 text-white tracking-wide"
+          >
+            HumanGreatness<span class="align-super text-lg">®</span>
+          </h2>
+          <a
+            href="#"
+            class="inline-block px-10 py-3 border-2 border-white text-white font-bold tracking-widest hover:bg-white hover:text-black transition"
+            >SHOP NOW</a
+          >
+        </div>
+      </section>
+
+      <!-- Cooltech Section -->
+      <section
+        class="flex flex-col md:flex-row gap-16 md:gap-24 max-w-6xl mx-auto py-24 px-4 items-center"
+      >
+        <div class="relative w-full md:w-1/2">
+          <img
+            src="images/v114_124.png"
+            alt="Cooltech"
+            class="w-full rounded-xl shadow-lg"
+          />
+          <div class="absolute top-8 left-8 text-white font-semibold space-y-2">
+            <p class="text-lg">KERJA NYAMAN DINGIN DI DALAM</p>
+            <p class="italic opacity-90">#coolabicy</p>
+            <p class="text-2xl mt-2">HumanGreatness</p>
+            <p class="text-lg opacity-80">hg</p>
+          </div>
+        </div>
+        <div class="w-full md:w-1/2">
+          <h2 class="text-4xl font-bold mb-6 text-black">COOLTECH</h2>
+          <p class="text-lg text-gray-700 mb-4">
+            Jenis bahan yang didesain untuk memberikan sensasi dingin dan nyaman
+            saat digunakan, terutama saat cuaca panas atau saat beraktivitas
+            fisik.
+          </p>
+          <p class="text-lg text-gray-700">
+            Bahan ini biasanya memiliki teknologi pendingin (cooling technology)
+            yang membantu melancarkan sirkulasi udara dan membuat pemakainya
+            merasa lebih sejuk
+          </p>
+        </div>
+      </section>
+
+      <!-- Local Pride Section -->
+      <section class="max-w-6xl mx-auto py-24 px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-black mb-16">
+          LOCAL PRIDE GLOBAL QUALITY
+        </h2>
+        <div class="flex flex-col md:flex-row justify-center gap-8">
+          <img
+            src="images/v107_132.png"
+            alt="Quality Product 1"
+            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
+          />
+          <img
+            src="images/v107_138.png"
+            alt="Quality Product 2"
+            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
+          />
+          <img
+            src="images/v107_144.png"
+            alt="Quality Product 3"
+            class="rounded-xl w-full md:w-1/3 hover:scale-105 transition"
+          />
+        </div>
+      </section>
+
+      <!-- Product Carousel Section -->
+      <section class="max-w-6xl mx-auto py-24 px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+          OUR COOLNESS OUR GREATNESS
+        </h2>
+        <p class="max-w-2xl mx-auto text-lg text-gray-700 mb-12">
+          Serat berbahan katun S24 Fleece yang bukan kalteng-kaleng, dipadukan
+          dengan material berbahan inovatif berbahan COOLTECH, yang tak hanya
+          nyaman tapi juga sejuk untuk dipakai seharian.
+        </p>
+        <div class="relative flex items-center justify-center">
+          <button
+            class="absolute left-0 top-1/2 -translate-y-1/2 bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl hover:bg-black transition"
+          >
+            &lt;
+          </button>
+          <div
+            class="flex flex-col md:flex-row gap-8 w-full md:w-auto justify-center"
+          >
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 text-left w-full md:w-80 hover:-translate-y-2 transition"
+            >
+              <img
+                src="images/v114_127.png"
+                alt="Hoodie"
+                class="w-full rounded-lg mb-6"
+              />
+              <h3 class="text-xl font-bold mb-2 text-black">HOODIE</h3>
+              <p class="text-gray-600 mb-4">
+                Basic Hoodie dengan 100% berbahan katun fleech dan pola regular
+                fit
+              </p>
+              <a
+                href="#"
+                class="inline-block px-6 py-2 border-2 border-black text-black font-semibold rounded hover:bg-black hover:text-white transition"
+                >See more</a
+              >
+            </div>
+            <div
+              class="bg-white rounded-xl shadow-lg p-6 text-left w-full md:w-80 hover:-translate-y-2 transition"
+            >
+              <img
+                src="images/v114_124.png"
+                alt="Oversized T-Shirt"
+                class="w-full rounded-lg mb-6"
+              />
+              <h3 class="text-xl font-bold mb-2 text-black">
+                OVERSIZED T-SHIRT
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Soft, wrinkle free, and effortlessly stylish!
+              </p>
+              <a
+                href="#"
+                class="inline-block px-6 py-2 border-2 border-black text-black font-semibold rounded hover:bg-black hover:text-white transition"
+                >See more</a
+              >
+            </div>
+          </div>
+          <button
+            class="absolute right-0 top-1/2 -translate-y-1/2 bg-black/60 text-white w-10 h-10 rounded-full flex items-center justify-center text-2xl hover:bg-black transition"
+          >
+            &gt;
+          </button>
         </div>
       </section>
     </main>
 
-    <section class="cooltech-section container">
-      <div class="cooltech-image">
-        <img src="images/v114_124.png" alt="Cooltech" />
-        <div class="cooltech-text-overlay">
-          <p>KERJA NYAMAN DINGIN DI DALAM</p>
-          <p class="hashtag">#coolabicy</p>
-          <p class="brand">HumanGreatness</p>
-          <p class="logo">hg</p>
+    <footer class="bg-black text-white pt-20 pb-8">
+      <div
+        class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24 items-start"
+      >
+        <div>
+          <div class="text-3xl font-bold mb-6">HumanGreatness</div>
         </div>
-      </div>
-      <div class="cooltech-text">
-        <h2>COOLTECH</h2>
-        <p>
-          Jenis bahan yang didesain untuk memberikan sensasi dingin dan nyaman
-          saat digunakan, terutama saat cuaca panas atau saat beraktivitas
-          fisik.
-        </p>
-        <p>
-          Bahan ini biasanya memiliki teknologi pendingin (cooling technology)
-          yang membantu melancarkan sirkulasi udara dan membuat pemakainya
-          merasa lebih sejuk
-        </p>
-      </div>
-    </section>
-
-    <section class="coolness-section container">
-      <h2>OUR COOLNESS OUR GREATNESS</h2>
-      <p>
-        serat berbahan katun S24 Fleece yang bukan kalteng-kaleng, dipadukan
-        dengan material berbahan inovatif berbahan COOLTECH, yang tak hanya
-        nyaman tapi juga sejuk untuk dipakai seharian.
-      </p>
-      <div class="product-cards">
-        <div class="product-card">
-          <img src="images/v114_127.png" alt="Hoodie" />
-          <h3>HOODIE</h3>
-          <p>
-            Basic Hoodie dengan 100% berbahan katun fleech dan pola regular fit
-          </p>
-          <a href="#" class="btn-see-more">See more</a>
-        </div>
-        <div class="product-card">
-          <img src="images/v114_124.png" alt="Oversized T-Shirt" />
-          <h3>OVERSIZED T-SHIRT</h3>
-          <p>Soft, wrinkle free, and effortlessly stylish!</p>
-          <a href="#" class="btn-see-more">See more</a>
-        </div>
-      </div>
-    </section>
-
-    <footer>
-      <div class="footer-container container">
-        <div class="footer-logo">HumanGreatness</div>
-        <div class="footer-navigation">
-          <h3>NAVIGATION</h3>
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Catalogues</a></li>
-            <li><a href="#">Sale Items</a></li>
-            <li><a href="#">About Us</a></li>
+        <div>
+          <h3 class="text-lg font-semibold mb-4 tracking-wider">NAVIGATION</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">Home</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">Shop</a>
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Catalogues</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition"
+                >Sale Items</a
+              >
+            </li>
+            <li>
+              <a href="#" class="hover:text-yellow-400 transition">About Us</a>
+            </li>
           </ul>
         </div>
-        <div class="footer-address">
-          <h3>ADDRESS</h3>
-          <p>Jl. Hasanudin No 9, Lebak Gede</p>
-          <p>Kota Bandung</p>
-          <p>Jawa Barat</p>
+        <div>
+          <h3 class="text-lg font-semibold mb-4 tracking-wider">ADDRESS</h3>
+          <p class="mb-1">Jl. Hasanudin No 9, Lebak Gede</p>
+          <p class="mb-1">Kota Bandung</p>
+          <p class="mb-1">Jawa Barat</p>
           <p>Indonesia</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>© 2025. Made in Bandung by Hilman Nur Firdaus</p>
+      <div
+        class="border-t border-white/10 mt-12 pt-6 text-center text-sm text-white/60"
+      >
+        © 2025. Made in Bandung by Hilman Nur Firdaus
       </div>
     </footer>
   </body>
