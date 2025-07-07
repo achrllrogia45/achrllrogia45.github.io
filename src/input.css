@@ -79,10 +79,6 @@ html {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
     url("../images/hero_image.png");
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 2c75dc989e8d032ba9733469ce4ea3158c9d08dd
 /* Responsive text scaling */
 @media (max-width: 768px) {
   .hero-title {

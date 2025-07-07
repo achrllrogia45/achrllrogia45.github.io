@@ -790,7 +790,7 @@ html {
 .hero-section {
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("../images/hero_image.png");
 }
-<<<<<<< HEAD ======= >>>>>>> 2c75dc989e8d032ba9733469ce4ea3158c9d08dd @media (max-width: 768px) {
+@media (max-width: 768px) {
   .hero-title {
     font-size: 2.5rem;
     line-height: 1.2;
