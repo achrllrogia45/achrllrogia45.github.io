@@ -11,14 +11,6 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <style>
-      :root {
-        --hg-black: #000;
-        --hg-cream: #fffcee;
-        --color-white-solid: #fff;
-        --color-black-solid: #000;
-      }
-    </style>
   </head>
   <body class="font-roboto text-base">
     <!-- Header -->
@@ -37,16 +29,24 @@
 
         <!-- Navigation -->
         <nav class="hidden md:flex items-center space-x-12">
-          <a href="#" class="text-cream hover:text-white transition-colors"
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link"
             >SHOP</a
           >
-          <a href="#" class="text-cream hover:text-white transition-colors"
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link"
             >ABOUT US</a
           >
-          <a href="#" class="text-cream hover:text-white transition-colors"
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link"
             >COOLNESS</a
           >
-          <a href="#" class="text-cream hover:text-white transition-colors"
+          <a
+            href="#"
+            class="text-cream hover:text-white transition-colors nav-link"
             >EN | IN</a
           >
         </nav>
@@ -61,12 +61,7 @@
     <main class="relative">
       <!-- Hero Section -->
       <section
-        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-        style="
-          background-image:
-            linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-            url(&quot;https://cdn.builder.io/api/v1/image/assets/TEMP/b7c25c50b233b5e72b65ab6b9015f6cc61f3b7c6?width=2578&quot;);
-        "
+        class="hero-section relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
       >
         <!-- Breadcrumb -->
         <div
@@ -78,7 +73,7 @@
         <div class="text-center px-4 max-w-4xl mx-auto">
           <!-- Main Heading -->
           <h1
-            class="text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase"
+            class="hero-title text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase"
           >
             cool tech inside<br />
             greatness outside
@@ -96,7 +91,7 @@
           <!-- CTA Button -->
           <a
             href="#"
-            class="inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
+            class="button-primary inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl tracking-widest uppercase hover:bg-white hover:text-black transition-all duration-300"
           >
             Shop now
           </a>
@@ -107,7 +102,9 @@
       <section class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Divider -->
-          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"></div>
+          <div
+            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"
+          ></div>
 
           <div class="grid md:grid-cols-2 gap-12 items-center">
             <!-- Image Container -->
@@ -122,7 +119,7 @@
             <!-- Content -->
             <div class="space-y-6">
               <h2
-                class="text-5xl md:text-6xl font-bold text-black leading-tight"
+                class="section-title text-5xl md:text-6xl font-bold text-black leading-tight"
               >
                 COOLTECH
               </h2>
@@ -145,11 +142,13 @@
       <section class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Divider -->
-          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
+          <div
+            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"
+          ></div>
 
           <!-- Heading -->
           <h2
-            class="text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16"
+            class="section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16"
           >
             local pride global quality
           </h2>
@@ -163,7 +162,9 @@
             />
 
             <!-- Overlay Text -->
-            <div class="absolute inset-0 flex items-center justify-center">
+            <div
+              class="absolute inset-0 flex items-center justify-center gradient-overlay"
+            >
               <p
                 class="text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4"
               >
@@ -176,9 +177,9 @@
             <div
               class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4"
             >
-              <div class="w-20 h-1 bg-white"></div>
-              <div class="w-20 h-1 bg-white/50"></div>
-              <div class="w-20 h-1 bg-white/50"></div>
+              <div class="progress-bar w-20 h-1 bg-white"></div>
+              <div class="progress-bar w-20 h-1 bg-white/50"></div>
+              <div class="progress-bar w-20 h-1 bg-white/50"></div>
             </div>
           </div>
         </div>
@@ -188,12 +189,14 @@
       <section class="py-20 px-4">
         <div class="max-w-6xl mx-auto">
           <!-- Divider -->
-          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"></div>
+          <div
+            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"
+          ></div>
 
           <!-- Heading -->
           <div class="text-center mb-16">
             <h2
-              class="text-4xl md:text-5xl font-bold text-black uppercase tracking-wider mb-6"
+              class="section-title text-4xl md:text-5xl font-bold text-black uppercase tracking-wider mb-6"
             >
               our coolness our greatness
             </h2>
@@ -210,7 +213,7 @@
           <div class="relative">
             <!-- Navigation Arrows -->
             <button
-              class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              class="carousel-nav absolute left-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
               aria-label="Previous"
             >
               <svg
@@ -230,7 +233,7 @@
             </button>
 
             <button
-              class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
+              class="carousel-nav absolute right-0 top-1/2 transform -translate-y-1/2 z-10 p-4"
               aria-label="Next"
             >
               <svg
@@ -251,13 +254,11 @@
 
             <!-- Product Cards -->
             <div
-              class="flex overflow-x-auto gap-6 pb-4 px-16"
-              style="scroll-snap-type: x mandatory"
+              class="carousel-container flex overflow-x-auto gap-6 pb-4 px-16"
             >
               <!-- SHIRT Card -->
               <div
-                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-                style="scroll-snap-align: center"
+                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
               >
                 <div class="relative h-96">
                   <img
@@ -274,7 +275,7 @@
                       yang lembut dan breathable,
                     </p>
                     <button
-                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
                     >
                       See more
                     </button>
@@ -284,8 +285,7 @@
 
               <!-- HOODIE Card -->
               <div
-                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-                style="scroll-snap-align: center"
+                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
               >
                 <div class="relative h-96">
                   <img
@@ -302,7 +302,7 @@
                       regular fit
                     </p>
                     <button
-                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
                     >
                       See more
                     </button>
@@ -312,8 +312,7 @@
 
               <!-- OVERSIZED T-SHIRT Card -->
               <div
-                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-                style="scroll-snap-align: center"
+                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
               >
                 <div class="relative h-96">
                   <img
@@ -331,7 +330,7 @@
                       Soft, wrinkle free, and effortlessly stylish!
                     </p>
                     <button
-                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
                     >
                       See more
                     </button>
@@ -341,8 +340,7 @@
 
               <!-- CREWNECK Card -->
               <div
-                class="flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
-                style="scroll-snap-align: center"
+                class="product-card carousel-item flex-none w-80 bg-white shadow-lg rounded-lg overflow-hidden"
               >
                 <div class="relative h-96">
                   <img
@@ -360,7 +358,7 @@
                       A relaxed sweater for all day comfortable fit.
                     </p>
                     <button
-                      class="px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
+                      class="product-btn px-8 py-3 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300"
                     >
                       See more
                     </button>
@@ -406,7 +404,7 @@
       <div class="max-w-6xl mx-auto px-4 py-16">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
           <!-- Logo -->
-          <div class="text-center md:text-left">
+          <div class="footer-logo text-center md:text-left">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/caf064cc643820405bbd440c0de3200c0682dbbf?width=384"
               alt="HumanGreatness Logo"
@@ -415,7 +413,7 @@
           </div>
 
           <!-- Customer Care -->
-          <div>
+          <div class="footer-contact">
             <img
               src="https://cdn.builder.io/api/v1/image/assets/TEMP/1c864a14f80618dc9fdf71751b3c58793203ace1?width=482"
               alt="HGN Logo"
@@ -432,9 +430,10 @@
               </p>
 
               <!-- Social Media -->
-              <div class="space-y-3">
+              <div class="social-links space-y-3">
                 <div class="flex items-center space-x-3">
                   <svg
+                    class="social-icon"
                     width="24"
                     height="24"
                     viewBox="0 0 25 25"
@@ -448,13 +447,14 @@
                   </svg>
                   <a
                     href="#"
-                    class="text-white underline hover:text-cream transition-colors"
+                    class="social-link text-white underline hover:text-cream transition-colors"
                     >@hgbasiclabs</a
                   >
                 </div>
 
                 <div class="flex items-center space-x-3">
                   <svg
+                    class="social-icon"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -468,13 +468,14 @@
                   </svg>
                   <a
                     href="#"
-                    class="text-white underline hover:text-cream transition-colors"
+                    class="social-link text-white underline hover:text-cream transition-colors"
                     >Human Greatness</a
                   >
                 </div>
 
                 <div class="flex items-center space-x-3">
                   <svg
+                    class="social-icon"
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
@@ -488,15 +489,16 @@
                   </svg>
                   <a
                     href="#"
-                    class="text-white underline hover:text-cream transition-colors"
+                    class="social-link text-white underline hover:text-cream transition-colors"
                     >@hgbasiclabs</a
                   >
                 </div>
               </div>
 
               <!-- Shopping Icons -->
-              <div class="flex space-x-4 mt-6">
+              <div class="shopping-icons flex space-x-4 mt-6">
                 <svg
+                  class="platform-icon"
                   width="37"
                   height="42"
                   viewBox="0 0 37 42"
@@ -525,6 +527,7 @@
                 </svg>
 
                 <svg
+                  class="platform-icon"
                   width="34"
                   height="39"
                   viewBox="0 0 34 39"
@@ -551,6 +554,7 @@
                 </svg>
 
                 <svg
+                  class="platform-icon"
                   width="33"
                   height="26"
                   viewBox="0 0 33 26"
@@ -574,7 +578,7 @@
           </div>
 
           <!-- Navigation -->
-          <div>
+          <div class="footer-nav">
             <h3
               class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
             >
@@ -583,34 +587,34 @@
             <nav class="space-y-3">
               <a
                 href="#"
-                class="block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item block text-white hover:text-cream transition-colors text-sm"
                 >Home</a
               >
               <a
                 href="#"
-                class="block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item block text-white hover:text-cream transition-colors text-sm"
                 >Shop</a
               >
               <a
                 href="#"
-                class="block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item block text-white hover:text-cream transition-colors text-sm"
                 >Catalogues</a
               >
               <a
                 href="#"
-                class="block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item block text-white hover:text-cream transition-colors text-sm"
                 >Sale Items</a
               >
               <a
                 href="#"
-                class="block text-white hover:text-cream transition-colors text-sm"
+                class="nav-item block text-white hover:text-cream transition-colors text-sm"
                 >About Us</a
               >
             </nav>
           </div>
 
           <!-- Address -->
-          <div>
+          <div class="footer-address">
             <h3
               class="text-2xl font-medium text-white uppercase mb-8 tracking-wider"
             >
@@ -625,7 +629,7 @@
 
             <!-- Help Button -->
             <button
-              class="mt-8 bg-cream text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors flex items-center space-x-2"
+              class="help-btn mt-8 bg-cream text-black px-4 py-2 rounded-full font-bold text-sm hover:bg-white transition-colors flex items-center space-x-2"
             >
               <svg
                 width="20"
@@ -661,7 +665,7 @@
       </div>
 
       <!-- Copyright -->
-      <div class="border-t border-cream bg-cream">
+      <div class="copyright-section border-t border-cream bg-cream">
         <div class="max-w-6xl mx-auto px-4 py-6 text-center">
           <p class="text-black text-sm">
             © 2025. Made in Bandung by Hilman Nur Firdaus
