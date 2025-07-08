@@ -16,862 +16,903 @@
       rel="stylesheet"
     />
   </head>
-  <body class="font-roboto text-base">
-    <!-- Header -->
-    <header
-      class="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5"
-    >
-      <div
-        class="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]"
-      >
-        <!-- Logo -->
-        <a
-          href="/"
-          class="flex items-center hover:opacity-80 transition-opacity"
+  <body class="font-roboto text-base bg-white">
+    <!-- Page Container -->
+    <div class="w-full min-h-screen relative bg-white overflow-hidden">
+      <!-- Main Content Container -->
+      <div class="max-w-[1036px] mx-auto relative">
+        <!-- Header -->
+        <header
+          class="w-full h-16 absolute top-1 left-0 bg-gradient-to-b from-black/80 to-transparent z-50"
         >
-          <img
-            src="images/hg_logo_header.svg"
-            alt="HumanGreatness Logo"
-            class="h-8 sm:h-10 w-auto"
-          />
-        </a>
-
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-8 xl:gap-[152px]">
-          <a
-            href="index.html"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >SHOP</a
-          >
-          <a
-            href="aboutus.html"
-            class="text-white border-b-2 border-cream nav-link text-sm lg:text-base"
-            >ABOUT US</a
-          >
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >COOLNESS</a
-          >
-        </nav>
-
-        <!-- Language and Shop Icon - Desktop -->
-        <div class="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
-          <div class="flex items-center gap-[10px] text-sm lg:text-base">
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >EN</span
-              >
-              <span
-                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-            <span class="text-cream mx-1">/</span>
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >IN</span
-              >
-              <span
-                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-          </div>
-          <img
-            src="images/shop_icon_header.svg"
-            alt="Shop"
-            class="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
-          />
-        </div>
-
-        <!-- Mobile Header Right Group -->
-        <div class="flex lg:hidden items-center gap-4">
-          <div class="flex items-center gap-[6px] text-sm">
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >EN</span
-              >
-              <span
-                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-            <span class="text-cream mx-1">/</span>
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >IN</span
-              >
-              <span
-                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-          </div>
-          <img
-            src="images/shop_icon_header.svg"
-            alt="Shop"
-            class="h-5 w-5 invert"
-          />
-          <!-- Mobile Menu Button -->
-          <button
-            class="text-cream hover:text-white transition-colors"
-            id="mobile-menu-button"
-            aria-label="Toggle mobile menu"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation Menu -->
-      <div
-        class="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transform -translate-y-full opacity-0 invisible transition-all duration-300 ease-in-out"
-        id="mobile-menu"
-      >
-        <nav class="flex flex-col items-center py-8 space-y-6">
-          <a
-            href="index.html"
-            class="text-cream hover:text-white transition-colors nav-link text-lg"
-            >SHOP</a
-          >
-          <a
-            href="aboutus.html"
-            class="text-white border-b-2 border-cream nav-link text-lg"
-            >ABOUT US</a
-          >
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-lg"
-            >COOLNESS</a
-          >
-        </nav>
-      </div>
-    </header>
-
-    <!-- Breadcrumb -->
-    <div
-      class="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]"
-    >
-      <div class="max-w-6xl mx-auto">
-        <p class="text-sm sm:text-base">
-          <a
-            href="index.html"
-            class="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-            >HOME</a
-          >
-          /
-          <span class="text-white ml-[10px]">ABOUT US</span>
-        </p>
-      </div>
-    </div>
-
-    <main class="relative">
-      <!-- Hero Section -->
-      <section
-        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      >
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 w-full h-full">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F385dded71f794b19af1bbf0c9bee4367%2F2f5e3c71dd6049c4b13abe87fed9e4d8?format=webp&width=800"
-            alt="Street Background"
-            class="w-full h-full object-cover"
-          />
+          <!-- Navigation Bar -->
           <div
-            class="absolute inset-0 bg-gradient-to-b from-black/20 via-white/10 to-black/50"
-          ></div>
-        </div>
-
-        <div class="relative z-10 text-center px-4 mx-auto max-w-4xl">
-          <!-- Welcome Text -->
-          <div class="mb-8">
-            <h1
-              class="text-3xl md:text-4xl lg:text-5xl font-normal text-cream leading-tight mb-4 tracking-[7.6px]"
-            >
-              Welcome to
-            </h1>
-            <img
-              src="images/hg_logotext.svg"
-              alt="HumanGreatness Logo"
-              class="mx-auto h-8 md:h-10 filter brightness-0 invert"
-            />
+            class="w-[508px] h-16 px-5 py-3.5 absolute left-64 top-0 flex justify-start items-center gap-12"
+          >
+            <div class="text-cream text-base font-medium leading-normal">
+              SHOP
+            </div>
+            <div class="text-cream text-base font-medium leading-normal">
+              ABOUT US
+            </div>
+            <div class="text-cream text-base font-medium leading-normal">
+              COOLNESS
+            </div>
           </div>
 
-          <!-- Description -->
-          <p
-            class="text-base md:text-lg text-cream max-w-2xl mx-auto leading-relaxed mb-12 tracking-tight"
+          <!-- Right Side -->
+          <div
+            class="w-60 py-3 absolute left-[792px] top-0 flex justify-start items-center gap-10"
           >
-            We are dedicated to providing high-quality clothing apparel that
-            empowers your style.
-          </p>
+            <div
+              class="w-20 h-12 px-5 py-7 flex flex-col justify-center items-center"
+            >
+              <div class="text-white text-base font-medium leading-normal">
+                EN | IN
+              </div>
+            </div>
+            <div class="w-8 h-6">
+              <svg
+                width="32"
+                height="26"
+                viewBox="0 0 32 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M12.0862 2.05391H10.7719L1.28039 13.4681L0.395996 12.739L10.2319 0.910645H21.5966L31.4321 12.739L30.5478 13.4681L21.0561 2.05391H13.5721L4.15798 13.4677L3.27063 12.7422L12.0862 2.05391ZM11.6114 23.1233V21.9801H20.217V23.1233H11.6114ZM21.8766 13.8884H23.0249V25.1306H8.80327V13.8884H9.95149V23.9874H21.8766V13.8884ZM6.97712 13.2348V12.0916H10.0656L13 9.17696L13.8107 9.98632L10.5404 13.2348H6.97712ZM12.0665 13.2348V12.0916H15.155L18.0895 9.17696L18.9001 9.98632L15.6301 13.2348H12.0665ZM17.1559 13.2348V12.0916H20.2445L23.1789 9.17696L23.9896 9.98632L20.719 13.2348H17.1559ZM23.5923 13.2348V12.0916H27.1139V13.2348H23.5923Z"
+                  fill="#FFFCEE"
+                />
+              </svg>
+            </div>
+          </div>
 
-          <!-- CTA Button -->
-          <a
-            href="#"
-            class="inline-flex items-center justify-center px-12 py-3 border-2 border-cream text-white font-medium text-base hover:bg-cream hover:text-black transition-all duration-300 rounded-lg"
+          <!-- Logo -->
+          <div class="w-60 h-16 absolute left-0 top-[-1px]">
+            <div class="w-5 h-11 absolute left-[23.23px] top-[14.22px]">
+              <svg
+                width="20"
+                height="44"
+                viewBox="0 0 20 44"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.7738 43.8143H11.3095C10.5894 43.7656 9.89549 43.6255 9.22775 43.3941C8.52646 43.1505 7.89988 42.8155 7.348 42.3891C5.50104 40.9631 4.70066 38.8857 4.69609 36.4659C4.68897 32.7543 4.68618 28.7291 4.6877 24.3905C4.6877 23.872 4.71565 23.3824 4.77155 22.9216C5.07264 20.4461 6.45387 18.4688 8.62708 17.4734C9.18811 17.217 9.7715 17.0396 10.3772 16.9411C10.3913 16.9389 10.4048 16.9334 10.4165 16.9249C10.4282 16.9165 10.438 16.9053 10.4449 16.8923C10.4519 16.8792 10.456 16.8647 10.4568 16.8498C10.4576 16.8348 10.4552 16.8199 10.4497 16.8061C9.68206 14.8962 8.0409 14.1384 6.12304 14.4863C5.0109 14.6873 4.09923 15.4118 3.55345 16.4438C3.3324 16.8617 3.17207 17.3508 3.07246 17.9111C3.0186 18.2151 2.9937 18.7365 2.99776 19.4753C3.00183 20.2994 3.00234 24.4734 2.99929 31.9972C2.99929 32.4516 2.78433 32.473 2.39786 32.4722C1.35762 32.4707 0.75823 32.4693 0.599679 32.4683C0.275716 32.4659 0.22998 32.222 0.22998 31.9209C0.22998 12.2322 0.22998 1.80428 0.22998 0.636991C0.22998 0.444739 0.307731 0.30995 0.463233 0.232625C0.485327 0.221643 0.509548 0.215943 0.534124 0.215942H2.6959C2.703 0.21594 2.7099 0.21674 2.71649 0.218326C2.90553 0.271288 3.00005 0.417993 3.00005 0.658441C3.00056 9.49729 3.00132 13.9705 3.00234 14.078C3.00234 14.1039 3.00818 14.1248 3.01987 14.1407C3.02793 14.152 3.03843 14.1612 3.05051 14.1675C3.06259 14.1737 3.07592 14.177 3.08943 14.1769C3.10293 14.1768 3.11622 14.1734 3.12824 14.167C3.14025 14.1606 3.15065 14.1513 3.1586 14.1399C4.44835 12.2977 6.53695 11.6939 8.63775 11.9497C10.0271 12.1192 11.1586 12.7092 12.0321 13.7197C12.7616 14.5634 13.2411 15.6899 13.4111 16.8092C13.4155 16.8378 13.4286 16.864 13.4483 16.8842C13.4681 16.9044 13.4935 16.9173 13.5208 16.9212C14.4782 17.0579 15.3762 17.3929 16.2147 17.9262C18.2011 19.1886 19.3003 21.3264 19.3407 23.7263C19.3427 23.846 19.3438 24.2729 19.3438 25.007C19.3438 25.3923 19.1585 25.428 18.8102 25.428C17.7567 25.428 17.1926 25.4272 17.1179 25.4256C16.9706 25.4225 16.8661 25.3692 16.8047 25.266C16.7655 25.1992 16.7472 25.0764 16.7498 24.8973C16.7559 24.4811 16.7551 24.1077 16.7475 23.7772C16.7101 22.1748 16.0432 20.8036 14.7839 19.9353C14.4642 19.715 14.0963 19.5368 13.6801 19.4007C13.6652 19.3958 13.6494 19.3947 13.6339 19.3974C13.6185 19.4001 13.6039 19.4065 13.5912 19.4162C13.5786 19.4258 13.5684 19.4385 13.5613 19.453C13.5542 19.4676 13.5506 19.4837 13.5505 19.5V29.9984C13.5505 30.013 13.5533 30.0274 13.5587 30.0408C13.5641 30.0543 13.5719 30.0665 13.5818 30.0767C13.5918 30.087 13.6035 30.0951 13.6165 30.1006C13.6294 30.1061 13.6433 30.1089 13.6573 30.1088C16.5691 30.1056 18.3322 30.1059 18.9466 30.1096C19.2154 30.1112 19.3488 30.2568 19.3468 30.5465C19.3432 31.0968 19.3425 33.0236 19.3445 36.3268C19.3453 37.412 19.2073 38.5266 18.8277 39.5093C18.1625 41.2295 17.0158 42.4548 15.3876 43.1852C14.6223 43.5289 13.751 43.7386 12.7738 43.8143ZM10.7332 19.299C9.30016 19.6295 8.12094 20.6392 7.61098 22.0843C7.39603 22.6923 7.28829 23.2828 7.28778 23.8558C7.2827 30.8447 7.28219 35.0944 7.28626 36.6049C7.28931 37.5447 7.50198 38.5345 7.99974 39.3282C8.85957 40.6986 10.2095 41.4009 11.7745 41.4628C12.6396 41.4962 13.5284 41.381 14.2846 41.0187C15.3055 40.5294 16.0218 39.7492 16.4334 38.6783C16.6392 38.1421 16.7505 37.4454 16.7513 36.8829C16.7528 35.1092 16.7528 33.6875 16.7513 32.6176C16.7513 32.5784 16.7364 32.5409 16.7098 32.5131C16.6832 32.4854 16.6471 32.4699 16.6095 32.4699C13.0035 32.4704 11.1789 32.4701 11.1357 32.4691C10.8758 32.4619 10.8049 32.2442 10.8056 31.9853C10.8067 31.2528 10.8069 27.0444 10.8064 19.3602C10.8064 19.3508 10.8043 19.3415 10.8004 19.3331C10.7965 19.3246 10.7909 19.3172 10.7839 19.3113C10.7768 19.3054 10.7686 19.3013 10.7599 19.2992C10.7511 19.297 10.742 19.297 10.7332 19.299Z"
+                  fill="#FFFCEE"
+                />
+              </svg>
+            </div>
+          </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div class="w-full h-6 absolute left-0 top-[71px] z-40">
+          <div
+            class="w-[860px] absolute left-[88px] top-[1px] flex justify-start items-center gap-2.5"
           >
-            Explore Our Catalogues
-          </a>
+            <div
+              class="text-cream text-base font-medium uppercase leading-normal"
+            >
+              HOME
+            </div>
+            <div
+              class="text-cream text-base font-medium uppercase leading-normal"
+            >
+              /
+            </div>
+            <div
+              class="text-white text-base font-medium uppercase leading-normal"
+            >
+              ABOUT US
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Section -->
+        <section
+          class="w-full h-[492px] absolute left-0 top-[3px] bg-gradient-to-l from-black/20 to-white/50 overflow-hidden"
+        >
+          <!-- Background Image -->
+          <div class="w-full h-[730px] absolute left-0 top-[-100px]">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F385dded71f794b19af1bbf0c9bee4367%2F2f5e3c71dd6049c4b13abe87fed9e4d8?format=webp&width=800"
+              alt="Street Background"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/25"></div>
+          </div>
+
+          <!-- Content -->
+          <div class="w-[696px] h-80 absolute left-[170px] top-[174px]">
+            <!-- Welcome Text -->
+            <div class="w-[612px] h-12 absolute left-[47px] top-0">
+              <div
+                class="w-[612px] absolute left-0 top-0 text-cream text-4xl font-normal leading-[48px] tracking-[7.60px]"
+              >
+                Welcome to
+              </div>
+              <div class="w-64 h-8 absolute left-[332px] top-[7px]">
+                <img
+                  src="images/hg_logotext.svg"
+                  alt="HumanGreatness Logo"
+                  class="w-full h-full filter brightness-0 invert"
+                />
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div
+              class="w-[612px] absolute left-[36px] top-[74px] text-center text-cream text-base font-normal leading-normal"
+            >
+              We are dedicated to providing high-quality clothing apparel that
+              empowers your style.
+            </div>
+
+            <!-- CTA Button -->
+            <div class="absolute left-[198px] top-[148px]">
+              <div
+                class="w-72 p-3 rounded-lg border-2 border-cream flex flex-col justify-center items-center"
+              >
+                <div class="text-white text-base font-medium leading-normal">
+                  Explore Our Catalogues
+                </div>
+              </div>
+            </div>
+          </div>
 
           <!-- Tab Navigation -->
-          <div class="flex items-center justify-center gap-8 mt-16">
-            <span class="text-sm text-cream">Values</span>
-            <div class="w-2 h-2 rounded-full bg-cream"></div>
-            <span class="text-sm text-cream">Our Story</span>
-            <div class="w-2 h-2 rounded-full bg-cream"></div>
-            <span class="text-sm text-cream">Sustainability</span>
+          <div class="w-[592px] h-5 absolute left-[217px] top-[452px]">
+            <div
+              class="w-24 h-5 absolute left-[-31px] top-0 text-center text-cream text-sm font-normal leading-tight"
+            >
+              Values
+            </div>
+            <div
+              class="w-2 h-2 absolute left-[138px] top-[5.50px] bg-cream rounded-full"
+            ></div>
+            <div
+              class="w-24 h-5 absolute left-[244px] top-0 text-center text-cream text-sm font-normal leading-tight"
+            >
+              Our Story
+            </div>
+            <div
+              class="w-2 h-2 absolute left-[443px] top-[5.50px] bg-cream rounded-full"
+            ></div>
+            <div
+              class="w-24 h-5 absolute left-[497px] top-0 text-center text-cream text-sm font-normal leading-tight"
+            >
+              Sustainability
+            </div>
           </div>
-        </div>
-      </section>
 
-      <!-- Our Story Section -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto text-center">
-          <!-- Divider -->
-          <div class="w-full max-w-2xl mx-auto h-0.5 bg-black/10 mb-16"></div>
+          <!-- Bottom Divider -->
+          <div
+            class="w-full h-0 absolute left-0 top-[492px] border-t border-black/10"
+          ></div>
+        </section>
 
-          <h2
-            class="text-4xl md:text-5xl lg:text-6xl font-bold text-black uppercase tracking-[10.24px] leading-tight mb-6"
-          >
-            Our Story
-          </h2>
-          <p
-            class="text-base md:text-lg text-black max-w-2xl mx-auto leading-relaxed"
-          >
-            Human Greatness, merek dari Bandung, merevolusi pakaian kasial
-            dengan material inovatif Berbahan CoolTech yang aktif mendinginkan,
-            dipadukan dengan kualitas serat alami
-          </p>
-        </div>
-      </section>
+        <!-- Our Story Section -->
+        <section
+          class="w-full px-44 py-14 absolute left-0 top-[495px] flex flex-col justify-center items-center gap-14"
+        >
+          <div class="w-[684px] flex flex-col justify-start items-center gap-6">
+            <div
+              class="w-[520px] text-center text-black text-6xl font-bold font-inter uppercase leading-[48px] tracking-[10.24px]"
+            >
+              Our Story
+            </div>
+            <div
+              class="w-[592px] text-center text-black text-base font-normal leading-normal"
+            >
+              Human Greatness, merek dari Bandung, merevolusi pakaian kasial
+              dengan material inovatif Berbahan CoolTech yang aktif
+              mendinginkan, dipadukan dengan kualitas serat alami
+            </div>
+          </div>
+          <div class="w-full h-0 border-t border-black/10"></div>
+        </section>
 
-      <!-- Follow Us Section -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Section Title with Shadow Effect -->
-          <div class="text-center mb-16 relative">
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black uppercase tracking-[15.36px] leading-tight relative z-10"
+        <!-- Follow Us Section -->
+        <section
+          class="w-full px-44 py-14 absolute left-0 top-[939px] flex flex-col justify-center items-center gap-14"
+        >
+          <!-- Section Title -->
+          <div class="w-[684px] h-24 relative">
+            <div
+              class="w-[622px] absolute left-[31px] top-0 text-center text-black text-6xl font-bold font-inter uppercase leading-[48px] tracking-[15.36px]"
             >
               Follow Us
-            </h2>
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black/75 uppercase tracking-[15.36px] leading-tight absolute top-1 left-1/2 transform -translate-x-1/2"
-              aria-hidden="true"
+            </div>
+            <div
+              class="w-[622px] absolute left-[31px] top-[22px] text-center text-black/75 text-6xl font-bold font-inter uppercase leading-[48px] tracking-[15.36px]"
             >
               Follow Us
-            </h2>
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black/50 uppercase tracking-[15.36px] leading-tight absolute top-2 left-1/2 transform -translate-x-1/2"
-              aria-hidden="true"
+            </div>
+            <div
+              class="w-[622px] absolute left-[31px] top-[45px] text-center text-black/50 text-6xl font-bold font-inter uppercase leading-[48px] tracking-[15.36px]"
             >
               Follow Us
-            </h2>
+            </div>
           </div>
 
           <!-- Social Posts Grid -->
-          <div class="grid md:grid-cols-2 gap-8 mb-16">
-            <!-- Post 1 -->
-            <div class="border border-black/10 rounded-lg overflow-hidden">
-              <!-- Image Container -->
-              <div class="relative h-[300px] bg-gray-200">
-                <img
-                  src="https://cdn.builder.io/o/assets%2F385dded71f794b19af1bbf0c9bee4367%2F86592e816d3e4dad83b7cdf5bbe4e11d?alt=media&token=822e63b4-366f-42a8-b4b3-eaafd451c6a5&apiKey=385dded71f794b19af1bbf0c9bee4367"
-                  alt="New collection launch"
-                  class="w-full h-full object-cover"
-                />
-                <!-- Overlay Text -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <p
-                    class="text-white text-center text-xs font-normal uppercase tracking-widest"
+          <div class="w-full flex flex-col justify-center items-center gap-10">
+            <div class="self-stretch flex justify-start items-start gap-10">
+              <!-- Post 1 -->
+              <div
+                class="flex-1 rounded-md border border-black/10 flex flex-col justify-start items-center"
+              >
+                <div
+                  class="self-stretch h-72 flex justify-start items-start relative bg-gray-300/50 overflow-hidden"
+                >
+                  <img
+                    src="https://cdn.builder.io/o/assets%2F385dded71f794b19af1bbf0c9bee4367%2F86592e816d3e4dad83b7cdf5bbe4e11d?alt=media&token=822e63b4-366f-42a8-b4b3-eaafd451c6a5&apiKey=385dded71f794b19af1bbf0c9bee4367"
+                    alt="New collection launch"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute left-4 top-[142px] w-[466px] h-4 text-center text-white text-xs font-normal leading-none"
                   >
                     New collection launch.
-                  </p>
-                </div>
-                <!-- Pagination Dots -->
-                <div
-                  class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1"
-                >
-                  <div class="w-5 h-1 bg-white rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                </div>
-              </div>
-              <!-- Content -->
-              <div class="p-3">
-                <p class="text-base text-black leading-relaxed mb-2">
-                  Our essential 20s Midweight Oversized T-shirt, Basic design
-                  for alone or layered
-                </p>
-                <!-- Tags -->
-                <div class="flex gap-1.5 mb-2">
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #mydailybasic
-                  </span>
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #thefutureisbasic
-                  </span>
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #hgbasiclabs
-                  </span>
-                </div>
-                <!-- Avatar -->
-                <div class="flex items-center gap-2">
-                  <div
-                    class="w-5 h-5 bg-black/10 rounded-full flex items-center justify-center"
-                  >
-                    <img
-                      src="images/hg_logo_header.svg"
-                      alt="HG Logo"
-                      class="w-4 h-2 filter brightness-0"
-                    />
                   </div>
-                  <span class="text-sm font-medium text-black"
-                    >@hgbasiclabs</span
+                  <div
+                    class="absolute left-[227px] top-[288px] flex justify-center items-center gap-1"
                   >
+                    <div class="w-5 h-1 bg-white rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                  </div>
+                </div>
+                <div
+                  class="self-stretch p-3 flex flex-col justify-start items-start gap-2"
+                >
+                  <div
+                    class="self-stretch text-black text-base font-normal leading-normal"
+                  >
+                    Our essential 20s Midweight Oversized T-shirt, Basic design
+                    for alone or layered
+                  </div>
+                  <div
+                    class="self-stretch flex justify-start items-center gap-1.5"
+                  >
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #mydailybasic
+                      </div>
+                    </div>
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #thefutureisbasic
+                      </div>
+                    </div>
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #hgbasiclabs
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch flex justify-start items-center gap-2"
+                  >
+                    <div
+                      class="w-5 h-5 bg-black/10 rounded-full flex items-center justify-center"
+                    >
+                      <img
+                        src="images/hg_logo_header.svg"
+                        alt="HG Logo"
+                        class="w-4 h-2 filter brightness-0"
+                      />
+                    </div>
+                    <div class="flex-1">
+                      <div
+                        class="self-stretch text-black text-sm font-medium leading-tight"
+                      >
+                        @hgbasiclabs
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <!-- Post 2 -->
-            <div class="border border-black/10 rounded-lg overflow-hidden">
-              <!-- Image Container -->
-              <div class="relative h-[300px] bg-gray-200">
-                <img
-                  src="images/vertical.poster.png"
-                  alt="Behind the scenes"
-                  class="w-full h-full object-cover"
-                />
-                <!-- Overlay Text -->
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <p
-                    class="text-black text-center text-xs font-normal uppercase tracking-widest"
+              <!-- Post 2 -->
+              <div
+                class="flex-1 rounded-md border border-black/10 flex flex-col justify-start items-center"
+              >
+                <div
+                  class="self-stretch h-72 flex justify-start items-start relative bg-gray-300/50 overflow-hidden"
+                >
+                  <img
+                    src="https://cdn.builder.io/o/assets%2F385dded71f794b19af1bbf0c9bee4367%2F1b60703fb49940ba9c4d9439af2d8edc?alt=media&token=118c495e-8d2a-4f89-b8c1-5877c7bf59d2&apiKey=385dded71f794b19af1bbf0c9bee4367"
+                    alt="Behind the scenes"
+                    class="w-full h-full object-cover"
+                  />
+                  <div
+                    class="absolute left-4 top-[142px] w-[466px] h-4 text-center text-black text-xs font-normal leading-none"
                   >
                     Behind the scenes.
-                  </p>
-                </div>
-                <!-- Pagination Dots -->
-                <div
-                  class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1"
-                >
-                  <div class="w-5 h-1 bg-white rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                  <div class="w-1 h-1 bg-black/30 rounded-full"></div>
-                </div>
-              </div>
-              <!-- Content -->
-              <div class="p-3">
-                <p class="text-base text-black leading-relaxed mb-2">
-                  Held Twill Jacket that's perfect for any activities!
-                </p>
-                <!-- Tags -->
-                <div class="flex gap-1.5 mb-2">
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #mydailybasic
-                  </span>
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #thefutureisbasic
-                  </span>
-                  <span
-                    class="text-xs px-1 py-0.5 bg-gray-200 border border-black/10 rounded-sm"
-                  >
-                    #hgbasiclabs
-                  </span>
-                </div>
-                <!-- Avatar -->
-                <div class="flex items-center gap-2">
-                  <div
-                    class="w-5 h-5 bg-black/10 rounded-full flex items-center justify-center"
-                  >
-                    <img
-                      src="images/hg_logo_header.svg"
-                      alt="HG Logo"
-                      class="w-4 h-2 filter brightness-0"
-                    />
                   </div>
-                  <span class="text-sm font-medium text-black"
-                    >@hgbasiclabs</span
+                  <div
+                    class="absolute left-[227px] top-[288px] flex justify-center items-center gap-1"
                   >
+                    <div class="w-5 h-1 bg-white rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                    <div class="w-1 h-1 bg-black/30 rounded-full"></div>
+                  </div>
+                </div>
+                <div
+                  class="self-stretch h-32 p-3 flex flex-col justify-start items-start gap-2"
+                >
+                  <div
+                    class="self-stretch text-black text-base font-normal leading-normal"
+                  >
+                    Held Twill Jacket that's perfect for any activities!
+                  </div>
+                  <div
+                    class="self-stretch flex justify-start items-center gap-1.5"
+                  >
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #mydailybasic
+                      </div>
+                    </div>
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #thefutureisbasic
+                      </div>
+                    </div>
+                    <div
+                      class="px-1 py-0.5 bg-gray-300/50 rounded-sm border border-black/10 flex justify-center items-center gap-0.5"
+                    >
+                      <div class="text-black text-xs font-normal leading-none">
+                        #hgbasiclabs
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="self-stretch flex justify-start items-center gap-2"
+                  >
+                    <div
+                      class="w-5 h-5 bg-black/10 rounded-full flex items-center justify-center"
+                    >
+                      <img
+                        src="images/hg_logo_header.svg"
+                        alt="HG Logo"
+                        class="w-4 h-2 filter brightness-0"
+                      />
+                    </div>
+                    <div class="flex-1">
+                      <div
+                        class="self-stretch text-black text-sm font-medium leading-tight"
+                      >
+                        @hgbasiclabs
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </section>
 
-          <!-- Divider -->
-          <div class="w-full h-0.5 bg-black/10"></div>
-        </div>
-      </section>
-
-      <!-- Our Values Section -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Section Title with Shadow Effect -->
-          <div class="text-center mb-16 relative">
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black uppercase tracking-[16px] leading-tight relative z-10"
+        <!-- Our Values Section -->
+        <section class="w-full h-[484px] absolute left-0 top-[1488px]">
+          <!-- Section Title -->
+          <div class="w-[696px] h-36 absolute left-[170px] top-[60px]">
+            <div
+              class="w-[662px] absolute left-[17px] top-0 text-center text-black text-6xl font-bold leading-[48px] tracking-[16px]"
             >
-              Our Values
-            </h2>
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black/75 uppercase tracking-[16px] leading-tight absolute top-1 left-1/2 transform -translate-x-1/2"
-              aria-hidden="true"
+              OUR VALUES
+            </div>
+            <div
+              class="w-[662px] absolute left-[17px] top-[22px] text-center text-black/75 text-6xl font-bold leading-[48px] tracking-[16px]"
             >
-              Our Values
-            </h2>
-            <h2
-              class="text-4xl md:text-5xl lg:text-6xl font-bold text-black/50 uppercase tracking-[16px] leading-tight absolute top-2 left-1/2 transform -translate-x-1/2"
-              aria-hidden="true"
+              OUR VALUES
+            </div>
+            <div
+              class="w-[662px] absolute left-[17px] top-[44px] text-center text-black/50 text-6xl font-bold leading-[48px] tracking-[16px]"
             >
-              Our Values
-            </h2>
+              OUR VALUES
+            </div>
           </div>
 
           <!-- Values Grid -->
-          <div class="grid md:grid-cols-3 gap-12 items-center">
-            <!-- Quality Materials -->
-            <div class="text-center">
-              <div
-                class="w-25 h-25 bg-black/5 rounded-full flex items-center justify-center mx-auto mb-5"
-              >
-                <svg
-                  class="w-16 h-16"
-                  viewBox="0 0 101 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="0.666504"
-                    width="100"
-                    height="100"
-                    rx="50"
-                    fill="black"
-                    fill-opacity="0.05"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M16.3764 53.1614C15.7543 53.2917 15.1446 52.8912 15.0143 52.2691C14.8854 51.6469 15.2845 51.0372 15.9067 50.9069L40.5233 32.1288C40.5995 32.1136 40.6771 32.1052 40.7547 32.1052L73.9016 31.9999C74.194 31.9985 74.4767 32.1094 74.6915 32.3103L86.2481 56.0027C86.5931 56.3256 86.7067 56.8272 86.5335 57.2665C86.3589 57.7057 85.9349 57.9953 85.4624 57.9953H16.3764V60.642H85.2393C85.8753 60.642 86.3908 61.1574 86.3908 61.7921V66.2568C86.3908 66.8914 85.8753 67.4069 85.2393 67.4069H15.1515C14.5169 67.4069 14 66.8914 14 66.2568C14 65.6207 14.5169 65.1053 15.1515 65.1053H84.0878V62.9436H15.225C14.5903 62.9436 14.0748 62.4281 14.0748 61.7921V56.8438C14.0748 56.2078 14.5903 55.6923 15.225 55.6923H82.5455L73.4513 34.3043L40.8781 34.4069L16.3764 53.1614Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-normal text-black mb-2">
-                Quality Materials
-              </h3>
-              <p class="text-base text-black/50">We source the best fabrics.</p>
-            </div>
-
-            <!-- Cooltech -->
-            <div class="text-center">
-              <div
-                class="w-25 h-25 bg-black/5 rounded-full flex items-center justify-center mx-auto mb-5"
-              >
-                <svg
-                  class="w-16 h-16"
-                  viewBox="0 0 100 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    width="100"
-                    height="100"
-                    rx="50"
-                    fill="black"
-                    fill-opacity="0.05"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M49.1072 79.0001C47.9988 79.0001 47.0994 78.1018 47.0994 76.9934V70.0948L41.8674 73.0525C41.555 73.2294 41.2161 73.3132 40.8807 73.3132C40.1812 73.3132 39.5012 72.9457 39.1325 72.2932C38.5869 71.3273 38.9269 70.104 39.8918 69.5584L47.0994 65.4842V53.071L36.3483 59.2782L36.4229 67.5575C36.4332 68.6659 35.5431 69.5722 34.4347 69.5825C34.4289 69.5825 34.422 69.5825 34.4163 69.5825C33.3159 69.5825 32.42 68.6958 32.4096 67.5942L32.3556 61.5835L26.3816 65.0316C26.0658 65.2143 25.7212 65.3016 25.3812 65.3016C24.6874 65.3016 24.012 64.9421 23.641 64.2977C23.0863 63.3374 23.4159 62.1107 24.375 61.5559L30.349 58.1077L25.171 55.0547C24.2165 54.4919 23.8995 53.2617 24.4623 52.3072C25.0251 51.3527 26.2564 51.0357 27.2098 51.5985L34.3416 55.8036L45.0927 49.5964L34.3439 43.3893L27.2098 47.5932C26.8905 47.7816 26.539 47.8712 26.1933 47.8712C25.5053 47.8712 24.8367 47.5186 24.4623 46.8834C23.8995 45.9289 24.2176 44.6976 25.1721 44.1359L30.3501 41.084L24.3761 37.6347C23.4159 37.0799 23.0874 35.8532 23.641 34.8929C24.1958 33.9327 25.4225 33.6041 26.3828 34.1578L32.3556 37.6071L32.4096 31.5975C32.42 30.4948 33.317 29.6081 34.4163 29.6081H34.4347C35.5431 29.6184 36.4332 30.5247 36.4241 31.6331L36.3494 39.9124L47.0994 46.1196V33.7064L39.8918 29.6333C38.9269 29.0878 38.5869 27.8633 39.1325 26.8985C39.6781 25.9336 40.9014 25.5925 41.8674 26.1381L47.0994 29.0958V24.1498C47.0994 23.0414 47.9988 22.1432 49.1072 22.1432V22.1397C50.8508 22.088 52.5083 21.7756 54.1048 20.7878C55.2316 20.0906 56.6881 20.1055 57.8149 20.8246L67.3312 26.8985C67.6483 27.1018 67.9044 27.3866 68.0721 27.7243L76.0033 43.7258C76.341 44.407 76.0883 45.2363 75.4279 45.6142L66.773 50.5601V64.8628C66.773 65.3429 66.3836 65.7312 65.9035 65.7312C65.4245 65.7312 65.0351 65.3429 65.0351 64.8628V39.7344C65.0351 39.2554 65.4245 38.866 65.9035 38.866C66.3836 38.866 66.773 39.2554 66.773 39.7344V48.5592L74.3218 44.245L66.5157 28.4962C66.4881 28.4422 66.4468 28.3963 66.3963 28.363L59.3506 23.8661C58.1135 28.4135 53.9211 31.7043 49.1072 31.7043V77.2633H65.0351V68.3374C65.0351 67.8584 65.4245 67.469 65.9035 67.469C66.3836 67.469 66.773 67.8584 66.773 68.3374V77.6114C66.773 78.3775 66.1493 79.0001 65.3832 79.0001H49.1072ZM49.1072 23.8741V26.8399C51.8202 26.8399 54.0842 24.9906 54.6952 22.4579C52.9172 23.4836 51.0507 23.9557 49.1072 23.8741ZM49.1072 28.5766V29.9665C53.3192 29.9665 56.9638 26.9548 57.8023 22.8771L56.8799 22.2891C56.7673 22.2167 56.6479 22.1593 56.525 22.1156C56.2987 23.7673 55.5303 25.2916 54.3162 26.4677C52.9126 27.8277 51.0621 28.5766 49.1072 28.5766Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-normal text-black mb-2">Cooltech</h3>
-              <p class="text-base text-black/50">
-                Committed to cooling technology fabric.
-              </p>
-            </div>
-
-            <!-- Local Pride -->
-            <div class="text-center">
-              <div
-                class="w-25 h-25 bg-black/5 rounded-full flex items-center justify-center mx-auto mb-5"
-              >
-                <svg
-                  class="w-16 h-16"
-                  viewBox="0 0 101 100"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="0.333008"
-                    width="100"
-                    height="100"
-                    rx="50"
-                    fill="black"
-                    fill-opacity="0.05"
-                  />
-                  <path
-                    d="M43.1463 24.3576C43.2207 24.3448 43.2965 24.3381 43.3716 24.3381C44.1082 24.3381 44.7132 24.9438 44.7132 25.6797C44.7132 26.327 44.2457 26.8864 43.6091 27.0005C29.6031 29.4757 19.4609 40.1545 19.4609 52.3896C19.4609 58.9298 22.3184 64.9065 27.0139 69.4745V62.8203C27.0139 62.0845 27.6196 61.4787 28.3555 61.4787H31.8435V56.0051H30.2471H30.2444C29.5079 56.0051 28.9028 55.3994 28.9028 54.6636C28.9028 54.2175 29.1255 53.7989 29.4958 53.5501L34.8621 49.9413H34.5133C33.9324 49.9399 33.4159 49.5616 33.2388 49.0089C33.0637 48.4568 33.2649 47.8504 33.7352 47.513L38.9941 43.7432C38.7144 43.5681 38.5091 43.2958 38.4172 42.9785C38.2629 42.3909 38.5252 41.7684 39.0545 41.4693L48.4454 35.8749V33.8626C47.7096 33.8626 47.1039 33.2569 47.1039 32.521C47.1039 31.7852 47.7096 31.1794 48.4454 31.1794V29.5025C47.7096 29.5025 47.1039 28.8968 47.1039 28.1609C47.1039 27.4251 47.7096 26.8194 48.4454 26.8194V25.1424C47.7096 25.1424 47.1039 24.5367 47.1039 23.8008C47.1039 23.065 47.7096 22.4593 48.4454 22.4593V19.6218C48.4454 18.886 49.0512 18.2803 49.787 18.2803C50.5229 18.2803 51.1286 18.886 51.1286 19.6218V22.4257C51.8644 22.4257 52.4701 23.0314 52.4701 23.7673C52.4701 24.5031 51.8644 25.1089 51.1286 25.1089V26.7858C51.8644 26.7858 52.4701 27.3915 52.4701 28.1274C52.4701 28.8632 51.8644 29.4689 51.1286 29.4689V31.1459C51.8644 31.1459 52.4701 31.7516 52.4701 32.4875C52.4701 33.2233 51.8644 33.829 51.1286 33.829V35.8414L60.5196 41.4693C61.0381 41.7765 61.2896 42.397 61.13 42.9785C61.0381 43.2958 60.8328 43.5681 60.5531 43.7432L65.812 47.513C66.2823 47.8504 66.4835 48.4568 66.3084 49.0089C66.1313 49.5616 65.6148 49.9399 65.0339 49.9413H64.6851L70.0514 53.5501C70.4217 53.7989 70.6444 54.2175 70.6444 54.6636C70.6444 55.3994 70.0393 56.0051 69.3028 56.0051H69.3001H67.7036V61.4787H71.2521C71.9879 61.4787 72.5937 62.0845 72.5937 62.8203V69.4745C77.2891 64.9065 80.14 58.9298 80.14 52.3896C80.14 39.9801 69.7965 29.2744 55.549 26.9334C54.9031 26.8274 54.4241 26.2633 54.4241 25.6086C54.4241 24.8721 55.0305 24.2657 55.7671 24.2657C55.8402 24.2657 55.9133 24.2717 55.9851 24.2838C71.5338 26.8395 82.8164 38.6587 82.8164 52.3896C82.8164 60.647 78.7515 68.0927 72.2717 73.3181C72.1536 73.465 72.0047 73.5837 71.8357 73.6669C65.5028 78.4858 57.7445 81.0656 49.787 80.9986C41.8275 81.0676 34.0659 78.4871 27.7316 73.6669C27.5626 73.5837 27.4137 73.465 27.2956 73.3181C20.8159 68.0927 16.7509 60.647 16.7509 52.3896C16.7509 38.8532 27.8524 27.0608 43.1463 24.3576ZM49.787 38.2361L44.6086 41.315H54.9655L49.787 38.2361ZM56.2668 43.9981H43.3072L38.7057 47.2917H60.8415L56.2668 43.9981ZM59.8488 49.9413H39.6582L34.6206 53.2952H64.9199L59.8488 49.9413ZM65.0138 55.9783H34.4931V61.4519H36.5055V59.0304C36.5055 58.2945 37.1112 57.6888 37.8471 57.6888C38.5829 57.6888 39.1886 58.2945 39.1886 59.0304V61.4855H42.4688V59.0304C42.4688 58.2945 43.0745 57.6888 43.8103 57.6888C44.5462 57.6888 45.1519 58.2945 45.1519 59.0304V61.4855H48.4454V59.0304C48.4454 58.2945 49.0512 57.6888 49.787 57.6888C50.5229 57.6888 51.1286 58.2945 51.1286 59.0304V61.4855H54.4221V59.0304C54.4221 58.2945 55.0278 57.6888 55.7637 57.6888C56.4995 57.6888 57.1053 58.2945 57.1053 59.0304V61.4855H60.3519V59.0304C60.3519 58.2945 60.9576 57.6888 61.6934 57.6888C62.4293 57.6888 63.035 58.2945 63.035 59.0304V61.4855H65.0473L65.0138 55.9783ZM69.9105 69.1995H33.8961C33.1603 69.1995 32.5546 68.5938 32.5546 67.8579C32.5546 67.1221 33.1603 66.5163 33.8961 66.5163H69.9105V64.1619H29.6635V71.7753C34.0276 75.0306 39.1383 77.1409 44.5281 77.913V77.8727L48.6198 71.3259C48.864 70.9314 49.296 70.6913 49.7602 70.6913C50.2244 70.6913 50.6563 70.9314 50.9005 71.3259L54.9923 77.8727V77.913C60.4008 77.1496 65.531 75.0386 69.9105 71.7753V69.1995ZM52.0811 78.2349L49.787 74.5724L47.4996 78.2349C48.2509 78.2819 49.0156 78.3154 49.787 78.3154C50.5584 78.3154 51.3231 78.2819 52.0744 78.2349H52.0811Z"
-                    fill="black"
-                  />
-                </svg>
-              </div>
-              <h3 class="text-xl font-normal text-black mb-2">Local Pride</h3>
-              <p class="text-base text-black/50">Made in Bandung</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Video Section -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
           <div
-            class="relative bg-gradient-to-b from-white via-white/50 to-black rounded-lg h-[574px] flex items-center justify-center"
+            class="w-[696px] absolute left-[170px] top-[196px] flex flex-col justify-center items-center gap-10"
           >
-            <!-- Play Button -->
-            <button
-              class="w-40 h-40 rounded-full border-[20px] border-white flex items-center justify-center hover:scale-105 transition-transform duration-300"
-            >
+            <div class="self-stretch flex justify-start items-start gap-10">
+              <!-- Quality Materials -->
               <div
-                class="w-0 h-0 border-l-[40px] border-l-white border-t-[25px] border-t-transparent border-b-[25px] border-b-transparent ml-2"
-              ></div>
-            </button>
-          </div>
-        </div>
-      </section>
-    </main>
+                class="flex-1 py-3 flex flex-col justify-center items-center gap-5"
+              >
+                <div
+                  class="w-24 h-24 relative bg-black/5 rounded-[50px] overflow-hidden"
+                >
+                  <svg
+                    class="w-20 h-9 absolute left-[13.33px] top-[32px]"
+                    viewBox="0 0 101 100"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.666504"
+                      width="100"
+                      height="100"
+                      rx="50"
+                      fill="black"
+                      fill-opacity="0.05"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.3764 53.1614C15.7543 53.2917 15.1446 52.8912 15.0143 52.2691C14.8854 51.6469 15.2845 51.0372 15.9067 50.9069L40.5233 32.1288C40.5995 32.1136 40.6771 32.1052 40.7547 32.1052L73.9016 31.9999C74.194 31.9985 74.4767 32.1094 74.6915 32.3103L86.2481 56.0027C86.5931 56.3256 86.7067 56.8272 86.5335 57.2665C86.3589 57.7057 85.9349 57.9953 85.4624 57.9953H16.3764V60.642H85.2393C85.8753 60.642 86.3908 61.1574 86.3908 61.7921V66.2568C86.3908 66.8914 85.8753 67.4069 85.2393 67.4069H15.1515C14.5169 67.4069 14 66.8914 14 66.2568C14 65.6207 14.5169 65.1053 15.1515 65.1053H84.0878V62.9436H15.225C14.5903 62.9436 14.0748 62.4281 14.0748 61.7921V56.8438C14.0748 56.2078 14.5903 55.6923 15.225 55.6923H82.5455L73.4513 34.3043L40.8781 34.4069L16.3764 53.1614Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="self-stretch flex flex-col justify-start items-start gap-2"
+                >
+                  <div
+                    class="self-stretch text-center text-black text-xl font-normal leading-7"
+                  >
+                    Quality Materials
+                  </div>
+                  <div
+                    class="self-stretch text-center text-black/50 text-base font-normal leading-normal"
+                  >
+                    We source the best fabrics.
+                  </div>
+                </div>
+              </div>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white">
-      <div class="max-w-6xl mx-auto px-4 py-16">
-        <!-- Three columns section -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-y-12 md:gap-x-8">
-          <!-- Logo and Customer Care -->
-          <div class="footer-contact text-center md:text-left">
-            <div
-              class="h-32 w-48 mb-6 mx-auto md:mx-0 flex items-center justify-center"
-            >
-              <img
-                src="images/hg_logo_header.svg"
-                alt="HumanGreatness Logo"
-                class="h-20 w-auto filter brightness-0 invert"
-              />
+              <!-- Cooltech -->
+              <div
+                class="flex-1 py-3 flex flex-col justify-center items-center gap-5"
+              >
+                <div
+                  class="w-24 h-24 relative bg-black/5 rounded-[50px] overflow-hidden"
+                >
+                  <svg
+                    class="w-14 h-14 absolute left-[23.37px] top-[20.27px]"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      width="100"
+                      height="100"
+                      rx="50"
+                      fill="black"
+                      fill-opacity="0.05"
+                    />
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M49.1072 79.0001C47.9988 79.0001 47.0994 78.1018 47.0994 76.9934V70.0948L41.8674 73.0525C41.555 73.2294 41.2161 73.3132 40.8807 73.3132C40.1812 73.3132 39.5012 72.9457 39.1325 72.2932C38.5869 71.3273 38.9269 70.104 39.8918 69.5584L47.0994 65.4842V53.071L36.3483 59.2782L36.4229 67.5575C36.4332 68.6659 35.5431 69.5722 34.4347 69.5825C34.4289 69.5825 34.422 69.5825 34.4163 69.5825C33.3159 69.5825 32.42 68.6958 32.4096 67.5942L32.3556 61.5835L26.3816 65.0316C26.0658 65.2143 25.7212 65.3016 25.3812 65.3016C24.6874 65.3016 24.012 64.9421 23.641 64.2977C23.0863 63.3374 23.4159 62.1107 24.375 61.5559L30.349 58.1077L25.171 55.0547C24.2165 54.4919 23.8995 53.2617 24.4623 52.3072C25.0251 51.3527 26.2564 51.0357 27.2098 51.5985L34.3416 55.8036L45.0927 49.5964L34.3439 43.3893L27.2098 47.5932C26.8905 47.7816 26.539 47.8712 26.1933 47.8712C25.5053 47.8712 24.8367 47.5186 24.4623 46.8834C23.8995 45.9289 24.2176 44.6976 25.1721 44.1359L30.3501 41.084L24.3761 37.6347C23.4159 37.0799 23.0874 35.8532 23.641 34.8929C24.1958 33.9327 25.4225 33.6041 26.3828 34.1578L32.3556 37.6071L32.4096 31.5975C32.42 30.4948 33.317 29.6081 34.4163 29.6081H34.4347C35.5431 29.6184 36.4332 30.5247 36.4241 31.6331L36.3494 39.9124L47.0994 46.1196V33.7064L39.8918 29.6333C38.9269 29.0878 38.5869 27.8633 39.1325 26.8985C39.6781 25.9336 40.9014 25.5925 41.8674 26.1381L47.0994 29.0958V24.1498C47.0994 23.0414 47.9988 22.1432 49.1072 22.1432V22.1397C50.8508 22.088 52.5083 21.7756 54.1048 20.7878C55.2316 20.0906 56.6881 20.1055 57.8149 20.8246L67.3312 26.8985C67.6483 27.1018 67.9044 27.3866 68.0721 27.7243L76.0033 43.7258C76.341 44.407 76.0883 45.2363 75.4279 45.6142L66.773 50.5601V64.8628C66.773 65.3429 66.3836 65.7312 65.9035 65.7312C65.4245 65.7312 65.0351 65.3429 65.0351 64.8628V39.7344C65.0351 39.2554 65.4245 38.866 65.9035 38.866C66.3836 38.866 66.773 39.2554 66.773 39.7344V48.5592L74.3218 44.245L66.5157 28.4962C66.4881 28.4422 66.4468 28.3963 66.3963 28.363L59.3506 23.8661C58.1135 28.4135 53.9211 31.7043 49.1072 31.7043V77.2633H65.0351V68.3374C65.0351 67.8584 65.4245 67.469 65.9035 67.469C66.3836 67.469 66.773 67.8584 66.773 68.3374V77.6114C66.773 78.3775 66.1493 79.0001 65.3832 79.0001H49.1072Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="self-stretch flex flex-col justify-start items-start gap-2"
+                >
+                  <div
+                    class="self-stretch text-center text-black text-xl font-normal leading-7"
+                  >
+                    Cooltech
+                  </div>
+                  <div
+                    class="self-stretch text-center text-black/50 text-base font-normal leading-normal"
+                  >
+                    Committed to cooling technology fabric.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Local Pride -->
+              <div
+                class="flex-1 py-3 flex flex-col justify-center items-center gap-5"
+              >
+                <div
+                  class="w-24 h-24 relative bg-black/5 rounded-[50px] overflow-hidden"
+                >
+                  <svg
+                    class="w-16 h-16 absolute left-[82.48px] top-[81px]"
+                    viewBox="0 0 101 100"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <rect
+                      x="0.333008"
+                      width="100"
+                      height="100"
+                      rx="50"
+                      fill="black"
+                      fill-opacity="0.05"
+                    />
+                    <path
+                      d="M43.1463 24.3576C43.2207 24.3448 43.2965 24.3381 43.3716 24.3381C44.1082 24.3381 44.7132 24.9438 44.7132 25.6797C44.7132 26.327 44.2457 26.8864 43.6091 27.0005C29.6031 29.4757 19.4609 40.1545 19.4609 52.3896C19.4609 58.9298 22.3184 64.9065 27.0139 69.4745V62.8203C27.0139 62.0845 27.6196 61.4787 28.3555 61.4787H31.8435V56.0051H30.2471H30.2444C29.5079 56.0051 28.9028 55.3994 28.9028 54.6636C28.9028 54.2175 29.1255 53.7989 29.4958 53.5501L34.8621 49.9413H34.5133C33.9324 49.9399 33.4159 49.5616 33.2388 49.0089C33.0637 48.4568 33.2649 47.8504 33.7352 47.513L38.9941 43.7432C38.7144 43.5681 38.5091 43.2958 38.4172 42.9785C38.2629 42.3909 38.5252 41.7684 39.0545 41.4693L48.4454 35.8749V33.8626C47.7096 33.8626 47.1039 33.2569 47.1039 32.521C47.1039 31.7852 47.7096 31.1794 48.4454 31.1794V29.5025C47.7096 29.5025 47.1039 28.8968 47.1039 28.1609C47.1039 27.4251 47.7096 26.8194 48.4454 26.8194V25.1424C47.7096 25.1424 47.1039 24.5367 47.1039 23.8008C47.1039 23.065 47.7096 22.4593 48.4454 22.4593V19.6218C48.4454 18.886 49.0512 18.2803 49.787 18.2803C50.5229 18.2803 51.1286 18.886 51.1286 19.6218V22.4257C51.8644 22.4257 52.4701 23.0314 52.4701 23.7673C52.4701 24.5031 51.8644 25.1089 51.1286 25.1089V26.7858C51.8644 26.7858 52.4701 27.3915 52.4701 28.1274C52.4701 28.8632 51.8644 29.4689 51.1286 29.4689V31.1459C51.8644 31.1459 52.4701 31.7516 52.4701 32.4875C52.4701 33.2233 51.8644 33.829 51.1286 33.829V35.8414L60.5196 41.4693C61.0381 41.7765 61.2896 42.397 61.13 42.9785C61.0381 43.2958 60.8328 43.5681 60.5531 43.7432L65.812 47.513C66.2823 47.8504 66.4835 48.4568 66.3084 49.0089C66.1313 49.5616 65.6148 49.9399 65.0339 49.9413H64.6851L70.0514 53.5501C70.4217 53.7989 70.6444 54.2175 70.6444 54.6636C70.6444 55.3994 70.0393 56.0051 69.3028 56.0051H69.3001H67.7036V61.4787H71.2521C71.9879 61.4787 72.5937 62.0845 72.5937 62.8203V69.4745C77.2891 64.9065 80.14 58.9298 80.14 52.3896C80.14 39.9801 69.7965 29.2744 55.549 26.9334C54.9031 26.8274 54.4241 26.2633 54.4241 25.6086C54.4241 24.8721 55.0305 24.2657 55.7671 24.2657C55.8402 24.2657 55.9133 24.2717 55.9851 24.2838C71.5338 26.8395 82.8164 38.6587 82.8164 52.3896C82.8164 60.647 78.7515 68.0927 72.2717 73.3181C72.1536 73.465 72.0047 73.5837 71.8357 73.6669C65.5028 78.4858 57.7445 81.0656 49.787 80.9986C41.8275 81.0676 34.0659 78.4871 27.7316 73.6669C27.5626 73.5837 27.4137 73.465 27.2956 73.3181C20.8159 68.0927 16.7509 60.647 16.7509 52.3896C16.7509 38.8532 27.8524 27.0608 43.1463 24.3576Z"
+                      fill="black"
+                    />
+                  </svg>
+                </div>
+                <div
+                  class="self-stretch flex flex-col justify-start items-start gap-2"
+                >
+                  <div
+                    class="self-stretch text-center text-black text-xl font-normal leading-7"
+                  >
+                    Local Pride
+                  </div>
+                  <div
+                    class="self-stretch text-center text-black/50 text-base font-normal leading-normal"
+                  >
+                    Made in Bandung
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="footer-contact text-center md:text-left">
-            <img
-              src="images/hg_logotext.svg"
-              alt="HGN Logo"
-              class="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
-            />
-            <div class="space-y-4 flex flex-col items-center md:items-start">
-              <p class="text-white text-sm text-center md:text-left">
-                Online Customer Care:<br />
-                <a
-                  href="tel:+6282126610201"
-                  class="underline hover:text-cream transition-colors"
-                  >+62 821 2661 0201</a
-                >
-              </p>
+        <!-- Video Section -->
+        <section
+          class="w-full h-[574px] absolute left-0 top-[1967px] bg-gradient-to-b from-white via-white to-black overflow-hidden"
+        >
+          <div
+            class="w-80 h-80 absolute left-[352px] top-[152px] rounded-full border-[20px] border-white flex items-center justify-center"
+          >
+            <svg
+              width="120"
+              height="80"
+              viewBox="0 0 120 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M120 40L0 80V0L120 40Z" fill="white" />
+            </svg>
+          </div>
+        </section>
 
-              <!-- Social Media -->
-              <div class="social-links space-y-3 w-full">
+        <!-- Footer -->
+        <footer class="w-full h-[600px] absolute left-0 top-[2542px] bg-black">
+          <!-- Main Footer Content -->
+          <div class="w-[1034px] h-96 absolute left-0 top-[56.78px]">
+            <!-- Logo Section -->
+            <div class="w-48 h-80 absolute left-[24px] top-0">
+              <div class="w-48 h-80 relative overflow-hidden">
+                <img
+                  src="images/hg_logo_header.svg"
+                  alt="HumanGreatness Logo"
+                  class="w-36 h-80 absolute left-[0.27px] top-[0.12px] filter brightness-0 invert"
+                />
+              </div>
+            </div>
+
+            <!-- Customer Care -->
+            <div class="w-60 h-80 absolute left-[262px] top-0">
+              <div class="w-60 h-7 absolute left-[5px] top-0">
+                <img
+                  src="images/hg_logotext.svg"
+                  alt="HGN Logo"
+                  class="w-60 h-7 filter brightness-0 invert"
+                />
+              </div>
+              <div class="w-72 h-80 absolute left-0 top-[66px]">
                 <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
+                  class="absolute left-0 top-[-0.25px] text-white text-base font-normal leading-snug"
                 >
-                  <svg class="w-6 h-6" viewBox="0 0 28 29" fill="none">
+                  <span>Online Customer Care:<br /></span>
+                  <span class="underline">+62 821 2661 0201</span>
+                </div>
+                <div
+                  class="absolute left-[37px] top-[75.39px] text-white text-base font-medium underline leading-snug"
+                >
+                  @hgbasiclabs
+                </div>
+                <div
+                  class="absolute left-[37px] top-[111.39px] text-white text-base font-medium underline leading-snug"
+                >
+                  @hgbasiclabs
+                </div>
+                <div
+                  class="absolute left-[37px] top-[151.39px] text-white text-base font-medium underline leading-snug"
+                >
+                  Human Greatness
+                </div>
+
+                <!-- Social Icons -->
+                <div
+                  class="w-7 h-7 absolute left-[-2px] top-[73.39px] overflow-hidden"
+                >
+                  <svg
+                    width="28"
+                    height="29"
+                    viewBox="0 0 28 29"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M8.96018 1.84814C4.94498 1.84814 1.68018 5.11294 1.68018 9.12814V19.2081C1.68018 23.2233 4.94498 26.4881 8.96018 26.4881H19.0402C23.0554 26.4881 26.3202 23.2233 26.3202 19.2081V9.12814C26.3202 5.11294 23.0554 1.84814 19.0402 1.84814H8.96018ZM20.7202 6.32814C21.3362 6.32814 21.8402 6.83214 21.8402 7.44814C21.8402 8.06414 21.3362 8.56814 20.7202 8.56814C20.1042 8.56814 19.6002 8.06414 19.6002 7.44814C19.6002 6.83214 20.1042 6.32814 20.7202 6.32814ZM14.0002 8.00814C17.3994 8.00814 20.1602 10.7689 20.1602 14.1681C20.1602 17.5673 17.3994 20.3281 14.0002 20.3281C10.601 20.3281 7.84018 17.5673 7.84018 14.1681C7.84018 10.7689 10.601 8.00814 14.0002 8.00814ZM14.0002 9.12814C11.2226 9.12814 8.96018 11.3905 8.96018 14.1681C8.96018 16.9457 11.2226 19.2081 14.0002 19.2081C16.7778 19.2081 19.0402 16.9457 19.0402 14.1681C19.0402 11.3905 16.7778 9.12814 14.0002 9.12814Z"
                       fill="#FFFCEE"
                     />
                   </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >@hgbasiclabs</a
-                  >
                 </div>
-
                 <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
+                  class="w-7 h-7 absolute left-[-2px] top-[111.39px] overflow-hidden"
                 >
-                  <svg class="w-6 h-6" viewBox="0 0 28 29" fill="none">
-                    <path
-                      d="M22.9602 2.4082H5.04023C3.49463 2.4082 2.24023 3.6626 2.24023 5.2082V23.1282C2.24023 24.6738 3.49463 25.9282 5.04023 25.9282H22.9602C24.5058 25.9282 25.7602 24.6738 25.7602 23.1282V5.2082C25.7602 3.6626 24.5058 2.4082 22.9602 2.4082ZM20.7202 10.8082H19.6002C18.4018 10.8082 17.9202 11.0882 17.9202 11.9282V13.6082H20.7202L20.1602 16.4082H17.9202V24.8082H15.1202V16.4082H12.8802V13.6082H15.1202V11.9282C15.1202 9.6882 16.2402 8.0082 18.4802 8.0082C20.1042 8.0082 20.7202 8.5682 20.7202 8.5682V10.8082Z"
-                      fill="#FFFCEE"
-                    />
-                  </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >Human Greatness</a
+                  <svg
+                    width="28"
+                    height="29"
+                    viewBox="0 0 28 29"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                </div>
-
-                <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
-                >
-                  <svg class="w-6 h-6" viewBox="0 0 28 29" fill="none">
                     <path
                       d="M22.9602 2.4082H5.04023C3.49631 2.4082 2.24023 3.66428 2.24023 5.2082V23.1282C2.24023 24.6721 3.49631 25.9282 5.04023 25.9282H22.9602C24.5039 25.9282 25.7602 24.6721 25.7602 23.1282V5.2082C25.7602 3.66428 24.5039 2.4082 22.9602 2.4082ZM20.7233 12.6691C20.5962 12.6808 20.4674 12.6887 20.337 12.6887C18.8681 12.6887 17.5773 11.9332 16.8263 10.7914C16.8263 13.7868 16.8263 17.195 16.8263 17.2521C16.8263 19.8892 14.6882 22.0272 12.0512 22.0272C9.41415 22.0272 7.27607 19.8892 7.27607 17.2521C7.27607 14.6151 9.41415 12.477 12.0512 12.477C12.1509 12.477 12.2483 12.486 12.3463 12.4921V14.8452C12.2483 14.8335 12.152 14.8156 12.0512 14.8156C10.7049 14.8156 9.61407 15.9064 9.61407 17.2527C9.61407 18.5989 10.7049 19.6898 12.0512 19.6898C13.3974 19.6898 14.5863 18.6292 14.5863 17.2829C14.5863 17.2297 14.6098 6.31028 14.6098 6.31028H16.8588C17.0705 8.32124 18.6939 9.90828 20.7233 10.0539V12.6691Z"
                       fill="#FFFCEE"
                     />
                   </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >@hgbasiclabs</a
+                </div>
+                <div
+                  class="w-7 h-7 absolute left-[-2px] top-[149.39px] overflow-hidden"
+                >
+                  <svg
+                    width="28"
+                    height="29"
+                    viewBox="0 0 28 29"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
+                    <path
+                      d="M22.9602 2.4082H5.04023C3.49463 2.4082 2.24023 3.6626 2.24023 5.2082V23.1282C2.24023 24.6738 3.49463 25.9282 5.04023 25.9282H22.9602C24.5058 25.9282 25.7602 24.6738 25.7602 23.1282V5.2082C25.7602 3.6626 24.5058 2.4082 22.9602 2.4082ZM20.7202 10.8082H19.6002C18.4018 10.8082 17.9202 11.0882 17.9202 11.9282V13.6082H20.7202L20.1602 16.4082H17.9202V24.8082H15.1202V16.4082H12.8802V13.6082H15.1202V11.9282C15.1202 9.6882 16.2402 8.0082 18.4802 8.0082C20.1042 8.0082 20.7202 8.5682 20.7202 8.5682V10.8082Z"
+                      fill="#FFFCEE"
+                    />
+                  </svg>
                 </div>
               </div>
+            </div>
 
-              <!-- Shopping Icons -->
+            <!-- Navigation -->
+            <div class="w-60 h-80 absolute left-[528px] top-0">
               <div
-                class="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start"
+                class="absolute left-0 top-0 text-white text-3xl font-medium uppercase leading-9"
               >
-                <svg
-                  class="platform-icon w-9 h-10"
-                  viewBox="0 0 37 42"
-                  fill="none"
+                Navigation
+              </div>
+              <div class="w-48 h-64 absolute left-0 top-[66px]">
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-0 flex flex-col justify-start items-start"
                 >
-                  <g clip-path="url(#clip0_72_859)">
-                    <path
-                      d="M31.5141 41.9202H5.42022C3.22293 41.9202 1.41242 40.2035 1.30955 38.0215L0.00105322 10.2717C-0.0267215 9.68889 0.441335 9.20117 1.02872 9.20117H35.9056C36.493 9.20117 36.961 9.68889 36.9333 10.2717L35.6248 38.0215C35.5219 40.2035 33.7114 41.9202 31.5141 41.9202Z"
-                      fill="#F4511E"
-                    />
-                    <path
-                      d="M27.2111 9.71249H25.1537C25.1537 5.48355 22.154 2.04396 18.4672 2.04396C14.7803 2.04396 11.7807 5.48355 11.7807 9.71249H9.72327C9.72327 4.35679 13.6457 -0.000976562 18.4672 -0.000976562C23.2887 -0.000976562 27.2111 4.35679 27.2111 9.71249Z"
-                      fill="#F4511E"
-                    />
-                    <path
-                      d="M18.7223 24.2193C15.9026 23.1948 14.1909 22.4372 14.1909 20.5619C14.1909 18.6693 16.0178 17.2952 18.5361 17.2952C20.2694 17.2952 21.7857 17.97 22.5356 18.3708C22.6632 18.4393 23.0232 18.654 23.2269 18.79L23.3607 18.879L24.3461 17.2859L24.1846 17.1806C23.3905 16.6479 21.2487 15.4087 18.5371 15.4087C14.9789 15.4087 12.296 17.6234 12.296 20.5609C12.296 23.8911 15.3646 25.0056 18.0721 25.9892C21.2302 27.1364 23.1477 28.0086 23.1477 30.4359C23.1477 32.305 21.0214 33.8244 18.4065 33.8244C15.4603 33.8244 12.9276 31.6721 12.904 31.6517L12.7723 31.531L11.6963 33.1077L11.8053 33.1966C12.5378 33.7866 15.1753 35.7098 18.4054 35.7098C22.1283 35.7098 25.0446 33.3929 25.0446 30.4359C25.0436 26.5148 21.6849 25.296 18.7223 24.2193Z"
-                      fill="#FAFAFA"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_859">
-                      <rect width="37" height="42" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    Home
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[32.50px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    Shop
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[65px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    Catalogues
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[97.50px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    Return
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[130px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    FAQ
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[162.50px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    Sale Items
+                  </div>
+                </div>
+                <div
+                  class="w-48 pt-1 pb-[5px] absolute left-0 top-[195px] flex flex-col justify-start items-start"
+                >
+                  <div
+                    class="self-stretch text-white text-sm font-normal leading-snug"
+                  >
+                    About Us
+                  </div>
+                </div>
+              </div>
+            </div>
 
-                <svg
-                  class="platform-icon w-8 h-10"
-                  viewBox="0 0 34 39"
-                  fill="none"
-                >
-                  <g clip-path="url(#clip0_72_868)">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M1.95435 9.09414H13.0527L16.9683 10.2786L22.8418 9.30462L32.3479 9.39336L32.6145 20.1359L32.5256 29.5619C32.5256 29.5619 29.4324 37.4321 22.8418 37.4341C20.5265 37.4341 5.49139 37.4053 5.49139 37.4053L1.11182 37.461V9.07764L1.95435 9.09414Z"
-                      fill="#4D984C"
-                    />
-                    <path
-                      d="M22.1887 38.9734H1.30522C0.588653 38.9734 0 38.3875 0 37.6743V9.09356C0 8.38034 0.588653 7.79443 1.30522 7.79443H11.5838C13.4398 7.79703 15.2763 8.19067 16.9678 8.95195C18.6594 8.19067 20.4958 7.79703 22.3518 7.79443H32.6304C33.347 7.79443 33.9356 8.38034 33.9356 9.09356V27.2813C33.9291 33.6924 28.6299 38.9669 22.1887 38.9734ZM2.61043 36.3751H22.1887C27.1981 36.3686 31.3187 32.2673 31.3252 27.2813V10.3927H22.3518C20.7308 10.394 19.1319 10.7707 17.6818 11.4904L17.5512 11.5554C17.1845 11.7373 16.7511 11.7373 16.3831 11.5554L16.2526 11.4904C14.8025 10.7707 13.2049 10.3953 11.5838 10.3927H2.61043V36.3751Z"
-                      fill="#4D984D"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_868">
-                      <rect width="34" height="39" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-
-                <svg
-                  class="platform-icon w-8 h-6"
-                  viewBox="0 0 33 26"
-                  fill="none"
-                >
-                  <g clip-path="url(#clip0_72_895)">
-                    <path
-                      d="M25.8869 0.00146484C25.9669 0.00146484 26.045 0.0228721 26.1128 0.0637752L32.5551 3.92816C32.7943 4.07152 32.943 4.33108 32.943 4.60478V15.7232C32.943 15.9999 32.799 16.2522 32.5578 16.3983L16.8857 25.8805C16.7614 25.9558 16.6183 25.9956 16.472 25.9956C16.3257 25.9956 16.1826 25.9558 16.0582 25.8805L0.385727 16.3986C0.144539 16.2526 0.000610352 16.0003 0.000610352 15.7235V4.60517C0.000610352 4.33146 0.149245 4.0719 0.388472 3.92855L6.83074 0.064158C6.89858 0.0232549 6.97702 0.00184763 7.05663 0.00184763C7.13703 0.00184763 7.21585 0.0236368 7.28409 0.0649221L13.3056 3.70797C14.257 4.28368 15.3519 4.58796 16.4716 4.58796C17.5912 4.58796 18.6862 4.28368 19.6376 3.70797L25.6591 0.0649221C25.7281 0.0232545 25.8065 0.00146484 25.8869 0.00146484Z"
-                      fill="#F9B621"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_895">
-                      <rect width="33" height="26" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
+            <!-- Address -->
+            <div class="w-60 h-80 absolute left-[792px] top-0">
+              <div
+                class="absolute left-0 top-0 text-white text-3xl font-medium uppercase leading-9"
+              >
+                ADDRESS
+              </div>
+              <div
+                class="w-72 absolute left-0 top-[52px] text-white text-base font-normal leading-relaxed"
+              >
+                Jl. Hasanudin No 9, Lebak Gede <br />Kota Bandung<br />Jawa
+                Barat<br />Indonesia
               </div>
             </div>
           </div>
 
-          <!-- Navigation -->
-          <div class="footer-nav text-center md:text-left">
-            <h3
-              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
-            >
-              Navigation
-            </h3>
-            <nav class="space-y-3 flex flex-col items-center md:items-start">
-              <a
-                href="index.html"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Home</a
+          <!-- Platform Icons -->
+          <div
+            class="w-[1036px] h-14 absolute left-0 top-[465px] border-t border-cream"
+          >
+            <div class="w-9 h-10 absolute left-[782px] top-[17px]">
+              <svg
+                width="37"
+                height="42"
+                viewBox="0 0 37 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              <a
-                href="index.html"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Shop</a
+                <g clip-path="url(#clip0_72_859)">
+                  <path
+                    d="M31.5141 41.9202H5.42022C3.22293 41.9202 1.41242 40.2035 1.30955 38.0215L0.00105322 10.2717C-0.0267215 9.68889 0.441335 9.20117 1.02872 9.20117H35.9056C36.493 9.20117 36.961 9.68889 36.9333 10.2717L35.6248 38.0215C35.5219 40.2035 33.7114 41.9202 31.5141 41.9202Z"
+                    fill="#F4511E"
+                  />
+                  <path
+                    d="M27.2111 9.71249H25.1537C25.1537 5.48355 22.154 2.04396 18.4672 2.04396C14.7803 2.04396 11.7807 5.48355 11.7807 9.71249H9.72327C9.72327 4.35679 13.6457 -0.000976562 18.4672 -0.000976562C23.2887 -0.000976562 27.2111 4.35679 27.2111 9.71249Z"
+                    fill="#F4511E"
+                  />
+                  <path
+                    d="M18.7223 24.2193C15.9026 23.1948 14.1909 22.4372 14.1909 20.5619C14.1909 18.6693 16.0178 17.2952 18.5361 17.2952C20.2694 17.2952 21.7857 17.97 22.5356 18.3708C22.6632 18.4393 23.0232 18.654 23.2269 18.79L23.3607 18.879L24.3461 17.2859L24.1846 17.1806C23.3905 16.6479 21.2487 15.4087 18.5371 15.4087C14.9789 15.4087 12.296 17.6234 12.296 20.5609C12.296 23.8911 15.3646 25.0056 18.0721 25.9892C21.2302 27.1364 23.1477 28.0086 23.1477 30.4359C23.1477 32.305 21.0214 33.8244 18.4065 33.8244C15.4603 33.8244 12.9276 31.6721 12.904 31.6517L12.7723 31.531L11.6963 33.1077L11.8053 33.1966C12.5378 33.7866 15.1753 35.7098 18.4054 35.7098C22.1283 35.7098 25.0446 33.3929 25.0446 30.4359C25.0436 26.5148 21.6849 25.296 18.7223 24.2193Z"
+                    fill="#FAFAFA"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_72_859">
+                    <rect width="37" height="42" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div class="w-8 h-10 absolute left-[850px] top-[19px]">
+              <svg
+                width="34"
+                height="39"
+                viewBox="0 0 34 39"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Catalogues</a
+                <g clip-path="url(#clip0_72_868)">
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M1.95435 9.09414H13.0527L16.9683 10.2786L22.8418 9.30462L32.3479 9.39336L32.6145 20.1359L32.5256 29.5619C32.5256 29.5619 29.4324 37.4321 22.8418 37.4341C20.5265 37.4341 5.49139 37.4053 5.49139 37.4053L1.11182 37.461V9.07764L1.95435 9.09414Z"
+                    fill="#4D984C"
+                  />
+                  <path
+                    d="M22.1887 38.9734H1.30522C0.588653 38.9734 0 38.3875 0 37.6743V9.09356C0 8.38034 0.588653 7.79443 1.30522 7.79443H11.5838C13.4398 7.79703 15.2763 8.19067 16.9678 8.95195C18.6594 8.19067 20.4958 7.79703 22.3518 7.79443H32.6304C33.347 7.79443 33.9356 8.38034 33.9356 9.09356V27.2813C33.9291 33.6924 28.6299 38.9669 22.1887 38.9734ZM2.61043 36.3751H22.1887C27.1981 36.3686 31.3187 32.2673 31.3252 27.2813V10.3927H22.3518C20.7308 10.394 19.1319 10.7707 17.6818 11.4904L17.5512 11.5554C17.1845 11.7373 16.7511 11.7373 16.3831 11.5554L16.2526 11.4904C14.8025 10.7707 13.2049 10.3953 11.5838 10.3927H2.61043V36.3751Z"
+                    fill="#4D984D"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_72_868">
+                    <rect width="34" height="39" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div class="w-8 h-6 absolute left-[914px] top-[26px]">
+              <svg
+                width="33"
+                height="26"
+                viewBox="0 0 33 26"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Return</a
-              >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >FAQ</a
-              >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Sale Items</a
-              >
-              <a
-                href="aboutus.html"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >About Us</a
-              >
-            </nav>
-          </div>
-
-          <!-- Address -->
-          <div class="footer-address text-center md:text-left">
-            <h3
-              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
-            >
-              Address
-            </h3>
-            <address
-              class="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs"
-            >
-              Jl. Hasanudin No 9, Lebak Gede<br />
-              Kota Bandung<br />
-              Jawa Barat<br />
-              Indonesia
-            </address>
-
-            <!-- Help Button -->
-            <div class="mt-8 flex justify-center md:justify-start">
-              <button
-                class="inline-flex items-center gap-2 px-4 py-2 bg-cream text-black font-bold text-sm rounded-full hover:bg-white transition-colors"
-              >
-                <svg class="w-5 h-5" viewBox="0 0 20 20" fill="none">
-                  <g clip-path="url(#clip0_83_442)">
-                    <path
-                      d="M11.0001 12.3V13H9.0001V12.4C9.0001 11.8 9.1001 11 9.8001 10.3C10.5001 9.6 11.4001 9.1 11.4001 8.2C11.4001 7.3 10.7001 6.8 10.0001 6.8C8.7001 6.8 8.6001 8.2 8.5001 8.5H6.6001C6.6001 7.1 7.2001 5 10.0001 5C12.4001 5 13.4001 6.6 13.4001 8C13.4001 10.4 11.0001 10.8 11.0001 12.3Z"
-                      fill="black"
-                    />
-                    <path
-                      d="M10 16C10.5523 16 11 15.5523 11 15C11 14.4477 10.5523 14 10 14C9.44772 14 9 14.4477 9 15C9 15.5523 9.44772 16 10 16Z"
-                      fill="black"
-                    />
-                    <path
-                      d="M10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2ZM10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0Z"
-                      fill="black"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_83_442">
-                      <rect width="20" height="20" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-                Help
-              </button>
+                <g clip-path="url(#clip0_72_895)">
+                  <path
+                    d="M25.8869 0.00146484C25.9669 0.00146484 26.045 0.0228721 26.1128 0.0637752L32.5551 3.92816C32.7943 4.07152 32.943 4.33108 32.943 4.60478V15.7232C32.943 15.9999 32.799 16.2522 32.5578 16.3983L16.8857 25.8805C16.7614 25.9558 16.6183 25.9956 16.472 25.9956C16.3257 25.9956 16.1826 25.9558 16.0582 25.8805L0.385727 16.3986C0.144539 16.2526 0.000610352 16.0003 0.000610352 15.7235V4.60517C0.000610352 4.33146 0.149245 4.0719 0.388472 3.92855L6.83074 0.064158C6.89858 0.0232549 6.97702 0.00184763 7.05663 0.00184763C7.13703 0.00184763 7.21585 0.0236368 7.28409 0.0649221L13.3056 3.70797C14.257 4.28368 15.3519 4.58796 16.4716 4.58796C17.5912 4.58796 18.6862 4.28368 19.6376 3.70797L25.6591 0.0649221C25.7281 0.0232545 25.8065 0.00146484 25.8869 0.00146484Z"
+                    fill="#F9B621"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_72_895">
+                    <rect width="33" height="26" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
             </div>
           </div>
-        </div>
+
+          <!-- Help Button -->
+          <div
+            class="w-24 h-11 absolute left-[906px] top-[334px] bg-cream rounded-[750px]"
+          >
+            <div class="w-5 h-5 absolute left-[15px] top-[13px]">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g clip-path="url(#clip0_83_442)">
+                  <path
+                    d="M11.0001 12.3V13H9.0001V12.4C9.0001 11.8 9.1001 11 9.8001 10.3C10.5001 9.6 11.4001 9.1 11.4001 8.2C11.4001 7.3 10.7001 6.8 10.0001 6.8C8.7001 6.8 8.6001 8.2 8.5001 8.5H6.6001C6.6001 7.1 7.2001 5 10.0001 5C12.4001 5 13.4001 6.6 13.4001 8C13.4001 10.4 11.0001 10.8 11.0001 12.3Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M10 16C10.5523 16 11 15.5523 11 15C11 14.4477 10.5523 14 10 14C9.44772 14 9 14.4477 9 15C9 15.5523 9.44772 16 10 16Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M10 2C14.4 2 18 5.6 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2ZM10 0C4.5 0 0 4.5 0 10C0 15.5 4.5 20 10 20C15.5 20 20 15.5 20 10C20 4.5 15.5 0 10 0Z"
+                    fill="black"
+                  />
+                </g>
+                <defs>
+                  <clipPath id="clip0_83_442">
+                    <rect width="20" height="20" fill="white" />
+                  </clipPath>
+                </defs>
+              </svg>
+            </div>
+            <div
+              class="absolute left-[44.14px] top-[10px] text-center text-black text-base font-bold leading-relaxed"
+            >
+              Help
+            </div>
+          </div>
+
+          <!-- Copyright -->
+          <div
+            class="w-full h-16 absolute left-0 top-[539px] bg-cream overflow-hidden"
+          >
+            <div
+              class="absolute left-[367px] top-[24px] text-center text-black text-sm font-normal leading-tight"
+            >
+              © 2025. Made in Bandung by Hilman Nur Firdaus
+            </div>
+          </div>
+        </footer>
       </div>
-
-      <!-- Copyright -->
-      <div class="copyright-section border-t border-cream bg-cream">
-        <div class="max-w-6xl mx-auto px-4 py-6 text-center">
-          <p class="text-black text-sm">
-            © 2025. Made in Bandung by Hilman Nur Firdaus
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Menu -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (mobileMenuButton && mobileMenu) {
-          mobileMenuButton.addEventListener("click", function () {
-            const isOpen = mobileMenu.classList.contains("translate-y-0");
-
-            if (isOpen) {
-              // Close menu
-              mobileMenu.classList.remove(
-                "translate-y-0",
-                "opacity-100",
-                "visible",
-              );
-              mobileMenu.classList.add(
-                "-translate-y-full",
-                "opacity-0",
-                "invisible",
-              );
-            } else {
-              // Open menu
-              mobileMenu.classList.remove(
-                "-translate-y-full",
-                "opacity-0",
-                "invisible",
-              );
-              mobileMenu.classList.add(
-                "translate-y-0",
-                "opacity-100",
-                "visible",
-              );
-            }
-          });
-        }
-      });
-    </script>
+    </div>
   </body>
 </html>
