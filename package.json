@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css",
+    "build:css": "node build-css.js",
+    "build:css:fallback": "echo '⚠️ Using fallback: CSS already compiled' && ls -la src/output.css",
     "watch:css": "npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch",
     "serve": "npx serve . -p 3000",
     "dev": "npx serve . -p 3000"
