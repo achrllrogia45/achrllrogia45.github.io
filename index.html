@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HumanGreatness - Cool Tech Inside Greatness Outside</title>
-    <link href="././src/output.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
@@ -15,714 +16,782 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <script src="./src/carousel.js" defer></script>
-    <script src="./src/product-carousel.js" defer></script>
+    <!-- React, ReactDOM, Babel -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body class="font-roboto text-base">
-    <!-- Header -->
-    <header
-      class="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5"
-    >
-      <div
-        class="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]"
-      >
-        <!-- Logo -->
-        <a
-          href="index.html"
-          class="flex items-center hover:opacity-80 transition-opacity"
-        >
-          <img
-            src="images/hg_logo_header.svg"
-            alt="HumanGreatness Logo"
-            class="h-8 sm:h-10 w-auto"
-          />
-        </a>
+    <div id="root"></div>
+    <div id="chatbot-root"></div>
+    <script type="text/babel">
+      // --- ChatBot Component ---
+      const CHAT_KEY = "hg-chatbot-messages";
+      function getInitialMessages() {
+        try {
+          const cached = localStorage.getItem(CHAT_KEY);
+          if (cached) return JSON.parse(cached);
+        } catch {}
+        return [];
+      }
 
-        <!-- Desktop Navigation -->
-        <nav class="hidden lg:flex items-center gap-8 xl:gap-[152px]">
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >SHOP</a
-          >
-          <a
-            href="aboutus.html"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >ABOUT US</a
-          >
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-            >COOLNESS</a
-          >
-        </nav>
-
-        <!-- Language and Shop Icon - Desktop -->
-        <div class="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
-          <div class="flex items-center gap-[10px] text-sm lg:text-base">
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >EN</span
-              >
-              <span
-                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-            <span class="text-cream mx-1">/</span>
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >IN</span
-              >
-              <span
-                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-          </div>
-          <img
-            src="images/shop_icon_header.svg"
-            alt="Shop"
-            class="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
-          />
-        </div>
-
-        <!-- Mobile Header Right Group (Language, Shop, Menu) -->
-        <div class="flex lg:hidden items-center gap-4">
-          <div class="flex items-center gap-[6px] text-sm">
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >EN</span
-              >
-              <span
-                class="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-            <span class="text-cream mx-1">/</span>
-            <a href="#" class="text-cream relative group px-1">
-              <span
-                class="inline-block group-hover:opacity-0 transition-opacity duration-300"
-                >IN</span
-              >
-              <span
-                class="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
-              ></span>
-            </a>
-          </div>
-          <img
-            src="images/shop_icon_header.svg"
-            alt="Shop"
-            class="h-5 w-5 invert"
-          />
-          <!-- Mobile Menu Button -->
-          <button
-            class="text-cream hover:text-white transition-colors"
-            id="mobile-menu-button"
-            aria-label="Toggle mobile menu"
-          >
-            <svg
-              class="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- Mobile Navigation Menu -->
-      <div
-        class="lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transform -translate-y-full opacity-0 invisible transition-all duration-300 ease-in-out"
-        id="mobile-menu"
-      >
-        <nav class="flex flex-col items-center py-8 space-y-6">
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-lg"
-            >SHOP</a
-          >
-          <a
-            href="aboutus.html"
-            class="text-cream hover:text-white transition-colors nav-link text-lg"
-            >ABOUT US</a
-          >
-          <a
-            href="#"
-            class="text-cream hover:text-white transition-colors nav-link text-lg"
-            >COOLNESS</a
-          >
-        </nav>
-      </div>
-    </header>
-
-    <main class="relative">
-      <!-- Hero Section -->
-      <section
-        class="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      >
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 w-full h-full">
-          <img
-            src="images/heroimage.png"
-            alt="Hero Background"
-            class="w-full h-full object-cover"
-          />
-          <div class="absolute inset-0 bg-black/40"></div>
-        </div>
-
-        <div
-          class="relative z-10 text-center px-4 mx-auto gap-[210px] grid flex-col h-auto self-center justify-center items-center"
-        >
-          <!-- Main Heading -->
-          <h1
-            class="hero-title text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase flex flex-col justify-center items-center"
-            style="margin: 49.8px 0 32px"
-          >
-            <span class="font-inter tracking-[15px]">cool tech inside</span
-            ><br class="tracking-[15px]" />
-            <span class="font-inter tracking-[15px]">greatness outside</span>
-          </h1>
-
-          <div class="flex flex-col">
-            <!-- Logo -->
-            <div class="mb-8">
-              <img
-                src="images/hg_logotext.svg"
-                alt="HeaderLogo"
-                class="mx-auto max-w-md h-auto filter brightness-0 invert"
-              />
-            </div>
-
-            <!-- CTA Button -->
-            <a
-              href="#"
-              class="button-primary inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl uppercase hover:bg-white hover:text-black transition-all duration-300 tracking-[6px] -mr-1"
-              style="font-size: 20px; line-height: 28px"
-            >
-              Shop now
-            </a>
-          </div>
-        </div>
-        <!-- Breadcrumb -->
-        <div
-          class="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]"
-        >
-          <div class="max-w-6xl mx-auto">
-            <p class="text-sm sm:text-base">
-              <a
-                href="index.html"
-                class="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-                >HOME</a
-              >
-              /
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 2: COOLTECH -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Divider -->
-          <div
-            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"
-          ></div>
-
-          <div class="grid md:grid-cols-2 gap-12 items-center">
-            <!-- Image Container -->
-            <div class="relative">
-              <img
-                src="images/vertical.poster.png"
-                alt="COOLTECH Billboard"
-                class="w-full h-auto rounded-lg"
-              />
-            </div>
-
-            <!-- Content -->
-            <div class="space-y-6 justify-start h-full">
-              <h2
-                class="section-title text-5xl md:text-6xl font-bold text-black leading-tight"
-              >
-                COOLTECH
-              </h2>
-              <p
-                class="text-xl md:text-2xl text-black leading-relaxed tracking-wide"
-              >
-                Jenis bahan yang didesain untuk memberikan sensasi dingin dan
-                nyaman saat digunakan, terutama saat cuaca panas atau saat
-                beraktivitas fisik.
-              </p>
-              <p
-                class="text-xl md:text-2xl text-black leading-relaxed tracking-wide"
-              >
-                Bahan ini biasanya memiliki teknologi pendingin (cooling
-                technology) yang membantu melancarkan sirkulasi udara dan
-                membuat pemakainya merasa lebih sejuk
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 3: Local Pride Global Quality -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Divider -->
-          <div
-            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"
-          ></div>
-
-          <!-- Heading -->
-          <h2
-            class="section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16"
-          >
-            local pride global quality
-          </h2>
-
-          <!-- Background Image with Overlay Text -->
-          <div class="relative quality-carousel">
-            <img
-              src="images/vertical.poster.png"
-              alt="Global Quality Background"
-              class="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-[1500ms]"
-            />
-
-            <!-- Overlay Text -->
-            <div
-              class="absolute inset-0 flex items-center justify-center gradient-overlay"
-            >
-              <p
-                class="carousel-text text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4 transition-opacity duration-[1500ms]"
-              >
-                dibuat di bandung dengan kualitas internasional cotton s24
-                berbahan cooltech
-              </p>
-            </div>
-
-            <!-- Progress Indicators -->
-            <div
-              class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4"
-            >
-              <div
-                class="progress-bar w-20 h-1 bg-white transition-all duration-300 hover:bg-white/80 cursor-pointer"
-              ></div>
-              <div
-                class="progress-bar w-20 h-1 bg-white/50 transition-all duration-300 hover:bg-white/80 cursor-pointer"
-              ></div>
-              <div
-                class="progress-bar w-20 h-1 bg-white/50 transition-all duration-300 hover:bg-white/80 cursor-pointer"
-              ></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Section 4: Product Carousel -->
-      <section class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-          <!-- Divider -->
-          <div
-            class="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"
-          ></div>
-
-          <!-- Heading -->
-          <div class="text-center mb-16">
-            <h2
-              class="section-title text-4xl md:text-5xl font-bold text-black uppercase tracking-wider mb-6"
-            >
-              our coolness our greatness
-            </h2>
-            <p
-              class="text-lg text-black max-w-4xl mx-auto leading-relaxed tracking-wide"
-            >
-              serat berbahan katun S24 Fleece yang bukan kalteng-kaleng,
-              dipadukan dengan material berbahan inovatif berbahan COOLTECH,
-              yang tak hanya nyaman tapi juga sejuk untuk dipakai seharian.
-            </p>
-          </div>
-
-          <!-- Carousel Container -->
-          <div class="relative product-carousel-container overflow-hidden">
-            <!-- Navigation Arrows -->
-            <button
-              class="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
-              aria-label="Previous"
-            >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 69 97"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
-
-            <button
-              class="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
-              aria-label="Next"
-            >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 69 97"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z"
-                  fill="white"
-                />
-              </svg>
-            </button>
-
-            <!-- Carousel Track -->
-            <div
-              class="carousel-track flex gap-8 py-8"
-              style="width: max-content"
-            >
-              <!-- Products will be dynamically inserted here -->
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Decorative Section -->
-      <section class="py-20">
-        <div
-          class="max-w-6xl mx-auto flex items-center justify-center bg-gradient-to-b from-black/20 to-white/20 h-96 rounded-lg"
-        >
-          <svg
-            width="156"
-            height="110"
-            viewBox="0 0 156 110"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
-              fill="white"
-            />
-            <path
-              fill-rule="evenodd"
-              clip-rule="evenodd"
-              d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
-              fill="white"
-            />
-          </svg>
-        </div>
-      </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-black text-white">
-      <div class="max-w-6xl mx-auto px-4 py-16">
-        <!-- Logo section above -->
-        <div class="mb-12 text-center">
-          <img
-            src="images/hg_logo_header.svg"
-            alt="HumanGreatness Logo"
-            class="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert"
-          />
-        </div>
-
-        <!-- Three columns section for services, navigation and address -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8">
-          <!-- Customer Care -->
-          <div class="footer-contact text-center md:text-left">
-            <img
-              src="images/hg_logotext.svg"
-              alt="HGN Logo"
-              class="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
-            />
-            <div class="space-y-4 flex flex-col items-center md:items-start">
-              <p class="text-white text-sm text-center md:text-left">
-                Online Customer Care:<br />
-                <a
-                  href="tel:+6282126610201"
-                  class="underline hover:text-cream transition-colors"
-                  >+62 821 2661 0201</a
-                >
-              </p>
-
-              <!-- Social Media -->
-              <div class="social-links space-y-3 w-full">
-                <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
-                >
-                  <svg
-                    class="social-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 25 25"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.28 0C3.2648 0 0 3.2648 0 7.28V17.36C0 21.3752 3.2648 24.64 7.28 24.64H17.36C21.3752 24.64 24.64 21.3752 24.64 17.36V7.28C24.64 3.2648 21.3752 0 17.36 0H7.28ZM19.04 4.48C19.656 4.48 20.16 4.984 20.16 5.6C20.16 6.216 19.656 6.72 19.04 6.72C18.424 6.72 17.92 6.216 17.92 5.6C17.92 4.984 18.424 4.48 19.04 4.48ZM12.32 6.16C15.7192 6.16 18.48 8.9208 18.48 12.32C18.48 15.7192 15.7192 18.48 12.32 18.48C8.9208 18.48 6.16 15.7192 6.16 12.32C6.16 8.9208 8.9208 6.16 12.32 6.16ZM12.32 7.28C9.5424 7.28 7.28 9.5424 7.28 12.32C7.28 15.0976 9.5424 17.36 12.32 17.36C15.0976 17.36 17.36 15.0976 17.36 12.32C17.36 9.5424 15.0976 7.28 12.32 7.28Z"
-                      fill="#FFFCEE"
-                    />
-                  </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >@hgbasiclabs</a
-                  >
-                </div>
-
-                <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
-                >
-                  <svg
-                    class="social-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20.96 0.408203H3.03999C1.49439 0.408203 0.23999 1.6626 0.23999 3.2082V21.1282C0.23999 22.6738 1.49439 23.9282 3.03999 23.9282H20.96C22.5056 23.9282 23.76 22.6738 23.76 21.1282V3.2082C23.76 1.6626 22.5056 0.408203 20.96 0.408203ZM18.72 8.8082H17.6C16.4016 8.8082 15.92 9.0882 15.92 9.9282V11.6082H18.72L18.16 14.4082H15.92V22.8082H13.12V14.4082H10.88V11.6082H13.12V9.9282C13.12 7.6882 14.24 6.0082 16.48 6.0082C18.104 6.0082 18.72 6.5682 18.72 6.5682V8.8082Z"
-                      fill="#FFFCEE"
-                    />
-                  </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >Human Greatness</a
-                  >
-                </div>
-
-                <div
-                  class="flex items-center space-x-3 justify-center md:justify-start"
-                >
-                  <svg
-                    class="social-icon"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M20.96 0.408203H3.03999C1.49607 0.408203 0.23999 1.66428 0.23999 3.2082V21.1282C0.23999 22.6721 1.49607 23.9282 3.03999 23.9282H20.96C22.5039 23.9282 23.76 22.6721 23.76 21.1282V3.2082C23.76 1.66428 22.5039 0.408203 20.96 0.408203ZM18.7233 10.6691C18.5962 10.6808 18.4674 10.6887 18.337 10.6887C16.8681 10.6887 15.5773 9.93324 14.8263 8.7914C14.8263 11.7868 14.8263 15.195 14.8263 15.2521C14.8263 17.8892 12.6882 20.0272 10.0512 20.0272C7.41415 20.0272 5.27607 17.8892 5.27607 15.2521C5.27607 12.6151 7.41415 10.477 10.0512 10.477C10.1509 10.477 10.2483 10.486 10.3463 10.4921V12.8452C10.2483 12.8335 10.152 12.8156 10.0512 12.8156C8.70495 12.8156 7.61407 13.9064 7.61407 15.2527C7.61407 16.5989 8.70495 17.6898 10.0512 17.6898C11.3974 17.6898 12.5863 16.6292 12.5863 15.2829C12.5863 15.2297 12.6098 4.31028 12.6098 4.31028H14.8588C15.0705 6.32124 16.6939 7.90828 18.7233 8.05388V10.6691Z"
-                      fill="#FFFCEE"
-                    />
-                  </svg>
-                  <a
-                    href="#"
-                    class="social-link text-white underline hover:text-cream transition-colors"
-                    >@hgbasiclabs</a
-                  >
-                </div>
-              </div>
-
-              <!-- Shopping Icons -->
-              <div
-                class="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start"
-              >
-                <svg
-                  class="platform-icon"
-                  width="37"
-                  height="42"
-                  viewBox="0 0 37 42"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_72_859)">
-                    <path
-                      d="M31.5141 41.9202H5.42022C3.22293 41.9202 1.41242 40.2035 1.30955 38.0215L0.00105322 10.2717C-0.0267215 9.68889 0.441335 9.20117 1.02872 9.20117H35.9056C36.493 9.20117 36.961 9.68889 36.9333 10.2717L35.6248 38.0215C35.5219 40.2035 33.7114 41.9202 31.5141 41.9202Z"
-                      fill="#F4511E"
-                    />
-                    <path
-                      d="M27.2111 9.71249H25.1537C25.1537 5.48355 22.154 2.04396 18.4672 2.04396C14.7803 2.04396 11.7807 5.48355 11.7807 9.71249H9.72327C9.72327 4.35679 13.6457 -0.000976562 18.4672 -0.000976562C23.2887 -0.000976562 27.2111 4.35679 27.2111 9.71249Z"
-                      fill="#F4511E"
-                    />
-                    <path
-                      d="M18.7223 24.2193C15.9026 23.1948 14.1909 22.4372 14.1909 20.5619C14.1909 18.6693 16.0178 17.2952 18.5361 17.2952C20.2694 17.2952 21.7857 17.97 22.5356 18.3708C22.6632 18.4393 23.0232 18.654 23.2269 18.79L23.3607 18.879L24.3461 17.2859L24.1846 17.1806C23.3905 16.6479 21.2487 15.4087 18.5371 15.4087C14.9789 15.4087 12.296 17.6234 12.296 20.5609C12.296 23.8911 15.3646 25.0056 18.0721 25.9892C21.2302 27.1364 23.1477 28.0086 23.1477 30.4359C23.1477 32.305 21.0214 33.8244 18.4065 33.8244C15.4603 33.8244 12.9276 31.6721 12.904 31.6517L12.7723 31.531L11.6963 33.1077L11.8053 33.1966C12.5378 33.7866 15.1753 35.7098 18.4054 35.7098C22.1283 35.7098 25.0446 33.3929 25.0446 30.4359C25.0436 26.5148 21.6849 25.296 18.7223 24.2193Z"
-                      fill="#FAFAFA"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_859">
-                      <rect width="37" height="42" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-
-                <svg
-                  class="platform-icon"
-                  width="34"
-                  height="39"
-                  viewBox="0 0 34 39"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_72_868)">
-                    <path
-                      fill-rule="evenodd"
-                      clip-rule="evenodd"
-                      d="M1.95435 9.09414H13.0527L16.9683 10.2786L22.8418 9.30462L32.3479 9.39336L32.6145 20.1359L32.5256 29.5619C32.5256 29.5619 29.4324 37.4321 22.8418 37.4341C20.5265 37.4341 5.49139 37.4053 5.49139 37.4053L1.11182 37.461V9.07764L1.95435 9.09414Z"
-                      fill="#4D984C"
-                    />
-                    <path
-                      d="M22.1887 38.9734H1.30522C0.588653 38.9734 0 38.3875 0 37.6743V9.09356C0 8.38034 0.588653 7.79443 1.30522 7.79443H11.5838C13.4398 7.79703 15.2763 8.19067 16.9678 8.95195C18.6594 8.19067 20.4958 7.79703 22.3518 7.79443H32.6304C33.347 7.79443 33.9356 8.38034 33.9356 9.09356V27.2813C33.9291 33.6924 28.6299 38.9669 22.1887 38.9734ZM2.61043 36.3751H22.1887C27.1981 36.3686 31.3187 32.2673 31.3252 27.2813V10.3927H22.3518C20.7308 10.394 19.1319 10.7707 17.6818 11.4904L17.5512 11.5554C17.1845 11.7373 16.7511 11.7373 16.3831 11.5554L16.2526 11.4904C14.8025 10.7707 13.2049 10.3953 11.5838 10.3927H2.61043V36.3751Z"
-                      fill="#4D984D"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_868">
-                      <rect width="34" height="39" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-
-                <svg
-                  class="platform-icon"
-                  width="33"
-                  height="26"
-                  viewBox="0 0 33 26"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <g clip-path="url(#clip0_72_895)">
-                    <path
-                      d="M25.8869 0.00146484C25.9669 0.00146484 26.045 0.0228721 26.1128 0.0637752L32.5551 3.92816C32.7943 4.07152 32.943 4.33108 32.943 4.60478V15.7232C32.943 15.9999 32.799 16.2522 32.5578 16.3983L16.8857 25.8805C16.7614 25.9558 16.6183 25.9956 16.472 25.9956C16.3257 25.9956 16.1826 25.9558 16.0582 25.8805L0.385727 16.3986C0.144539 16.2526 0.000610352 16.0003 0.000610352 15.7235V4.60517C0.000610352 4.33146 0.149245 4.0719 0.388472 3.92855L6.83074 0.064158C6.89858 0.0232549 6.97702 0.00184763 7.05663 0.00184763C7.13703 0.00184763 7.21585 0.0236368 7.28409 0.0649221L13.3056 3.70797C14.257 4.28368 15.3519 4.58796 16.4716 4.58796C17.5912 4.58796 18.6862 4.28368 19.6376 3.70797L25.6591 0.0649221C25.7281 0.0232545 25.8065 0.00146484 25.8869 0.00146484Z"
-                      fill="#F9B621"
-                    />
-                  </g>
-                  <defs>
-                    <clipPath id="clip0_72_895">
-                      <rect width="33" height="26" fill="white" />
-                    </clipPath>
-                  </defs>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <!-- Navigation -->
-          <div class="footer-nav text-center md:text-left">
-            <h3
-              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
-            >
-              Navigation
-            </h3>
-            <nav class="space-y-3 flex flex-col items-center md:items-start">
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Home</a
-              >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Shop</a
-              >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Catalogues</a
-              >
-              <a
-                href="#"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >Sale Items</a
-              >
-              <a
-                href="aboutus.html"
-                class="nav-item text-white hover:text-cream transition-colors text-sm"
-                >About Us</a
-              >
-            </nav>
-          </div>
-
-          <!-- Address -->
-          <div class="footer-address text-center md:text-left">
-            <h3
-              class="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider"
-            >
-              Address
-            </h3>
-            <address
-              class="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs"
-            >
-              Jl. Hasanudin No 9, Lebak Gede<br />
-              Kota Bandung<br />
-              Jawa Barat<br />
-              Indonesia
-            </address>
-          </div>
-        </div>
-      </div>
-
-      <!-- Copyright -->
-      <div class="copyright-section border-t border-cream bg-cream">
-        <div class="max-w-6xl mx-auto px-4 py-6 text-center">
-          <p class="text-black text-sm">
-            © 2025. Made in Bandung by Hilman Nur Firdaus
-          </p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- JavaScript for Mobile Menu -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const mobileMenuButton = document.getElementById("mobile-menu-button");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (mobileMenuButton && mobileMenu) {
-          mobileMenuButton.addEventListener("click", function () {
-            const isOpen = mobileMenu.classList.contains("translate-y-0");
-
-            if (isOpen) {
-              // Close menu
-              mobileMenu.classList.remove(
-                "translate-y-0",
-                "opacity-100",
-                "visible"
-              );
-              mobileMenu.classList.add(
-                "-translate-y-full",
-                "opacity-0",
-                "invisible"
-              );
-            } else {
-              // Open menu
-              mobileMenu.classList.remove(
-                "-translate-y-full",
-                "opacity-0",
-                "invisible"
-              );
-              mobileMenu.classList.add(
-                "translate-y-0",
-                "opacity-100",
-                "visible"
-              );
-            }
-          });
+      // Supabase Chatbot API Function
+      async function sendChatbotMessage(chatbotId, message) {
+        const SUPABASE_FUNCTION_URL = 'https://ntegkdbqvvbtelordcsg.supabase.co/functions/v1/gemini-bot';
+        const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZWdrZGJxdnZidGVsb3JkY3NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NjkzMDIsImV4cCI6MjA2ODQ0NTMwMn0.Gq3VEhkgk7bVwG101YwfAcTXpR43uNfa7zk20WlY--I';
+        const headers = {
+          'apikey': ANON_KEY,
+          'Authorization': `Bearer ${ANON_KEY}`,
+          'Content-Type': 'application/json'
+        };
+        const body = JSON.stringify({ user_message: message });
+        const res = await fetch(SUPABASE_FUNCTION_URL, {
+          method: 'POST',
+          headers,
+          body
+        });
+        if (!res.ok) {
+          throw new Error('Failed to get chatbot response');
         }
-      });
+        try {
+          return await res.json();
+        } catch {
+          return await res.text();
+        }
+      }
+        function ChatBot() {
+          const [open, setOpen] = React.useState(false);
+          const [messages, setMessages] = React.useState(getInitialMessages());
+          const [input, setInput] = React.useState("");
+          const [greeting, setGreeting] = React.useState("Hi, what can I do for you?");
+          const [loading, setLoading] = React.useState(false);
+          const [error, setError] = React.useState(null);
+
+          React.useEffect(() => {
+            localStorage.setItem(CHAT_KEY, JSON.stringify(messages));
+          }, [messages]);
+          React.useEffect(() => {
+            if (open) {
+              setTimeout(() => {
+                const el = document.getElementById("chatbot-messages");
+                if (el) el.scrollTop = el.scrollHeight;
+              }, 100);
+            }
+          }, [open, messages]);
+
+          async function sendMessage() {
+            if (!input.trim() || loading) return;
+            const userMsg = { text: input, from: "user" };
+            setMessages(msgs => [...msgs, userMsg, { text: "...", from: "bot", loading: true }]);
+            setInput("");
+            setLoading(true);
+            setError(null);
+            try {
+              const replyObj = await sendChatbotMessage("Functions", input);
+              let replyText = "";
+              if (typeof replyObj === "string") {
+                replyText = replyObj;
+              } else if (replyObj && typeof replyObj === "object") {
+                // Try common fields, fallback to JSON string
+                replyText = replyObj.reply || replyObj.result || replyObj.message || JSON.stringify(replyObj);
+              } else {
+                replyText = String(replyObj);
+              }
+              setMessages(msgs => {
+                // Remove the last loading bot message and add the real reply
+                const msgsNoLoading = msgs.filter((m, i) => !(i === msgs.length - 1 && m.loading));
+                return [...msgsNoLoading, { text: replyText, from: "bot" }];
+              });
+            } catch (e) {
+              setMessages(msgs => {
+                const msgsNoLoading = msgs.filter((m, i) => !(i === msgs.length - 1 && m.loading));
+                return [...msgsNoLoading, { text: "Failed to get response. Please try again.", from: "bot", error: true }];
+              });
+            }
+            setLoading(false);
+          }
+
+          function handleKeyDown(e) {
+            if (e.key === "Enter") sendMessage();
+          }
+        return (
+          <>
+            {!open && (
+              <button
+                className="fixed bottom-6 right-6 z-50 bg-black text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-gray-800 transition-all"
+                onClick={() => setOpen(true)}
+                aria-label="Open chat"
+              >
+                <span className="text-3xl font-bold">?</span>
+              </button>
+            )}
+            {open && (
+              <div
+                className="fixed bottom-6 right-6 z-50 w-80 max-w-[90vw] bg-white rounded-xl shadow-2xl flex flex-col animate-fade-in-up"
+                style={{ animation: "fadeInUp 0.4s" }}
+              >
+                <div className="flex items-center justify-between px-4 py-2 border-b">
+                  <div className="flex items-center gap-2">
+                    <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">?</span>
+                    <span className="font-semibold text-black">ChatBot</span>
+                  </div>
+                  <button
+                    className="text-gray-400 hover:text-black text-xl"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close chat"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="px-4 py-2 text-black text-base">{greeting}</div>
+                <div
+                  id="chatbot-messages"
+                  className="flex-1 px-4 py-2 overflow-y-auto max-h-60"
+                  style={{ minHeight: "80px" }}
+                >
+                  {messages.map((msg, i) => (
+                    <div
+                      key={i}
+                      className={`my-1 flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
+                    >
+                      <div
+                        className={`px-3 py-2 rounded-lg ${
+                          msg.from === "user"
+                            ? "bg-black text-white"
+                            : msg.error
+                            ? "bg-red-100 text-red-700"
+                            : msg.loading
+                            ? "bg-gray-200 text-gray-400 italic"
+                            : "bg-gray-200 text-black"
+                        }`}
+                      >
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex items-center border-t px-2 py-2 gap-2">
+                  <input
+                    className="flex-1 border rounded-lg px-3 py-2 focus:outline-none"
+                    type="text"
+                    placeholder="Type your message..."
+                    value={input}
+                    onChange={e => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                  />
+                  <button
+                    className="bg-black text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition"
+                    onClick={sendMessage}
+                    aria-label="Send"
+                    disabled={loading || !input.trim()}
+                  >
+                    {loading ? "..." : "Send"}
+                  </button>
+                </div>
+                <div className="flex justify-end px-2 pb-2">
+                  <button
+                    className="text-xs underline text-gray-500 hover:text-black transition"
+                    style={{ background: "none", border: "none", padding: 0, marginTop: "2px" }}
+                    onClick={() => {
+                      setMessages([]);
+                      setGreeting("Hi, what can I do for you?");
+                      localStorage.removeItem(CHAT_KEY);
+                    }}
+                  >
+                    Reset chat
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      }
+      // --- End ChatBot ---
+
+      // --- Main App and all components ---
+      // (Restoring your full React App code here)
+      // Carousel logic as React hooks
+      function useQualityCarousel(slides) {
+        const [current, setCurrent] = React.useState(0);
+        const total = slides.length;
+        React.useEffect(() => {
+          const interval = setInterval(() => setCurrent(c => (c + 1) % total), 5000);
+          return () => clearInterval(interval);
+        }, [total]);
+        return [current, setCurrent];
+      }
+
+      function QualityCarousel() {
+        const slides = [
+          {
+            image: "images/vertical.poster.png",
+            text: "dibuat di bandung dengan kualitas internasional cotton s24 berbahan cooltech"
+          },
+          {
+            image: "images/v114_124.png",
+            text: "material premium dengan teknologi cooltech untuk kenyamanan maksimal"
+          },
+          {
+            image: "images/v71_791.png",
+            text: "inovasi terdepan dalam industri fashion dengan standar global"
+          }
+        ];
+        const [current, setCurrent] = useQualityCarousel(slides);
+
+        return (
+          <div className="relative quality-carousel">
+            <img
+              src={slides[current].image}
+              alt="Global Quality Background"
+              className="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-[1500ms]"
+              style={{ opacity: 1 }}
+            />
+            <div className="absolute inset-0 flex items-center justify-center gradient-overlay">
+              <p className="carousel-text text-white text-center text-sm md:text-base font-bold uppercase tracking-widest leading-loose max-w-2xl px-4 transition-opacity duration-[1500ms]">
+                {slides[current].text}
+              </p>
+            </div>
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-4">
+              {slides.map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`progress-bar w-20 h-1 ${idx === current ? "bg-white" : "bg-white/50"} transition-all duration-300 hover:bg-white/80 cursor-pointer`}
+                  onClick={() => setCurrent(idx)}
+                ></div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      function useProductCarousel(products) {
+        const [current, setCurrent] = React.useState(products.length);
+        const [animating, setAnimating] = React.useState(false);
+        const slideCount = products.length;
+        const extended = [...products, ...products, ...products];
+        React.useEffect(() => {
+          const interval = setInterval(() => {
+            setCurrent(c => c + 1);
+            setAnimating(true);
+          }, 3000);
+          return () => clearInterval(interval);
+        }, []);
+        React.useEffect(() => {
+          if (current >= slideCount * 2) {
+            setTimeout(() => {
+              setCurrent(slideCount);
+              setAnimating(false);
+            }, 500);
+          }
+          if (current < slideCount) {
+            setTimeout(() => {
+              setCurrent(slideCount * 2 - 1);
+              setAnimating(false);
+            }, 500);
+          }
+        }, [current, slideCount]);
+        return [extended, current, setCurrent, animating, setAnimating];
+      }
+
+      function ProductCarousel() {
+        const products = [
+          {
+            id: 'shirt',
+            image: 'images/model.shirt.png',
+            title: 'SHIRT',
+            description: 'Alpen Shirt kami hadir dengan material micro cotton 24s yang lembut dan breathable,',
+            alignment: 'bottom'
+          },
+          {
+            id: 'hoodie',
+            image: 'images/model.hoodie.png',
+            title: 'HOODIE',
+            description: 'Basic Hoodie dengan 100% berbahan katun fleech dan pola regular fit',
+            alignment: 'middle'
+          },
+          {
+            id: 'oversized',
+            image: 'images/model.oversizedtshirt.png',
+            title: 'OVERSIZED T-SHIRT',
+            description: 'Soft, wrinkle free, and effortlessly stylish!',
+            alignment: 'top'
+          },
+          {
+            id: 'crewneck',
+            image: 'images/model.crewneck.png',
+            title: 'CREWNECK',
+            description: 'A relaxed sweater for all day comfortable fit.',
+            alignment: 'top'
+          }
+        ];
+        const [extended, current, setCurrent, animating, setAnimating] = useProductCarousel(products);
+
+        const slideWidth = 525;
+        const visibleCards = 3;
+        const centerOffset = (visibleCards - 1) / 2;
+        const translateX = -(current - centerOffset) * slideWidth;
+
+        function getAlignmentClass(alignment) {
+          if (alignment === "top") return "mt-0";
+          if (alignment === "middle") return "mt-8 md:mt-12";
+          if (alignment === "bottom") return "mt-16 md:mt-24";
+          return "mt-8";
+        }
+
+        function slideToNext() {
+          if (!animating) {
+            setCurrent(c => c + 1);
+            setAnimating(true);
+          }
+        }
+        function slideToPrev() {
+          if (!animating) {
+            setCurrent(c => c - 1);
+            setAnimating(true);
+          }
+        }
+
+        return (
+          <div className="relative product-carousel-container overflow-hidden">
+            <button
+              className="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
+              aria-label="Previous"
+              onClick={slideToPrev}
+            >
+              <svg width="32" height="32" viewBox="0 0 69 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z" fill="white"/>
+              </svg>
+            </button>
+            <button
+              className="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
+              aria-label="Next"
+              onClick={slideToNext}
+            >
+              <svg width="32" height="32" viewBox="0 0 69 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z" fill="white"/>
+              </svg>
+            </button>
+            <div
+              className="carousel-track flex gap-8 py-8"
+              style={{
+                width: "max-content",
+                transform: `translateX(${translateX}px)`,
+                transition: animating ? "transform 0.5s ease-in-out" : "none"
+              }}
+              onTransitionEnd={() => setAnimating(false)}
+            >
+              {extended.map((product, idx) => (
+                <div key={idx} className={`carousel-slide flex-none ${getAlignmentClass(product.alignment)}`}>
+                  <div className="product-card w-[480px] bg-white shadow-lg rounded-lg overflow-hidden relative">
+                    <div className="relative h-[600px] md:h-[750px]">
+                      <img
+                        src={product.image}
+                        alt={product.title}
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-8 text-white text-center">
+                        <h3 className="text-3xl md:text-4xl font-medium uppercase mb-3">{product.title}</h3>
+                        <p className="text-base mb-6 leading-relaxed">{product.description}</p>
+                        <button className="product-btn px-12 py-4 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300 text-lg">
+                          See more
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      function useMobileMenu() {
+        const [open, setOpen] = React.useState(false);
+        React.useEffect(() => {
+          if (open) {
+            document.body.classList.add("overflow-hidden");
+          } else {
+            document.body.classList.remove("overflow-hidden");
+          }
+          return () => document.body.classList.remove("overflow-hidden");
+        }, [open]);
+        return [open, setOpen];
+      }
+
+      function App() {
+        const [menuOpen, setMenuOpen] = useMobileMenu();
+
+        return (
+          <>
+            {/* Header */}
+            <header className="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
+              <div className="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
+                {/* Logo */}
+                <a
+                  href="index.html"
+                  className="flex items-center hover:opacity-80 transition-opacity"
+                >
+                  <img
+                    src="images/hg_logo_header.svg"
+                    alt="HumanGreatness Logo"
+                    className="h-8 sm:h-10 w-auto"
+                  />
+                </a>
+                {/* Desktop Navigation */}
+                <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
+                  <a href="location.html" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">SHOP</a>
+                  <a href="aboutus.html" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">ABOUT US</a>
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">COOLNESS</a>
+                </nav>
+                {/* Language and Shop Icon - Desktop */}
+                <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
+                  <div className="flex items-center gap-[10px] text-sm lg:text-base">
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
+                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                    <span className="text-cream mx-1">/</span>
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
+                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                  </div>
+                  <img
+                    src="images/shop_icon_header.svg"
+                    alt="Shop"
+                    className="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
+                  />
+                </div>
+                {/* Mobile Header Right Group */}
+                <div className="flex lg:hidden items-center gap-4">
+                  <div className="flex items-center gap-[6px] text-sm">
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
+                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                    <span className="text-cream mx-1">/</span>
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
+                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                  </div>
+                  <img
+                    src="images/shop_icon_header.svg"
+                    alt="Shop"
+                    className="h-5 w-5 invert"
+                  />
+                  {/* Mobile Menu Button */}
+                  <button
+                    className="text-cream hover:text-white transition-colors"
+                    aria-label="Toggle mobile menu"
+                    onClick={() => setMenuOpen(open => !open)}
+                  >
+                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              {/* Mobile Navigation Menu */}
+              <div
+                className={`lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transition-all duration-300 ease-in-out ${
+                  menuOpen ? "translate-y-0 opacity-100 visible" : "-translate-y-full opacity-0 invisible"
+                }`}
+              >
+                <nav className="flex flex-col items-center py-8 space-y-6">
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-lg">SHOP</a>
+                  <a href="aboutus.html" className="text-cream hover:text-white transition-colors nav-link text-lg">ABOUT US</a>
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-lg">COOLNESS</a>
+                </nav>
+              </div>
+            </header>
+            <main className="relative">
+              {/* Hero Section */}
+              <section className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
+                {/* Background Image with Overlay */}
+                <div className="absolute inset-0 w-full h-full">
+                  <img
+                    src="images/heroimage.png"
+                    alt="Hero Background"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-black/40"></div>
+                </div>
+                <div className="relative z-10 text-center px-4 mx-auto gap-[210px] grid flex-col h-auto self-center justify-center items-center">
+                  {/* Main Heading */}
+                  <h1
+                    className="hero-title text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase flex flex-col justify-center items-center"
+                    style={{ margin: "49.8px 0 32px" }}
+                  >
+                    <span className="font-inter tracking-[15px]">cool tech inside</span>
+                    <br className="tracking-[15px]" />
+                    <span className="font-inter tracking-[15px]">greatness outside</span>
+                  </h1>
+                  <div className="flex flex-col">
+                    {/* Logo */}
+                    <div className="mb-8">
+                      <img
+                        src="images/hg_logotext.svg"
+                        alt="HeaderLogo"
+                        className="mx-auto max-w-md h-auto filter brightness-0 invert"
+                      />
+                    </div>
+                    {/* CTA Button */}
+                    <a
+                      href="#"
+                      className="button-primary inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl uppercase hover:bg-white hover:text-black transition-all duration-300 tracking-[6px] -mr-1"
+                      style={{ fontSize: 20, lineHeight: "28px" }}
+                    >
+                      Shop now
+                    </a>
+                  </div>
+                </div>
+                {/* Breadcrumb */}
+                <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
+                  <div className="max-w-6xl mx-auto">
+                    <p className="text-sm sm:text-base">
+                      <a
+                        href="index.html"
+                        className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
+                      >
+                        HOME
+                      </a>
+                      /
+                    </p>
+                  </div>
+                </div>
+              </section>
+              {/* Section 2: COOLTECH */}
+              <section className="py-20 px-4">
+                <div className="max-w-6xl mx-auto">
+                  {/* Divider */}
+                  <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"></div>
+                  <div className="grid md:grid-cols-2 gap-12 items-center">
+                    {/* Image Container */}
+                    <div className="relative">
+                      <img
+                        src="images/vertical.poster.png"
+                        alt="COOLTECH Billboard"
+                        className="w-full h-auto rounded-lg"
+                      />
+                    </div>
+                    {/* Content */}
+                    <div className="space-y-6 justify-start h-full">
+                      <h2 className="section-title text-5xl md:text-6xl font-bold text-black leading-tight">
+                        COOLTECH
+                      </h2>
+                      <p className="text-xl md:text-2xl text-black leading-relaxed tracking-wide">
+                        Jenis bahan yang didesain untuk memberikan sensasi dingin dan nyaman saat digunakan, terutama saat cuaca panas atau saat beraktivitas fisik.
+                      </p>
+                      <p className="text-xl md:text-2xl text-black leading-relaxed tracking-wide">
+                        Bahan ini biasanya memiliki teknologi pendingin (cooling technology) yang membantu melancarkan sirkulasi udara dan membuat pemakainya merasa lebih sejuk
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+              {/* Section 3: Local Pride Global Quality */}
+              <section className="py-20 px-4">
+                <div className="max-w-6xl mx-auto">
+                  {/* Divider */}
+                  <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
+                  {/* Heading */}
+                  <h2 className="section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16">
+                    local pride global quality
+                  </h2>
+                  {/* Background Image with Overlay Text */}
+                  <QualityCarousel />
+                </div>
+              </section>
+              {/* Section 4: Product Carousel */}
+              <section className="py-20 px-4">
+                <div className="max-w-6xl mx-auto">
+                  {/* Divider */}
+                  <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"></div>
+                  {/* Heading */}
+                  <div className="text-center mb-16">
+                    <h2 className="section-title text-4xl md:text-5xl font-bold text-black uppercase tracking-wider mb-6">
+                      our coolness our greatness
+                    </h2>
+                    <p className="text-lg text-black max-w-4xl mx-auto leading-relaxed tracking-wide">
+                      serat berbahan katun S24 Fleece yang bukan kalteng-kaleng, dipadukan dengan material berbahan inovatif berbahan COOLTECH, yang tak hanya nyaman tapi juga sejuk untuk dipakai seharian.
+                    </p>
+                  </div>
+                  {/* Carousel Container */}
+                  <ProductCarousel />
+                </div>
+              </section>
+              {/* Decorative Section */}
+              <section className="py-20">
+                <div className="max-w-6xl mx-auto flex items-center justify-center bg-gradient-to-b from-black/20 to-white/20 h-96 rounded-lg">
+                  <svg
+                    width="156"
+                    height="110"
+                    viewBox="0 0 156 110"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+                      fill="white"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
+              </section>
+            </main>
+            {/* Footer */}
+            <footer className="bg-black text-white">
+              <div className="max-w-6xl mx-auto px-4 py-16">
+                {/* Logo section above */}
+                <div className="mb-12 text-center">
+                  <img
+                    src="images/hg_logo_header.svg"
+                    alt="HumanGreatness Logo"
+                    className="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert"
+                  />
+                </div>
+                {/* Three columns section for services, navigation and address */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8">
+                  {/* Customer Care */}
+                  <div className="footer-contact text-center md:text-left">
+                    <img
+                      src="images/hg_logotext.svg"
+                      alt="HGN Logo"
+                      className="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
+                    />
+                    <div className="space-y-4 flex flex-col items-center md:items-start">
+                      <p className="text-white text-sm text-center md:text-left">
+                        Online Customer Care:<br />
+                        <a
+                          href="tel:+6282126610201"
+                          className="underline hover:text-cream transition-colors"
+                        >
+                          +62 821 2661 0201
+                        </a>
+                      </p>
+                      {/* Social Media */}
+                      <div className="social-links space-y-3 w-full">
+                        <div className="flex items-center space-x-3 justify-center md:justify-start">
+                          <svg
+                            className="social-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 25 25"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.28 0C3.2648 0 0 3.2648 0 7.28V17.36C0 21.3752 3.2648 24.64 7.28 24.64H17.36C21.3752 24.64 24.64 21.3752 24.64 17.36V7.28C24.64 3.2648 21.3752 0 17.36 0H7.28ZM19.04 4.48C19.656 4.48 20.16 4.984 20.16 5.6C20.16 6.216 19.656 6.72 19.04 6.72C18.424 6.72 17.92 6.216 17.92 5.6C17.92 4.984 18.424 4.48 19.04 4.48ZM12.32 6.16C15.7192 6.16 18.48 8.9208 18.48 12.32C18.48 15.7192 15.7192 18.48 12.32 18.48C8.9208 18.48 6.16 15.7192 6.16 12.32C6.16 8.9208 8.9208 6.16 12.32 6.16ZM12.32 7.28C9.5424 7.28 7.28 9.5424 7.28 12.32C7.28 15.0976 9.5424 17.36 12.32 17.36C15.0976 17.36 17.36 15.0976 17.36 12.32C17.36 9.5424 15.0976 7.28 12.32 7.28Z"
+                              fill="#FFFCEE"
+                            />
+                          </svg>
+                          <a
+                            href="#"
+                            className="social-link text-white underline hover:text-cream transition-colors"
+                          >
+                            @hgbasiclabs
+                          </a>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center md:justify-start">
+                          <svg
+                            className="social-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M20.96 0.408203H3.03999C1.49439 0.408203 0.23999 1.6626 0.23999 3.2082V21.1282C0.23999 22.6738 1.49439 23.9282 3.03999 23.9282H20.96C22.5056 23.9282 23.76 22.6738 23.76 21.1282V3.2082C23.76 1.6626 22.5056 0.408203 20.96 0.408203ZM18.72 8.8082H17.6C16.4016 8.8082 15.92 9.0882 15.92 9.9282V11.6082H18.72L18.16 14.4082H15.92V22.8082H13.12V14.4082H10.88V11.6082H13.12V9.9282C13.12 7.6882 14.24 6.0082 16.48 6.0082C18.104 6.0082 18.72 6.5682 18.72 6.5682V8.8082Z"
+                              fill="#FFFCEE"
+                            />
+                          </svg>
+                          <a
+                            href="#"
+                            className="social-link text-white underline hover:text-cream transition-colors"
+                          >
+                            Human Greatness
+                          </a>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center md:justify-start">
+                          <svg
+                            className="social-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M20.96 0.408203H3.03999C1.49607 0.408203 0.23999 1.66428 0.23999 3.2082V21.1282C0.23999 22.6721 1.49607 23.9282 3.03999 23.9282H20.96C22.5039 23.9282 23.76 22.6721 23.76 21.1282V3.2082C23.76 1.66428 22.5039 0.408203 20.96 0.408203ZM18.7233 10.6691C18.5962 10.6808 18.4674 10.6887 18.337 10.6887C16.8681 10.6887 15.5773 9.93324 14.8263 8.7914C14.8263 11.7868 14.8263 15.195 14.8263 15.2521C14.8263 17.8892 12.6882 20.0272 10.0512 20.0272C7.41415 20.0272 5.27607 17.8892 5.27607 15.2521C5.27607 12.6151 7.41415 10.477 10.0512 10.477C10.1509 10.477 10.2483 10.486 10.3463 10.4921V12.8452C10.2483 12.8335 10.152 12.8156 10.0512 12.8156C8.70495 12.8156 7.61407 13.9064 7.61407 15.2527C7.61407 16.5989 8.70495 17.6898 10.0512 17.6898C11.3974 17.6898 12.5863 16.6292 12.5863 15.2829C12.5863 15.2297 12.6098 4.31028 12.6098 4.31028H14.8588C15.0705 6.32124 16.6939 7.90828 18.7233 8.05388V10.6691Z"
+                              fill="#FFFCEE"
+                            />
+                          </svg>
+                          <a
+                            href="#"
+                            className="social-link text-white underline hover:text-cream transition-colors"
+                          >
+                            @hgbasiclabs
+                          </a>
+                        </div>
+                      </div>
+                      {/* Shopping Icons */}
+                      <div className="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start">
+                        {/* SVG icons omitted for brevity */}
+                      </div>
+                    </div>
+                  </div>
+                  {/* Navigation */}
+                  <div className="footer-nav text-center md:text-left">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
+                      Navigation
+                    </h3>
+                    <nav className="space-y-3 flex flex-col items-center md:items-start">
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Home</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Shop</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Catalogues</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Sale Items</a>
+                      <a href="aboutus.html" className="nav-item text-white hover:text-cream transition-colors text-sm">About Us</a>
+                    </nav>
+                  </div>
+                  {/* Address */}
+                  <div className="footer-address text-center md:text-left">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
+                      Address
+                    </h3>
+                    <address className="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs">
+                      Jl. Hasanudin No 9, Lebak Gede<br />
+                      Kota Bandung<br />
+                      Jawa Barat<br />
+                      Indonesia
+                    </address>
+                  </div>
+                </div>
+              </div>
+              {/* Copyright */}
+              <div className="copyright-section border-t border-cream bg-cream">
+                <div className="max-w-6xl mx-auto px-4 py-6 text-center">
+                  <p className="text-black text-sm">
+                    © 2025. Made in Bandung by Hilman Nur Firdaus
+                  </p>
+                </div>
+              </div>
+            </footer>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+      ReactDOM.createRoot(document.getElementById('chatbot-root')).render(<ChatBot />);
     </script>
   </body>
 </html>
