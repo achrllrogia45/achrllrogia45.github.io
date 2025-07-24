@@ -194,3 +194,48 @@ html {
     display: none !important;
   }
 }
+.arrow-section-wrapper {
+  height: 100vh;
+  position: relative;
+}
+
+.arrow-section-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.arrow-svg-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.breadcrumb {
+  color: #fff;
+}
+.breadcrumb-link {
+  color: #fff;
+  transition: color 0.2s;
+}
+.breadcrumb-link:hover {
+  color: #eee;
+}
+@media (min-width: 0px) {
+  /* Example: if breadcrumb is on a light background, override */
+  .bg-white .breadcrumb,
+  .bg-white .breadcrumb-link {
+    color: #111;
+  }
+  .bg-white .breadcrumb-link:hover {
+    color: #000;
+  }
+}
+/* If you use other backgrounds, add more selectors as needed */

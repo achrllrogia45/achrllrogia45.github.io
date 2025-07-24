@@ -17,14 +17,8 @@
       rel="stylesheet"
     />
     <!-- React, ReactDOM, Babel -->
-    <script
-      src="https://unpkg.com/react@18/umd/react.development.js"
-      crossorigin
-    ></script>
-    <script
-      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
-      crossorigin
-    ></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body class="font-roboto text-base">
@@ -43,23 +37,21 @@
 
       // Supabase Chatbot API Function
       async function sendChatbotMessage(chatbotId, message) {
-        const SUPABASE_FUNCTION_URL =
-          "https://ntegkdbqvvbtelordcsg.supabase.co/functions/v1/gemini-bot";
-        const ANON_KEY =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZWdrZGJxdnZidGVsb3JkY3NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NjkzMDIsImV4cCI6MjA2ODQ0NTMwMn0.Gq3VEhkgk7bVwG101YwfAcTXpR43uNfa7zk20WlY--I";
+        const SUPABASE_FUNCTION_URL = 'https://ntegkdbqvvbtelordcsg.supabase.co/functions/v1/gemini-bot';
+        const ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZWdrZGJxdnZidGVsb3JkY3NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NjkzMDIsImV4cCI6MjA2ODQ0NTMwMn0.Gq3VEhkgk7bVwG101YwfAcTXpR43uNfa7zk20WlY--I';
         const headers = {
-          apikey: ANON_KEY,
-          Authorization: `Bearer ${ANON_KEY}`,
-          "Content-Type": "application/json",
+          'apikey': ANON_KEY,
+          'Authorization': `Bearer ${ANON_KEY}`,
+          'Content-Type': 'application/json'
         };
         const body = JSON.stringify({ user_message: message });
         const res = await fetch(SUPABASE_FUNCTION_URL, {
-          method: "POST",
+          method: 'POST',
           headers,
-          body,
+          body
         });
         if (!res.ok) {
-          throw new Error("Failed to get chatbot response");
+          throw new Error('Failed to get chatbot response');
         }
         try {
           return await res.json();
@@ -67,82 +59,61 @@
           return await res.text();
         }
       }
-      function ChatBot() {
-        const [open, setOpen] = React.useState(false);
-        const [messages, setMessages] = React.useState(getInitialMessages());
-        const [input, setInput] = React.useState("");
-        const [greeting, setGreeting] = React.useState(
-          "Hi, what can I do for you?"
-        );
-        const [loading, setLoading] = React.useState(false);
-        const [error, setError] = React.useState(null);
+        function ChatBot() {
+          const [open, setOpen] = React.useState(false);
+          const [messages, setMessages] = React.useState(getInitialMessages());
+          const [input, setInput] = React.useState("");
+          const [greeting, setGreeting] = React.useState("Hi, what can I do for you?");
+          const [loading, setLoading] = React.useState(false);
+          const [error, setError] = React.useState(null);
 
-        React.useEffect(() => {
-          localStorage.setItem(CHAT_KEY, JSON.stringify(messages));
-        }, [messages]);
-        React.useEffect(() => {
-          if (open) {
-            setTimeout(() => {
-              const el = document.getElementById("chatbot-messages");
-              if (el) el.scrollTop = el.scrollHeight;
-            }, 100);
-          }
-        }, [open, messages]);
-
-        async function sendMessage() {
-          if (!input.trim() || loading) return;
-          const userMsg = { text: input, from: "user" };
-          setMessages((msgs) => [
-            ...msgs,
-            userMsg,
-            { text: "...", from: "bot", loading: true },
-          ]);
-          setInput("");
-          setLoading(true);
-          setError(null);
-          try {
-            const replyObj = await sendChatbotMessage("Functions", input);
-            let replyText = "";
-            if (typeof replyObj === "string") {
-              replyText = replyObj;
-            } else if (replyObj && typeof replyObj === "object") {
-              // Try common fields, fallback to JSON string
-              replyText =
-                replyObj.reply ||
-                replyObj.result ||
-                replyObj.message ||
-                JSON.stringify(replyObj);
-            } else {
-              replyText = String(replyObj);
+          React.useEffect(() => {
+            localStorage.setItem(CHAT_KEY, JSON.stringify(messages));
+          }, [messages]);
+          React.useEffect(() => {
+            if (open) {
+              setTimeout(() => {
+                const el = document.getElementById("chatbot-messages");
+                if (el) el.scrollTop = el.scrollHeight;
+              }, 100);
             }
-            setMessages((msgs) => {
-              // Remove the last loading bot message and add the real reply
-              const msgsNoLoading = msgs.filter(
-                (m, i) => !(i === msgs.length - 1 && m.loading)
-              );
-              return [...msgsNoLoading, { text: replyText, from: "bot" }];
-            });
-          } catch (e) {
-            setMessages((msgs) => {
-              const msgsNoLoading = msgs.filter(
-                (m, i) => !(i === msgs.length - 1 && m.loading)
-              );
-              return [
-                ...msgsNoLoading,
-                {
-                  text: "Failed to get response. Please try again.",
-                  from: "bot",
-                  error: true,
-                },
-              ];
-            });
-          }
-          setLoading(false);
-        }
+          }, [open, messages]);
 
-        function handleKeyDown(e) {
-          if (e.key === "Enter") sendMessage();
-        }
+          async function sendMessage() {
+            if (!input.trim() || loading) return;
+            const userMsg = { text: input, from: "user" };
+            setMessages(msgs => [...msgs, userMsg, { text: "...", from: "bot", loading: true }]);
+            setInput("");
+            setLoading(true);
+            setError(null);
+            try {
+              const replyObj = await sendChatbotMessage("Functions", input);
+              let replyText = "";
+              if (typeof replyObj === "string") {
+                replyText = replyObj;
+              } else if (replyObj && typeof replyObj === "object") {
+                // Try common fields, fallback to JSON string
+                replyText = replyObj.reply || replyObj.result || replyObj.message || JSON.stringify(replyObj);
+              } else {
+                replyText = String(replyObj);
+              }
+              setMessages(msgs => {
+                // Remove the last loading bot message and add the real reply
+                const msgsNoLoading = msgs.filter((m, i) => !(i === msgs.length - 1 && m.loading));
+                return [...msgsNoLoading, { text: replyText, from: "bot" }];
+              });
+            } catch (e) {
+              setMessages(msgs => {
+                const msgsNoLoading = msgs.filter((m, i) => !(i === msgs.length - 1 && m.loading));
+                return [...msgsNoLoading, { text: "Failed to get response. Please try again.", from: "bot", error: true }];
+              });
+            }
+            setLoading(false);
+          }
+
+          function handleKeyDown(e) {
+            if (e.key === "Enter") sendMessage();
+          }
         return (
           <>
             {!open && (
@@ -161,9 +132,7 @@
               >
                 <div className="flex items-center justify-between px-4 py-2 border-b">
                   <div className="flex items-center gap-2">
-                    <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">
-                      ?
-                    </span>
+                    <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">?</span>
                     <span className="font-semibold text-black">ChatBot</span>
                   </div>
                   <button
@@ -183,9 +152,7 @@
                   {messages.map((msg, i) => (
                     <div
                       key={i}
-                      className={`my-1 flex ${
-                        msg.from === "user" ? "justify-end" : "justify-start"
-                      }`}
+                      className={`my-1 flex ${msg.from === "user" ? "justify-end" : "justify-start"}`}
                     >
                       <div
                         className={`px-3 py-2 rounded-lg ${
@@ -209,7 +176,7 @@
                     type="text"
                     placeholder="Type your message..."
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={e => setInput(e.target.value)}
                     onKeyDown={handleKeyDown}
                   />
                   <button
@@ -224,12 +191,7 @@
                 <div className="flex justify-end px-2 pb-2">
                   <button
                     className="text-xs underline text-gray-500 hover:text-black transition"
-                    style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      marginTop: "2px",
-                    }}
+                    style={{ background: "none", border: "none", padding: 0, marginTop: "2px" }}
                     onClick={() => {
                       setMessages([]);
                       setGreeting("Hi, what can I do for you?");
@@ -253,10 +215,7 @@
         const [current, setCurrent] = React.useState(0);
         const total = slides.length;
         React.useEffect(() => {
-          const interval = setInterval(
-            () => setCurrent((c) => (c + 1) % total),
-            5000
-          );
+          const interval = setInterval(() => setCurrent(c => (c + 1) % total), 5000);
           return () => clearInterval(interval);
         }, [total]);
         return [current, setCurrent];
@@ -265,26 +224,26 @@
       function QualityCarousel() {
         const slides = [
           {
-            image: "images/bandung.png",
-            text: "dibuat di bandung dengan kualitas internasional yang penting si paling lokal",
+            image: "images/vertical.poster.png",
+            text: "dibuat di bandung dengan kualitas internasional cotton s24 berbahan cooltech"
           },
           {
-            image: "images/clothes.png",
-            text: "material premium dengan teknologi cooltech untuk kenyamanan to the maxing",
+            image: "images/v114_124.png",
+            text: "material premium dengan teknologi cooltech untuk kenyamanan maksimal"
           },
           {
-            image: "images/coolshirt.jpg",
-            text: "bajunya so coooool pisan euy nya pake standar global perbajuan",
-          },
+            image: "images/v71_791.png",
+            text: "inovasi terdepan dalam industri fashion dengan standar global"
+          }
         ];
         const [current, setCurrent] = useQualityCarousel(slides);
 
         return (
-          <div className="relative quality-carousel mt-[70px]">
+          <div className="relative quality-carousel">
             <img
               src={slides[current].image}
               alt="Global Quality Background"
-              className="carousel-image w-full h-80 md:h-96 object-cover transition-opacity duration-[1500ms]"
+              className="carousel-image w-full h-80 md:h-96 object-cover rounded-lg transition-opacity duration-[1500ms]"
               style={{ opacity: 1 }}
             />
             <div className="absolute inset-0 flex items-center justify-center gradient-overlay">
@@ -296,9 +255,7 @@
               {slides.map((_, idx) => (
                 <div
                   key={idx}
-                  className={`progress-bar w-20 h-1 ${
-                    idx === current ? "bg-white" : "bg-white/50"
-                  } transition-all duration-300 hover:bg-white/80 cursor-pointer`}
+                  className={`progress-bar w-20 h-1 ${idx === current ? "bg-white" : "bg-white/50"} transition-all duration-300 hover:bg-white/80 cursor-pointer`}
                   onClick={() => setCurrent(idx)}
                 ></div>
               ))}
@@ -314,7 +271,7 @@
         const extended = [...products, ...products, ...products];
         React.useEffect(() => {
           const interval = setInterval(() => {
-            setCurrent((c) => c + 1);
+            setCurrent(c => c + 1);
             setAnimating(true);
           }, 3000);
           return () => clearInterval(interval);
@@ -339,38 +296,35 @@
       function ProductCarousel() {
         const products = [
           {
-            id: "shirt",
-            image: "images/model.shirt.png",
-            title: "SHIRT",
-            description:
-              "Alpen Shirt kami hadir dengan material micro cotton 24s yang lembut dan breathable,",
-            alignment: "bottom",
+            id: 'shirt',
+            image: 'images/model.shirt.png',
+            title: 'SHIRT',
+            description: 'Alpen Shirt kami hadir dengan material micro cotton 24s yang lembut dan breathable,',
+            alignment: 'bottom'
           },
           {
-            id: "hoodie",
-            image: "images/model.hoodie.png",
-            title: "HOODIE",
-            description:
-              "Basic Hoodie dengan 100% berbahan katun fleech dan pola regular fit",
-            alignment: "middle",
+            id: 'hoodie',
+            image: 'images/model.hoodie.png',
+            title: 'HOODIE',
+            description: 'Basic Hoodie dengan 100% berbahan katun fleech dan pola regular fit',
+            alignment: 'middle'
           },
           {
-            id: "oversized",
-            image: "images/model.oversizedtshirt.png",
-            title: "OVERSIZED T-SHIRT",
-            description: "Lembut, anti kusut, dan gaya abiz!",
-            alignment: "top",
+            id: 'oversized',
+            image: 'images/model.oversizedtshirt.png',
+            title: 'OVERSIZED T-SHIRT',
+            description: 'Soft, wrinkle free, and effortlessly stylish!',
+            alignment: 'top'
           },
           {
-            id: "crewneck",
-            image: "images/model.crewneck.png",
-            title: "CREWNECK",
-            description: "Sweater santai untuk kenyamanan sepanjang hari.",
-            alignment: "top",
-          },
+            id: 'crewneck',
+            image: 'images/model.crewneck.png',
+            title: 'CREWNECK',
+            description: 'A relaxed sweater for all day comfortable fit.',
+            alignment: 'top'
+          }
         ];
-        const [extended, current, setCurrent, animating, setAnimating] =
-          useProductCarousel(products);
+        const [extended, current, setCurrent, animating, setAnimating] = useProductCarousel(products);
 
         const slideWidth = 525;
         const visibleCards = 3;
@@ -386,13 +340,13 @@
 
         function slideToNext() {
           if (!animating) {
-            setCurrent((c) => c + 1);
+            setCurrent(c => c + 1);
             setAnimating(true);
           }
         }
         function slideToPrev() {
           if (!animating) {
-            setCurrent((c) => c - 1);
+            setCurrent(c => c - 1);
             setAnimating(true);
           }
         }
@@ -400,43 +354,21 @@
         return (
           <div className="relative product-carousel-container overflow-hidden">
             <button
-              className="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 transition-all duration-300"
+              className="carousel-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
               aria-label="Previous"
               onClick={slideToPrev}
             >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 69 97"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z"
-                  fill="white"
-                />
+              <svg width="32" height="32" viewBox="0 0 69 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M11.6247 44.6955L6.3194 48.8873L61.3473 92.3742L57.8478 96.8337L0 51.117V46.6576L59.0381 0L62.5376 4.45945L16.1944 41.0836L69 82.8149L65.5031 87.2744L11.6247 44.6955Z" fill="white"/>
               </svg>
             </button>
             <button
-              className="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 transition-all duration-300"
+              className="carousel-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 p-4 bg-black/20 hover:bg-black/40 rounded-full transition-all duration-300"
               aria-label="Next"
               onClick={slideToNext}
             >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 69 97"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fillRule="evenodd"
-                  clipRule="evenodd"
-                  d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z"
-                  fill="white"
-                />
+              <svg width="32" height="32" viewBox="0 0 69 97" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fillRule="evenodd" clipRule="evenodd" d="M57.3753 44.6955L62.6806 48.8873L7.65275 92.3742L11.1522 96.8337L69 51.117V46.6576L9.96187 0L6.46242 4.45945L52.8056 41.0836L0 82.8149L3.49686 87.2744L57.3753 44.6955Z" fill="white"/>
               </svg>
             </button>
             <div
@@ -444,18 +376,13 @@
               style={{
                 width: "max-content",
                 transform: `translateX(${translateX}px)`,
-                transition: animating ? "transform 0.5s ease-in-out" : "none",
+                transition: animating ? "transform 0.5s ease-in-out" : "none"
               }}
               onTransitionEnd={() => setAnimating(false)}
             >
               {extended.map((product, idx) => (
-                <div
-                  key={idx}
-                  className={`carousel-slide flex-none ${getAlignmentClass(
-                    product.alignment
-                  )}`}
-                >
-                  <div className="product-card w-[480px] bg-white shadow-lg overflow-hidden relative">
+                <div key={idx} className={`carousel-slide flex-none ${getAlignmentClass(product.alignment)}`}>
+                  <div className="product-card w-[480px] bg-white shadow-lg rounded-lg overflow-hidden relative">
                     <div className="relative h-[600px] md:h-[750px]">
                       <img
                         src={product.image}
@@ -464,12 +391,8 @@
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-8 text-white text-center">
-                        <h3 className="text-3xl md:text-4xl font-medium uppercase mb-3">
-                          {product.title}
-                        </h3>
-                        <p className="text-base mb-6 leading-relaxed">
-                          {product.description}
-                        </p>
+                        <h3 className="text-3xl md:text-4xl font-medium uppercase mb-3">{product.title}</h3>
+                        <p className="text-base mb-6 leading-relaxed">{product.description}</p>
                         <button className="product-btn px-12 py-4 border-2 border-white text-white font-bold hover:bg-white hover:text-black transition-all duration-300 text-lg">
                           See more
                         </button>
@@ -498,73 +421,6 @@
 
       function App() {
         const [menuOpen, setMenuOpen] = useMobileMenu();
-        const arrowSectionRef = React.useRef(null);
-
-        // Arrow scaling logic (in place)
-        const [arrowScale, setArrowScale] = React.useState(1);
-
-        const footerRef = React.useRef(null);
-
-        React.useEffect(() => {
-          function onScroll() {
-            if (arrowSectionRef.current && footerRef.current) {
-              const arrowRect = arrowSectionRef.current.getBoundingClientRect();
-              const footerRect = footerRef.current.getBoundingClientRect();
-              const windowHeight = window.innerHeight;
-
-              // Arrow section in view, not in footer
-              // Allow the arrow to remain scaled up for a buffer zone after the footer enters
-              const bufferPx = 120; // px to allow arrow to linger after footer appears
-              if (
-                arrowRect.top < windowHeight &&
-                arrowRect.bottom > 0 &&
-                footerRect.top > windowHeight - bufferPx // only start scaling down when footer is well into view
-              ) {
-                // Progress: 0 (just entering) to 1 (fully in center)
-                const sectionHeight = arrowRect.height;
-                const scrollProgress = Math.min(
-                  Math.max((windowHeight - arrowRect.top) / sectionHeight, 0),
-                  1
-                );
-                const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
-                setArrowScale(scaleValue);
-                // console.log('Arrow scaling:', scrollProgress, scaleValue); // Debug log
-              }
-              // Footer in view or not in arrow section
-              else {
-                setArrowScale(1);
-              }
-            }
-          }
-          window.addEventListener("scroll", onScroll);
-          onScroll();
-
-          // Memory and event listener logging
-          if (window.__HG_DEBUG_INTERVAL)
-            clearInterval(window.__HG_DEBUG_INTERVAL);
-          window.__HG_DEBUG_INTERVAL = setInterval(() => {
-            // Log memory usage if available
-            if (window.performance && window.performance.memory) {
-              console.log(
-                "[HG DEBUG] JS Heap:",
-                window.performance.memory.usedJSHeapSize,
-                "/",
-                window.performance.memory.totalJSHeapSize
-              );
-            }
-            // Log number of event listeners on window
-            if (window.getEventListeners) {
-              const listeners = window.getEventListeners(window);
-              console.log("[HG DEBUG] Window event listeners:", listeners);
-            }
-          }, 10000);
-
-          return () => {
-            window.removeEventListener("scroll", onScroll);
-            if (window.__HG_DEBUG_INTERVAL)
-              clearInterval(window.__HG_DEBUG_INTERVAL);
-          };
-        }, []);
 
         return (
           <>
@@ -584,39 +440,20 @@
                 </a>
                 {/* Desktop Navigation */}
                 <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
-                  <a
-                    href="location.html"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    SHOP
-                  </a>
-                  <a
-                    href="aboutus.html"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    ABOUT US
-                  </a>
-                  <a
-                    href="#"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    COOLNESS
-                  </a>
+                  <a href="location.html" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">SHOP</a>
+                  <a href="aboutus.html" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">ABOUT US</a>
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">COOLNESS</a>
                 </nav>
                 {/* Language and Shop Icon - Desktop */}
                 <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
                   <div className="flex items-center gap-[10px] text-sm lg:text-base">
                     <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        EN
-                      </span>
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
                       <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
                     </a>
                     <span className="text-cream mx-1">/</span>
                     <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        IN
-                      </span>
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
                       <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
                     </a>
                   </div>
@@ -630,16 +467,12 @@
                 <div className="flex lg:hidden items-center gap-4">
                   <div className="flex items-center gap-[6px] text-sm">
                     <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        EN
-                      </span>
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
                       <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
                     </a>
                     <span className="text-cream mx-1">/</span>
                     <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        IN
-                      </span>
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
                       <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
                     </a>
                   </div>
@@ -652,20 +485,10 @@
                   <button
                     className="text-cream hover:text-white transition-colors"
                     aria-label="Toggle mobile menu"
-                    onClick={() => setMenuOpen((open) => !open)}
+                    onClick={() => setMenuOpen(open => !open)}
                   >
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      ></path>
+                    <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                   </button>
                 </div>
@@ -673,58 +496,37 @@
               {/* Mobile Navigation Menu */}
               <div
                 className={`lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transition-all duration-300 ease-in-out ${
-                  menuOpen
-                    ? "translate-y-0 opacity-100 visible"
-                    : "-translate-y-full opacity-0 invisible"
+                  menuOpen ? "translate-y-0 opacity-100 visible" : "-translate-y-full opacity-0 invisible"
                 }`}
               >
                 <nav className="flex flex-col items-center py-8 space-y-6">
-                  <a
-                    href="#"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    SHOP
-                  </a>
-                  <a
-                    href="aboutus.html"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    ABOUT US
-                  </a>
-                  <a
-                    href="#"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    COOLNESS
-                  </a>
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-lg">SHOP</a>
+                  <a href="aboutus.html" className="text-cream hover:text-white transition-colors nav-link text-lg">ABOUT US</a>
+                  <a href="#" className="text-cream hover:text-white transition-colors nav-link text-lg">COOLNESS</a>
                 </nav>
               </div>
             </header>
             <main className="relative">
               {/* Hero Section */}
-              <section className="relative min-h-[720px] flex items-center justify-center bg-cover bg-center bg-no-repeat">
+              <section className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
                 {/* Background Image with Overlay */}
-                <div className="absolute inset-0 w-full h-full min-h-[720px]">
+                <div className="absolute inset-0 w-full h-full">
                   <img
-                    src="images/heroimage2.png"
+                    src="images/heroimage.png"
                     alt="Hero Background"
-                    className="w-full h-full object-cover min-h-[720px]"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-black/40"></div>
                 </div>
-                <div className="relative z-10 text-center px-4 mx-auto gap-[60px] grid flex-col h-auto self-center justify-center items-center">
+                <div className="relative z-10 text-center px-4 mx-auto gap-[210px] grid flex-col h-auto self-center justify-center items-center">
                   {/* Main Heading */}
                   <h1
                     className="hero-title text-4xl md:text-6xl font-medium text-cream leading-tight mb-8 tracking-wide uppercase flex flex-col justify-center items-center"
                     style={{ margin: "49.8px 0 32px" }}
                   >
-                    <span className="font-inter tracking-[15px]">
-                      cool tech inside
-                    </span>
+                    <span className="font-inter tracking-[15px]">cool tech inside</span>
                     <br className="tracking-[15px]" />
-                    <span className="font-inter tracking-[15px]">
-                      greatness outside
-                    </span>
+                    <span className="font-inter tracking-[15px]">greatness outside</span>
                   </h1>
                   <div className="flex flex-col">
                     {/* Logo */}
@@ -746,10 +548,9 @@
                   </div>
                 </div>
                 {/* Breadcrumb */}
-                <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] w-full z-10 px-0 z-20">
-                  {/* Breadcrumb Container */}
-                  <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-[60px]">
-                    <p className="text-sm sm:text-base text-cream py-2">
+                <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
+                  <div className="max-w-6xl mx-auto">
+                    <p className="text-sm sm:text-base">
                       <a
                         href="index.html"
                         className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
@@ -770,9 +571,9 @@
                     {/* Image Container */}
                     <div className="relative">
                       <img
-                        src="images/coolshirt.jpg"
+                        src="images/vertical.poster.png"
                         alt="COOLTECH Billboard"
-                        className="w-full h-auto"
+                        className="w-full h-auto rounded-lg"
                       />
                     </div>
                     {/* Content */}
@@ -781,14 +582,10 @@
                         COOLTECH
                       </h2>
                       <p className="text-xl md:text-2xl text-black leading-relaxed tracking-wide">
-                        Jenis bahan yang didesain untuk memberikan sensasi
-                        dingin dan nyaman saat digunakan, terutama saat cuaca
-                        panas atau saat beraktivitas fisik.
+                        Jenis bahan yang didesain untuk memberikan sensasi dingin dan nyaman saat digunakan, terutama saat cuaca panas atau saat beraktivitas fisik.
                       </p>
                       <p className="text-xl md:text-2xl text-black leading-relaxed tracking-wide">
-                        Bahan ini biasanya memiliki teknologi pendingin (cooling
-                        technology) yang membantu melancarkan sirkulasi udara
-                        dan membuat pemakainya merasa lebih sejuk
+                        Bahan ini biasanya memiliki teknologi pendingin (cooling technology) yang membantu melancarkan sirkulasi udara dan membuat pemakainya merasa lebih sejuk
                       </p>
                     </div>
                   </div>
@@ -800,22 +597,7 @@
                   {/* Divider */}
                   <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
                   {/* Heading */}
-                  <h2
-                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
-                    style={{ transform: "translate(0, 0px)", opacity: 1 }}
-                  >
-                    local pride global quality
-                  </h2>
-                  <h2
-                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
-                    style={{ transform: "translate(0, 14px)", opacity: 0.7 }}
-                  >
-                    local pride global quality
-                  </h2>
-                  <h2
-                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
-                    style={{ transform: "translate(0, 22px)", opacity: 0.4 }}
-                  >
+                  <h2 className="section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16">
                     local pride global quality
                   </h2>
                   {/* Background Image with Overlay Text */}
@@ -833,61 +615,41 @@
                       our coolness our greatness
                     </h2>
                     <p className="text-lg text-black max-w-4xl mx-auto leading-relaxed tracking-wide">
-                      serat berbahan katun S24 Fleece yang bukan kalteng-kaleng,
-                      dipadukan dengan material berbahan inovatif berbahan
-                      COOLTECH, yang tak hanya nyaman tapi juga sejuk untuk
-                      dipakai seharian.
+                      serat berbahan katun S24 Fleece yang bukan kalteng-kaleng, dipadukan dengan material berbahan inovatif berbahan COOLTECH, yang tak hanya nyaman tapi juga sejuk untuk dipakai seharian.
                     </p>
                   </div>
                   {/* Carousel Container */}
                   <ProductCarousel />
                 </div>
               </section>
-              {/* Arrow Loading Section (before Footer only) */}
-              {/* Arrow Section (scales up in place) */}
-              <section
-                ref={arrowSectionRef}
-                className="arrow-section-static"
-                style={{
-                  width: "100%",
-                  height: "60vh",
-                  background: "#111",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  zIndex: 10,
-                  position: "relative",
-                  overflow: "visible",
-                  transform: `scale(${arrowScale})`,
-                  transformOrigin: "center center",
-                  transition: "transform 0.3s ease-out",
-                }}
-              >
-                <svg
-                  className="arrow-popup-svg"
-                  width="156"
-                  height="110"
-                  viewBox="0 0 156 110"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
-                    fill="white"
-                  />
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
-                    fill="white"
-                  />
-                </svg>
+              {/* Decorative Section */}
+              <section className="py-20">
+                <div className="max-w-6xl mx-auto flex items-center justify-center bg-gradient-to-b from-black/20 to-white/20 h-96 rounded-lg">
+                  <svg
+                    width="156"
+                    height="110"
+                    viewBox="0 0 156 110"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+                      fill="white"
+                    />
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+                      fill="white"
+                    />
+                  </svg>
+                </div>
               </section>
             </main>
             {/* Footer */}
-            <footer ref={footerRef} className="bg-black text-white">
+            <footer className="bg-black text-white">
               <div className="max-w-6xl mx-auto px-4 py-16">
                 {/* Logo section above */}
                 <div className="mb-12 text-center">
@@ -908,8 +670,7 @@
                     />
                     <div className="space-y-4 flex flex-col items-center md:items-start">
                       <p className="text-white text-sm text-center md:text-left">
-                        Online Customer Care:
-                        <br />
+                        Online Customer Care:<br />
                         <a
                           href="tel:+6282126610201"
                           className="underline hover:text-cream transition-colors"
@@ -934,7 +695,7 @@
                             />
                           </svg>
                           <a
-                            href="https://www.instagram.com/hgbasiclabs"
+                            href="#"
                             className="social-link text-white underline hover:text-cream transition-colors"
                           >
                             @hgbasiclabs
@@ -955,7 +716,7 @@
                             />
                           </svg>
                           <a
-                            href="https://www.facebook.com/hgbasiclabs/"
+                            href="#"
                             className="social-link text-white underline hover:text-cream transition-colors"
                           >
                             Human Greatness
@@ -976,7 +737,7 @@
                             />
                           </svg>
                           <a
-                            href="https://www.tiktok.com/@hgbasiclabs"
+                            href="#"
                             className="social-link text-white underline hover:text-cream transition-colors"
                           >
                             @hgbasiclabs
@@ -995,31 +756,11 @@
                       Navigation
                     </h3>
                     <nav className="space-y-3 flex flex-col items-center md:items-start">
-                      <a
-                        href="index.html"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Home
-                      </a>
-                      <a
-                        href="location.html"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Shop
-                      </a>
-                      <a
-                        href="#"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Catalogues
-                      </a>
-                    
-                      <a
-                        href="aboutus.html"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        About Us
-                      </a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Home</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Shop</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Catalogues</a>
+                      <a href="#" className="nav-item text-white hover:text-cream transition-colors text-sm">Sale Items</a>
+                      <a href="aboutus.html" className="nav-item text-white hover:text-cream transition-colors text-sm">About Us</a>
                     </nav>
                   </div>
                   {/* Address */}
@@ -1028,12 +769,9 @@
                       Address
                     </h3>
                     <address className="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs">
-                      Jl. Hasanudin No 9, Lebak Gede
-                      <br />
-                      Kota Bandung
-                      <br />
-                      Jawa Barat
-                      <br />
+                      Jl. Hasanudin No 9, Lebak Gede<br />
+                      Kota Bandung<br />
+                      Jawa Barat<br />
                       Indonesia
                     </address>
                   </div>
@@ -1052,10 +790,8 @@
         );
       }
 
-      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-      ReactDOM.createRoot(document.getElementById("chatbot-root")).render(
-        <ChatBot />
-      );
+      ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+      ReactDOM.createRoot(document.getElementById('chatbot-root')).render(<ChatBot />);
     </script>
   </body>
 </html>

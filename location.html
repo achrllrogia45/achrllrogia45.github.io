@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location - HumanGreatness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- React, ReactDOM, Babel -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body class="font-roboto text-base">
+    <div id="root"></div>
+    <script type="text/babel">
+      function LocationBreadcrumb() {
+        return (
+          <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
+            <div className="max-w-6xl mx-auto">
+              <p className="text-sm sm:text-base">
+                <a
+                  href="index.html"
+                  className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
+                >
+                  HOME
+                </a>
+                /
+                <a
+                  href="location.html"
+                  className="text-cream hover:text-white hover:underline transition-colors ml-[10px]"
+                >
+                  LOCATION
+                </a>
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      function MapSection() {
+        const [open, setOpen] = React.useState(false);
+        return (
+          <>
+            <div
+              className="w-full h-56 sm:h-64 md:h-80 lg:h-[400px] bg-gray-300 flex items-center justify-center relative group cursor-pointer"
+              onClick={() => setOpen(true)}
+            >
+              <iframe
+                title="Human Greatness Labs Map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2159.733377195662!2d107.61593377919885!3d-6.894383672642807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e77d974d3eb1%3A0xce47bafa8f8118a1!2sHuman%20Greatness%20Labs!5e0!3m2!1sen!2sid!4v1753349676506!5m2!1sen!2sid"
+                width="100%"
+                height="100%"
+                style={{
+                  border: 0,
+                  pointerEvents: "none",
+                  borderRadius: "0.5rem",
+                }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.0) 80%)",
+                }}
+              ></div>
+              <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer rounded-lg">
+                <span className="text-white text-lg font-semibold mb-2">
+                  Click to Expand Map
+                </span>
+                <svg
+                  className="w-8 h-8 text-white animate-bounce"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 8v8a2 2 0 002 2h8m4-4V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            {/* Modal for expanded map */}
+            {open && (
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+                onClick={() => setOpen(false)}
+              >
+                <div
+                  className="relative w-[90vw] h-[70vh] max-w-4xl bg-white rounded-lg overflow-hidden shadow-lg"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <iframe
+                    title="Human Greatness Labs Map Large"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2159.733377195662!2d107.61593377919885!3d-6.894383672642807!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e77d974d3eb1%3A0xce47bafa8f8118a1!2sHuman%20Greatness%20Labs!5e0!3m2!1sen!2sid!4v1753349676506!5m2!1sen!2sid"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                  <button
+                    className="absolute top-2 right-2 bg-black/70 text-white rounded-full p-2 hover:bg-black transition-colors"
+                    onClick={() => setOpen(false)}
+                    aria-label="Close Map"
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        );
+      }
+
+      // Mobile menu hook
+      function useMobileMenu() {
+        const [open, setOpen] = React.useState(false);
+        React.useEffect(() => {
+          if (open) {
+            document.body.classList.add("overflow-hidden");
+          } else {
+            document.body.classList.remove("overflow-hidden");
+          }
+          return () => document.body.classList.remove("overflow-hidden");
+        }, [open]);
+        return [open, setOpen];
+      }
+
+      function CustomerReviews() {
+        const [reviews, setReviews] = React.useState([]);
+        const [currentIndex, setCurrentIndex] = React.useState(0);
+        const [isAutoSliding, setIsAutoSliding] = React.useState(true);
+        const [slideDirection, setSlideDirection] = React.useState("right");
+        const [prevIndex, setPrevIndex] = React.useState(null);
+        const [isAnimating, setIsAnimating] = React.useState(false);
+
+        React.useEffect(() => {
+          fetch("./embeds.json")
+            .then((response) => response.json())
+            .then((data) => {
+              setReviews(data.reviews || []);
+            })
+            .catch(() => {
+              setReviews([
+                {
+                  name: "Fathul Bachri Sugara",
+                  image:
+                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+                  stars: 5,
+                  comment:
+                    "sama sekali ga nyesel beli pakaian disini. harga terjangkau tp kualitas bagus bgt; pokoknya klo butuh baju berkualitas langsung ke HG aja!",
+                },
+                {
+                  name: "Stti Sarah",
+                  image:
+                    "https://images.unsplash.com/photo-1494790108755-2616b612b47c?w=100&h=100&fit=crop&crop=face",
+                  stars: 5,
+                  comment:
+                    "enaks! tempat belanjanya, crew ramah jugaa 😍 barangnya berkualitas dan harganya masuk akal banget. Recommended!",
+                },
+              ]);
+            });
+        }, []);
+
+        React.useEffect(() => {
+          let interval;
+          if (isAutoSliding && reviews.length > 0 && !isAnimating) {
+            interval = setInterval(() => {
+              handleSlide("right");
+            }, 4000);
+          }
+          return () => clearInterval(interval);
+        }, [isAutoSliding, reviews.length, isAnimating]);
+
+        function handleSlide(direction, targetIndex = null) {
+          if (isAnimating) return;
+          setIsAnimating(true);
+          setSlideDirection(direction);
+          setPrevIndex(currentIndex);
+          setTimeout(() => {
+            setCurrentIndex((prev) => {
+              if (targetIndex !== null) return targetIndex;
+              if (direction === "right") {
+                return prev === reviews.length - 1 ? 0 : prev + 1;
+              } else {
+                return prev === 0 ? reviews.length - 1 : prev - 1;
+              }
+            });
+            setTimeout(() => {
+              setPrevIndex(null);
+              setIsAnimating(false);
+            }, 500);
+          }, 10);
+        }
+
+        const nextSlide = () => {
+          setIsAutoSliding(false);
+          handleSlide("right");
+          setTimeout(() => setIsAutoSliding(true), 10000);
+        };
+
+        const prevSlide = () => {
+          setIsAutoSliding(false);
+          handleSlide("left");
+          setTimeout(() => setIsAutoSliding(true), 10000);
+        };
+
+        const goToSlide = (index) => {
+          if (index === currentIndex) return;
+          setIsAutoSliding(false);
+          handleSlide(index > currentIndex ? "right" : "left", index);
+          setTimeout(() => setIsAutoSliding(true), 10000);
+        };
+
+        if (reviews.length === 0) {
+          return <div>Loading reviews...</div>;
+        }
+
+        // Animation classes
+        const slideBase =
+          "transition-all duration-500 absolute w-full flex justify-center items-center";
+        const slideIn =
+          slideDirection === "right"
+            ? "animate-slide-in-right"
+            : "animate-slide-in-left";
+        const slideOut =
+          slideDirection === "right"
+            ? "animate-slide-out-left"
+            : "animate-slide-out-right";
+
+        // Custom keyframes for sliding (inject into page if not present)
+        if (
+          typeof window !== "undefined" &&
+          !document.getElementById("customer-reviews-slider-animations")
+        ) {
+          const style = document.createElement("style");
+          style.id = "customer-reviews-slider-animations";
+          style.innerHTML = `
+            @keyframes slide-in-right { from { opacity: 0; transform: translateX(100%);} to { opacity: 1; transform: translateX(0);} }
+            @keyframes slide-in-left { from { opacity: 0; transform: translateX(-100%);} to { opacity: 1; transform: translateX(0);} }
+            @keyframes slide-out-left { from { opacity: 1; transform: translateX(0);} to { opacity: 0; transform: translateX(-100%);} }
+            @keyframes slide-out-right { from { opacity: 1; transform: translateX(0);} to { opacity: 0; transform: translateX(100%);} }
+            .animate-slide-in-right { animation: slide-in-right 0.5s forwards; }
+            .animate-slide-in-left { animation: slide-in-left 0.5s forwards; }
+            .animate-slide-out-left { animation: slide-out-left 0.5s forwards; }
+            .animate-slide-out-right { animation: slide-out-right 0.5s forwards; }
+          `;
+          document.head.appendChild(style);
+        }
+
+        return (
+          <section className="max-w-6xl mx-auto px-4 mb-20">
+            <h2 className="text-2xl md:text-3xl font-bold text-black mb-8 text-center">
+              Customer Reviews
+            </h2>
+            <div className="relative h-64 flex items-center justify-center overflow-hidden">
+              {/* Current Slide */}
+              <div
+                className={`${slideBase} ${isAnimating ? slideIn : ""}`}
+                key={currentIndex}
+              >
+                <div className="bg-white shadow-lg p-4 sm:p-6 max-w-4xl w-full min-h-48 flex flex-col justify-between">
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={reviews[currentIndex].image}
+                      alt={reviews[currentIndex].name}
+                      className="w-12 h-12 rounded-full object-cover mr-4"
+                      onError={(e) => {
+                        e.target.src =
+                          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
+                      }}
+                    />
+                    <div>
+                      <div className="font-semibold text-gray-900">
+                        {reviews[currentIndex].name}
+                      </div>
+                      <div className="flex items-center text-yellow-400 text-sm">
+                        {Array.from({
+                          length: reviews[currentIndex].stars,
+                        }).map((_, starIndex) => (
+                          <span key={starIndex}>★</span>
+                        ))}
+                        {Array.from({
+                          length: 5 - reviews[currentIndex].stars,
+                        }).map((_, starIndex) => (
+                          <span key={starIndex} className="text-gray-300">
+                            ★
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-700 text-sm flex-1 overflow-hidden">
+                    {reviews[currentIndex].comment}
+                  </p>
+                </div>
+              </div>
+              {/* Previous Slide (for animation) */}
+              {isAnimating &&
+                prevIndex !== null &&
+                prevIndex !== currentIndex && (
+                  <div
+                    className={`${slideBase} ${slideOut}`}
+                    key={prevIndex}
+                    style={{ zIndex: 0 }}
+                  >
+                    <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 max-w-sm w-full min-h-48 flex flex-col justify-between">
+                      <div className="flex items-center mb-4">
+                        <img
+                          src={reviews[prevIndex].image}
+                          alt={reviews[prevIndex].name}
+                          className="w-12 h-12 rounded-full object-cover mr-4"
+                          onError={(e) => {
+                            e.target.src =
+                              "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
+                          }}
+                        />
+                        <div>
+                          <div className="font-semibold text-gray-900">
+                            {reviews[prevIndex].name}
+                          </div>
+                          <div className="flex items-center text-yellow-400 text-sm">
+                            {Array.from({
+                              length: reviews[prevIndex].stars,
+                            }).map((_, starIndex) => (
+                              <span key={starIndex}>★</span>
+                            ))}
+                            {Array.from({
+                              length: 5 - reviews[prevIndex].stars,
+                            }).map((_, starIndex) => (
+                              <span key={starIndex} className="text-gray-300">
+                                ★
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 text-sm flex-1 overflow-hidden">
+                        {reviews[prevIndex].comment}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              {/* Navigation Arrows */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200 z-10"
+                aria-label="Previous review"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="15,18 9,12 15,6"></polyline>
+                </svg>
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200 z-10"
+                aria-label="Next review"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <polyline points="9,18 15,12 9,6"></polyline>
+                </svg>
+              </button>
+            </div>
+            {/* Dots Indicator */}
+            {/* <div className="flex justify-center mt-6 space-x-2">
+              {reviews.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => goToSlide(index)}
+                className={`w-3 h-3 rounded-full transition-all duration-200 ${
+                currentIndex === index
+                  ? 'bg-black'
+                  : 'bg-gray-300 hover:bg-gray-400'
+                }`}
+                aria-label={`Go to review ${index + 1}`}
+              />
+              ))}
+            </div> */}
+          </section>
+        );
+      }
+
+      function App() {
+        const [menuOpen, setMenuOpen] = useMobileMenu();
+        const arrowSectionRef = React.useRef(null);
+
+        // Arrow scaling logic (in place)
+        const [arrowScale, setArrowScale] = React.useState(1);
+
+        const footerRef = React.useRef(null);
+
+        React.useEffect(() => {
+          function onScroll() {
+            if (arrowSectionRef.current && footerRef.current) {
+              const arrowRect = arrowSectionRef.current.getBoundingClientRect();
+              const footerRect = footerRef.current.getBoundingClientRect();
+              const windowHeight = window.innerHeight;
+
+              // Arrow section in view, not in footer
+              // Allow the arrow to remain scaled up for a buffer zone after the footer enters
+              const bufferPx = 120; // px to allow arrow to linger after footer appears
+              if (
+                arrowRect.top < windowHeight &&
+                arrowRect.bottom > 0 &&
+                footerRect.top > windowHeight - bufferPx // only start scaling down when footer is well into view
+              ) {
+                // Progress: 0 (just entering) to 1 (fully in center)
+                const sectionHeight = arrowRect.height;
+                const scrollProgress = Math.min(
+                  Math.max((windowHeight - arrowRect.top) / sectionHeight, 0),
+                  1
+                );
+                const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
+                setArrowScale(scaleValue);
+                // console.log('Arrow scaling:', scrollProgress, scaleValue); // Debug log
+              }
+              // Footer in view or not in arrow section
+              else {
+                setArrowScale(1);
+              }
+            }
+          }
+          window.addEventListener("scroll", onScroll);
+          onScroll();
+
+          // Memory and event listener logging
+          if (window.__HG_DEBUG_INTERVAL)
+            clearInterval(window.__HG_DEBUG_INTERVAL);
+          window.__HG_DEBUG_INTERVAL = setInterval(() => {
+            if (window.performance && window.performance.memory) {
+              console.log(
+                "[HG DEBUG] JS Heap:",
+                window.performance.memory.usedJSHeapSize,
+                "/",
+                window.performance.memory.totalJSHeapSize
+              );
+            }
+            if (window.getEventListeners) {
+              const listeners = window.getEventListeners(window);
+              console.log("[HG DEBUG] Window event listeners:", listeners);
+            }
+          }, 10000);
+
+          return () => {
+            window.removeEventListener("scroll", onScroll);
+            if (window.__HG_DEBUG_INTERVAL)
+              clearInterval(window.__HG_DEBUG_INTERVAL);
+          };
+        }, []);
+
+        return (
+          <>
+            {/* Header */}
+            <header className="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
+              <div className="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
+                {/* Logo */}
+                <a
+                  href="index.html"
+                  className="flex items-center hover:opacity-80 transition-opacity"
+                >
+                  <img
+                    src="images/hg_logo_header.svg"
+                    alt="HumanGreatness Logo"
+                    className="h-8 sm:h-10 w-auto"
+                  />
+                </a>
+                {/* Desktop Navigation */}
+                <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
+                  <a
+                    href="location.html"
+                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
+                  >
+                    SHOP
+                  </a>
+                  <a
+                    href="aboutus.html"
+                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
+                  >
+                    ABOUT US
+                  </a>
+                  <a
+                    href="#"
+                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
+                  >
+                    COOLNESS
+                  </a>
+                </nav>
+                {/* Language and Shop Icon - Desktop */}
+                <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
+                  <div className="flex items-center gap-[10px] text-sm lg:text-base">
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
+                        EN
+                      </span>
+                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                    <span className="text-cream mx-1">/</span>
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
+                        IN
+                      </span>
+                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                  </div>
+                  <img
+                    src="images/shop_icon_header.svg"
+                    alt="Shop"
+                    className="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
+                  />
+                </div>
+                {/* Mobile Header Right Group */}
+                <div className="flex lg:hidden items-center gap-4">
+                  <div className="flex items-center gap-[6px] text-sm">
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
+                        EN
+                      </span>
+                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                    <span className="text-cream mx-1">/</span>
+                    <a href="#" className="text-cream relative group px-1">
+                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
+                        IN
+                      </span>
+                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
+                    </a>
+                  </div>
+                  <img
+                    src="images/shop_icon_header.svg"
+                    alt="Shop"
+                    className="h-5 w-5 invert"
+                  />
+                  {/* Mobile Menu Button */}
+                  <button
+                    className="text-cream hover:text-white transition-colors"
+                    aria-label="Toggle mobile menu"
+                    onClick={() => setMenuOpen((open) => !open)}
+                  >
+                    <svg
+                      className="h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              {/* Mobile Navigation Menu */}
+              <div
+                className={`lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transition-all duration-300 ease-in-out ${
+                  menuOpen
+                    ? "translate-y-0 opacity-100 visible"
+                    : "-translate-y-full opacity-0 invisible"
+                }`}
+              >
+                <nav className="flex flex-col items-center py-8 space-y-6">
+                  <a
+                    href="#"
+                    className="text-cream hover:text-white transition-colors nav-link text-lg"
+                  >
+                    SHOP
+                  </a>
+                  <a
+                    href="aboutus.html"
+                    className="text-cream hover:text-white transition-colors nav-link text-lg"
+                  >
+                    ABOUT US
+                  </a>
+                  <a
+                    href="#"
+                    className="text-cream hover:text-white transition-colors nav-link text-lg"
+                  >
+                    COOLNESS
+                  </a>
+                </nav>
+              </div>
+            </header>
+            <main className="relative">
+              {/* Map Section - background goes behind header, header overlays absolutely */}
+              <div className="relative w-full">
+                <MapSection />
+                {/* Breadcrumb overlays on top of map, below header */}
+                <div className="absolute top-[115px] sm:top-[120px] md:top-[130px] w-full z-20 pointer-events-auto">
+                  <LocationBreadcrumb />
+                </div>
+                {/* Header overlays on top, does not take up space */}
+                <div className="absolute top-0 left-0 w-full z-30 pointer-events-auto">
+                  <header className="bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
+                    {/* ...existing header content... */}
+                  </header>
+                </div>
+              </div>
+
+              {/* Location Information Section */}
+              <section className="w-full px-2 sm:px-4 md:px-0">
+                <div className="max-w-full mx-auto bg-white shadow-md mb-12 overflow-hidden flex flex-col">
+                  <div className="relative h-32 sm:h-40 md:h-56 w-full bg-gray-400 flex items-center justify-center">
+                    {/* Replace with background image if available */}
+                    <img
+                      src="images/bandung.png"
+                      alt="Bandung Location"
+                      className="absolute inset-0 w-full h-full object-cover z-0"
+                    />
+                    <div className="absolute inset-0 bg-black/40"></div>
+                    <div
+                      className="absolute inset-0 flex flex-col items-center justify-center z-10 px-2 text-center"
+                      style={{
+                        background:
+                          "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 20%, rgba(0,0,0,0.0) 50%)",
+                      }}
+                    >
+                      <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white uppercase tracking-wide mb-2">
+                        Location Information
+                      </h2>
+                      <p className="text-white text-xs sm:text-base md:text-lg">
+                        Kita berlokasi di Kota Bandung, dan bisa dikunjungi
+                        setiap hari.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="p-4 sm:p-8 text-center">
+                    <h3 className="text-base sm:text-xl font-semibold mb-2">
+                      Our Address
+                    </h3>
+                    <p className="text-xs sm:text-base mb-4">
+                      Human Greatness Labs, Jl. Hasanudin No.9, Lebakgede,
+                      Kecamatan Coblong, Bandung 40132
+                    </p>
+                    <h4 className="text-sm sm:text-lg font-medium mb-1">
+                      Opening Hours
+                    </h4>
+                    <p className="text-xs sm:text-base">
+                      Senin - Minggu: 10:00 WIB - 20:00 WIB
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              <hr className="mt-5 border-t-2 border-gray-200 w-3/4 mx-auto rounded" />
+
+              {/* Spacer Section */}
+              <section className="w-full bg-white">
+                <div style={{ height: "100px" }}></div>
+              </section>
+
+              {/* Customer Reviews Section */}
+              <CustomerReviews />
+
+              <hr className="my-12 border-t-2 border-gray-200 w-3/4 mx-auto rounded" />
+
+              {/* Spacer Section */}
+              <section className="w-full bg-white">
+                <div style={{ height: "420px" }}></div>
+              </section>
+
+              {/* Arrow Section */}
+              <section
+                ref={arrowSectionRef}
+                className="arrow-section-static"
+                style={{
+                  width: "100%",
+                  height: "60vh",
+                  background: "#111",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 10,
+                  position: "relative",
+                  overflow: "visible",
+                  transform: `scale(${arrowScale})`,
+                  transformOrigin: "center center",
+                  transition: "transform 0.3s ease-out",
+                }}
+              >
+                <svg
+                  className="arrow-popup-svg"
+                  width="156"
+                  height="110"
+                  viewBox="0 0 156 110"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+                    fill="white"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+                    fill="white"
+                  />
+                </svg>
+              </section>
+            </main>
+            {/* Footer */}
+            <footer ref={footerRef} className="bg-black text-white">
+              <div className="max-w-6xl mx-auto px-4 py-16">
+                <div className="mb-12 text-center">
+                  <img
+                    src="images/hg_logo_header.svg"
+                    alt="HumanGreatness Logo"
+                    className="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert"
+                  />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8">
+                  <div className="footer-contact text-center md:text-left">
+                    <img
+                      src="images/hg_logotext.svg"
+                      alt="HGN Logo"
+                      className="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
+                    />
+                    <div className="space-y-4 flex flex-col items-center md:items-start">
+                      <p className="text-white text-sm text-center md:text-left">
+                        Online Customer Care:
+                        <br />
+                        <a
+                          href="tel:+6282126610201"
+                          className="underline hover:text-cream transition-colors"
+                        >
+                          +62 821 2661 0201
+                        </a>
+                      </p>
+                      <div className="social-links space-y-3 w-full">
+                        <div className="flex items-center space-x-3 justify-center md:justify-start">
+                          <svg
+                            className="social-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M20.96 0.408203H3.03999C1.49439 0.408203 0.23999 1.6626 0.23999 3.2082V21.1282C0.23999 22.6738 1.49439 23.9282 3.03999 23.9282H20.96C22.5056 23.9282 23.76 22.6738 23.76 21.1282V3.2082C23.76 1.6626 22.5056 0.408203 20.96 0.408203ZM18.72 8.8082H17.6C16.4016 8.8082 15.92 9.0882 15.92 9.9282V11.6082H18.72L18.16 14.4082H15.92V22.8082H13.12V14.4082H10.88V11.6082H13.12V9.9282C13.12 7.6882 14.24 6.0082 16.48 6.0082C18.104 6.0082 18.72 6.5682 18.72 6.5682V8.8082Z"
+                              fill="#FFFCEE"
+                            />
+                          </svg>
+                          <a
+                            href="https://www.facebook.com/hgbasiclabs/"
+                            className="social-link text-white underline hover:text-cream transition-colors"
+                          >
+                            Human Greatness
+                          </a>
+                        </div>
+                        <div className="flex items-center space-x-3 justify-center md:justify-start">
+                          <svg
+                            className="social-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M20.96 0.408203H3.03999C1.49607 0.408203 0.23999 1.66428 0.23999 3.2082V21.1282C0.23999 22.6721 1.49607 23.9282 3.03999 23.9282H20.96C22.5039 23.9282 23.76 22.6721 23.76 21.1282V3.2082C23.76 1.66428 22.5039 0.408203 20.96 0.408203ZM18.7233 10.6691C18.5962 10.6808 18.4674 10.6887 18.337 10.6887C16.8681 10.6887 15.5773 9.93324 14.8263 8.7914C14.8263 11.7868 14.8263 15.195 14.8263 15.2521C14.8263 17.8892 12.6882 20.0272 10.0512 20.0272C7.41415 20.0272 5.27607 17.8892 5.27607 15.2521C5.27607 12.6151 7.41415 10.477 10.0512 10.477C10.1509 10.477 10.2483 10.486 10.3463 10.4921V12.8452C10.2483 12.8335 10.152 12.8156 10.0512 12.8156C8.70495 12.8156 7.61407 13.9064 7.61407 15.2527C7.61407 16.5989 8.70495 17.6898 10.0512 17.6898C11.3974 17.6898 12.5863 16.6292 12.5863 15.2829C12.5863 15.2297 12.6098 4.31028 12.6098 4.31028H14.8588C15.0705 6.32124 16.6939 7.90828 18.7233 8.05388V10.6691Z"
+                              fill="#FFFCEE"
+                            />
+                          </svg>
+                          <a
+                            href="https://www.tiktok.com/@hgbasiclabs"
+                            className="social-link text-white underline hover:text-cream transition-colors"
+                          >
+                            @hgbasiclabs
+                          </a>
+                        </div>
+                        <div className="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="footer-nav text-center md:text-left">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
+                      Navigation
+                    </h3>
+                    <nav className="space-y-3 flex flex-col items-center md:items-start">
+                      <a
+                        href="index.html"
+                        className="nav-item text-white hover:text-cream transition-colors text-sm"
+                      >
+                        Home
+                      </a>
+                      <a
+                        href="location.html"
+                        className="nav-item text-white hover:text-cream transition-colors text-sm"
+                      >
+                        Shop
+                      </a>
+                      <a
+                        href="#"
+                        className="nav-item text-white hover:text-cream transition-colors text-sm"
+                      >
+                        Catalogues
+                      </a>
+
+                      <a
+                        href="aboutus.html"
+                        className="nav-item text-white hover:text-cream transition-colors text-sm"
+                      >
+                        About Us
+                      </a>
+                    </nav>
+                  </div>
+                  <div className="footer-address text-center md:text-left">
+                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
+                      Address
+                    </h3>
+                    <address className="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs">
+                      Jl. Hasanudin No 9, Lebak Gede
+                      <br />
+                      Kota Bandung
+                      <br />
+                      Jawa Barat
+                      <br />
+                      Indonesia
+                    </address>
+                  </div>
+                </div>
+              </div>
+              <div className="copyright-section border-t border-cream bg-cream">
+                <div className="max-w-6xl mx-auto px-4 py-6 text-center">
+                  <p className="text-black text-sm">
+                    © 2025. Made in Bandung by Hilman Nur Firdaus
+                  </p>
+                </div>
+              </div>
+            </footer>
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
