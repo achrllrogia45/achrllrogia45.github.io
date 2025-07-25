@@ -30,6 +30,30 @@
   <body class="font-roboto text-base">
     <div id="root"></div>
     <script type="text/babel">
+// --- Fade on Scroll Hook ---
+function useFadeOnScroll(ref) {
+  const [fadeClass, setFadeClass] = React.useState("fade-out");
+
+  React.useEffect(() => {
+    function handleScroll() {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Element is in viewport
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        setFadeClass("fade-in");
+      } else {
+        setFadeClass("fade-out");
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [ref]);
+
+  return fadeClass;
+}
       function LocationBreadcrumb() {
         return (
           <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
@@ -433,12 +457,20 @@
       function App() {
         const [menuOpen, setMenuOpen] = useMobileMenu();
         const arrowSectionRef = React.useRef(null);
-
+      
+        // Fade refs for main sections
+        const locationInfoRef = React.useRef(null);
+        const reviewsRef = React.useRef(null);
+      
         // Arrow scaling logic (in place)
         const [arrowScale, setArrowScale] = React.useState(1);
-
+      
         const footerRef = React.useRef(null);
-
+      
+        // Fade classes
+        const locationInfoFade = useFadeOnScroll(locationInfoRef);
+        const reviewsFade = useFadeOnScroll(reviewsRef);
+      
         React.useEffect(() => {
           function onScroll() {
             if (arrowSectionRef.current && footerRef.current) {
@@ -462,7 +494,6 @@
                 );
                 const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
                 setArrowScale(scaleValue);
-                // console.log('Arrow scaling:', scrollProgress, scaleValue); // Debug log
               }
               // Footer in view or not in arrow section
               else {
@@ -649,7 +680,7 @@
               </div>
 
               {/* Location Information Section */}
-              <section className="w-full px-2 sm:px-4 md:px-0">
+              <section ref={locationInfoRef} className={`w-full px-2 sm:px-4 md:px-0 ${locationInfoFade}`}>
                 <div className="max-w-full mx-auto bg-white shadow-md mb-12 overflow-hidden flex flex-col">
                   <div className="relative h-32 sm:h-40 md:h-56 w-full bg-gray-400 flex items-center justify-center">
                     {/* Replace with background image if available */}
@@ -701,7 +732,9 @@
               </section>
 
               {/* Customer Reviews Section */}
-              <CustomerReviews />
+              <section ref={reviewsRef} className={reviewsFade}>
+                <CustomerReviews />
+              </section>
 
               <hr className="my-12 border-t-2 border-gray-200 w-3/4 mx-auto rounded" />
 

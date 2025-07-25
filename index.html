@@ -30,6 +30,33 @@
   <body class="font-roboto text-base">
     <div id="root"></div>
     <div id="chatbot-root"></div>
+
+<script type="text/babel">
+// --- Fade on Scroll Hook ---
+function useFadeOnScroll(ref) {
+  const [fadeClass, setFadeClass] = React.useState("fade-out");
+
+  React.useEffect(() => {
+    function handleScroll() {
+      if (!ref.current) return;
+      const rect = ref.current.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+
+      // Element is in viewport
+      if (rect.top < viewportHeight && rect.bottom > 0) {
+        setFadeClass("fade-in");
+      } else {
+        setFadeClass("fade-out");
+      }
+    }
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [ref]);
+
+  return fadeClass;
+}
+</script>
     <script type="text/babel">
       // --- ChatBot Component ---
       const CHAT_KEY = "hg-chatbot-messages";
@@ -499,11 +526,23 @@
       function App() {
         const [menuOpen, setMenuOpen] = useMobileMenu();
         const arrowSectionRef = React.useRef(null);
-
+      
+        // Fade refs for each main section
+        const heroRef = React.useRef(null);
+        const cooltechRef = React.useRef(null);
+        const prideRef = React.useRef(null);
+        const productRef = React.useRef(null);
+      
         // Arrow scaling logic (in place)
         const [arrowScale, setArrowScale] = React.useState(1);
-
+      
         const footerRef = React.useRef(null);
+      
+        // Fade classes
+        const heroFade = useFadeOnScroll(heroRef);
+        const cooltechFade = useFadeOnScroll(cooltechRef);
+        const prideFade = useFadeOnScroll(prideRef);
+        const productFade = useFadeOnScroll(productRef);
 
         React.useEffect(() => {
           function onScroll() {
@@ -528,7 +567,6 @@
                 );
                 const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
                 setArrowScale(scaleValue);
-                // console.log('Arrow scaling:', scrollProgress, scaleValue); // Debug log
               }
               // Footer in view or not in arrow section
               else {
@@ -538,26 +576,6 @@
           }
           window.addEventListener("scroll", onScroll);
           onScroll();
-
-          // Memory and event listener logging
-          if (window.__HG_DEBUG_INTERVAL)
-            clearInterval(window.__HG_DEBUG_INTERVAL);
-          window.__HG_DEBUG_INTERVAL = setInterval(() => {
-            // Log memory usage if available
-            if (window.performance && window.performance.memory) {
-              console.log(
-                "[HG DEBUG] JS Heap:",
-                window.performance.memory.usedJSHeapSize,
-                "/",
-                window.performance.memory.totalJSHeapSize
-              );
-            }
-            // Log number of event listeners on window
-            if (window.getEventListeners) {
-              const listeners = window.getEventListeners(window);
-              console.log("[HG DEBUG] Window event listeners:", listeners);
-            }
-          }, 10000);
 
           return () => {
             window.removeEventListener("scroll", onScroll);
@@ -702,7 +720,7 @@
             </header>
             <main className="relative">
               {/* Hero Section */}
-              <section className="relative min-h-[720px] flex items-center justify-center bg-cover bg-center bg-no-repeat">
+              <section ref={heroRef} className={`relative min-h-[720px] flex items-center justify-center bg-cover bg-center bg-no-repeat ${heroFade}`}>
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 w-full h-full min-h-[720px]">
                   <img
@@ -762,7 +780,7 @@
                 </div>
               </section>
               {/* Section 2: COOLTECH */}
-              <section className="py-20 px-4">
+              <section ref={cooltechRef} className={`py-20 px-4 ${cooltechFade}`}>
                 <div className="max-w-6xl mx-auto">
                   {/* Divider */}
                   <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-12"></div>
@@ -795,7 +813,7 @@
                 </div>
               </section>
               {/* Section 3: Local Pride Global Quality */}
-              <section className="py-20 px-4">
+              <section ref={prideRef} className={`py-20 px-4 ${prideFade}`}>
                 <div className="max-w-6xl mx-auto">
                   {/* Divider */}
                   <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
@@ -823,7 +841,7 @@
                 </div>
               </section>
               {/* Section 4: Product Carousel */}
-              <section className="py-20 px-4">
+              <section ref={productRef} className={`py-20 px-4 ${productFade}`}>
                 <div className="max-w-6xl mx-auto">
                   {/* Divider */}
                   <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-16"></div>
