@@ -245,7 +245,7 @@
             setEmbeds(filtered);
             setIsReady(true);
           } else {
-            fetch("./embeds.json")
+            fetch("embeds.json")
               .then((r) => r.json())
               .then((data) => {
                 setCachedEmbeds(data);
