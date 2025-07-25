@@ -58,118 +58,28 @@ function useFadeOnScroll(ref) {
 }
 </script>
     <script type="text/babel">
-      // --- ChatBot Component ---
-      const CHAT_KEY = "hg-chatbot-messages";
-      function getInitialMessages() {
-        try {
-          const cached = localStorage.getItem(CHAT_KEY);
-          if (cached) return JSON.parse(cached);
-        } catch {}
-        return [];
-      }
 
-      // Supabase Chatbot API Function
-      async function sendChatbotMessage(chatbotId, message) {
-        const SUPABASE_FUNCTION_URL =
-          "https://ntegkdbqvvbtelordcsg.supabase.co/functions/v1/gemini-bot";
-        const ANON_KEY =
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im50ZWdrZGJxdnZidGVsb3JkY3NnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4NjkzMDIsImV4cCI6MjA2ODQ0NTMwMn0.Gq3VEhkgk7bVwG101YwfAcTXpR43uNfa7zk20WlY--I";
-        const headers = {
-          apikey: ANON_KEY,
-          Authorization: `Bearer ${ANON_KEY}`,
-          "Content-Type": "application/json",
-        };
-        const body = JSON.stringify({ user_message: message });
-        const res = await fetch(SUPABASE_FUNCTION_URL, {
-          method: "POST",
-          headers,
-          body,
-        });
-        if (!res.ok) {
-          throw new Error("Failed to get chatbot response");
-        }
-        try {
-          return await res.json();
-        } catch {
-          return await res.text();
-        }
-      }
+      // --- ChatBot Component (iframe version) ---
+      const CHAT_IFRAME_KEY = "hg-chatbot-iframe-open";
       function ChatBot() {
-        const [open, setOpen] = React.useState(false);
-        const [messages, setMessages] = React.useState(getInitialMessages());
-        const [input, setInput] = React.useState("");
-        const [greeting, setGreeting] = React.useState(
-          "Hi, what can I do for you?"
-        );
-        const [loading, setLoading] = React.useState(false);
-        const [error, setError] = React.useState(null);
-
-        React.useEffect(() => {
-          localStorage.setItem(CHAT_KEY, JSON.stringify(messages));
-        }, [messages]);
-        React.useEffect(() => {
-          if (open) {
-            setTimeout(() => {
-              const el = document.getElementById("chatbot-messages");
-              if (el) el.scrollTop = el.scrollHeight;
-            }, 100);
-          }
-        }, [open, messages]);
-
-        async function sendMessage() {
-          if (!input.trim() || loading) return;
-          const userMsg = { text: input, from: "user" };
-          setMessages((msgs) => [
-            ...msgs,
-            userMsg,
-            { text: "...", from: "bot", loading: true },
-          ]);
-          setInput("");
-          setLoading(true);
-          setError(null);
+        const [open, setOpen] = React.useState(() => {
+          // Restore open state from localStorage for cross-page persistence
           try {
-            const replyObj = await sendChatbotMessage("Functions", input);
-            let replyText = "";
-            if (typeof replyObj === "string") {
-              replyText = replyObj;
-            } else if (replyObj && typeof replyObj === "object") {
-              // Try common fields, fallback to JSON string
-              replyText =
-                replyObj.reply ||
-                replyObj.result ||
-                replyObj.message ||
-                JSON.stringify(replyObj);
-            } else {
-              replyText = String(replyObj);
-            }
-            setMessages((msgs) => {
-              // Remove the last loading bot message and add the real reply
-              const msgsNoLoading = msgs.filter(
-                (m, i) => !(i === msgs.length - 1 && m.loading)
-              );
-              return [...msgsNoLoading, { text: replyText, from: "bot" }];
-            });
-          } catch (e) {
-            setMessages((msgs) => {
-              const msgsNoLoading = msgs.filter(
-                (m, i) => !(i === msgs.length - 1 && m.loading)
-              );
-              return [
-                ...msgsNoLoading,
-                {
-                  text: "Failed to get response. Please try again.",
-                  from: "bot",
-                  error: true,
-                },
-              ];
-            });
+            return localStorage.getItem(CHAT_IFRAME_KEY) === "true";
+          } catch {
+            return false;
           }
-          setLoading(false);
-        }
+        });
 
-        function handleKeyDown(e) {
-          if (e.key === "Enter") sendMessage();
-        }
+        React.useEffect(() => {
+          localStorage.setItem(CHAT_IFRAME_KEY, open ? "true" : "false");
+        }, [open]);
+
+        // Animation classes
+        const animationClass = open ? "animate-fade-in-up" : "animate-fade-out-down";
+
+        // Keep iframe always mounted, just hide/show modal UI
+        const iframeRef = React.useRef(null);
         return (
           <>
             {!open && (
@@ -181,93 +91,36 @@ function useFadeOnScroll(ref) {
                 <span className="text-3xl font-bold">?</span>
               </button>
             )}
-            {open && (
-              <div
-                className="fixed bottom-6 right-6 z-50 w-80 max-w-[90vw] bg-white rounded-xl shadow-2xl flex flex-col animate-fade-in-up"
-                style={{ animation: "fadeInUp 0.4s" }}
-              >
-                <div className="flex items-center justify-between px-4 py-2 border-b">
-                  <div className="flex items-center gap-2">
-                    <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">
-                      ?
-                    </span>
-                    <span className="font-semibold text-black">ChatBot</span>
-                  </div>
-                  <button
-                    className="text-gray-400 hover:text-black text-xl"
-                    onClick={() => setOpen(false)}
-                    aria-label="Close chat"
-                  >
-                    ×
-                  </button>
+            <div
+              className={`fixed bottom-6 right-6 z-50 w-[600px] max-w-[95vw] h-[650px] bg-white rounded-xl shadow-2xl flex flex-col ${animationClass}`}
+              style={{
+                animation: open ? "fadeInUp 0.4s" : "fadeOutDown 0.4s",
+                display: open ? "flex" : "none"
+              }}
+            >
+              <div className="flex items-center justify-between px-4 py-2 border-b">
+                <div className="flex items-center gap-2">
+                  <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">?</span>
+                  <span className="font-semibold text-black">Human's Bot</span>
                 </div>
-                <div className="px-4 py-2 text-black text-base">{greeting}</div>
-                <div
-                  id="chatbot-messages"
-                  className="flex-1 px-4 py-2 overflow-y-auto max-h-60"
-                  style={{ minHeight: "80px" }}
+                <button
+                  className="text-gray-400 hover:text-black text-xl"
+                  onClick={() => setOpen(false)}
+                  aria-label="Close chat"
                 >
-                  {messages.map((msg, i) => (
-                    <div
-                      key={i}
-                      className={`my-1 flex ${
-                        msg.from === "user" ? "justify-end" : "justify-start"
-                      }`}
-                    >
-                      <div
-                        className={`px-3 py-2 rounded-lg ${
-                          msg.from === "user"
-                            ? "bg-black text-white"
-                            : msg.error
-                            ? "bg-red-100 text-red-700"
-                            : msg.loading
-                            ? "bg-gray-200 text-gray-400 italic"
-                            : "bg-gray-200 text-black"
-                        }`}
-                      >
-                        {msg.text}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex items-center border-t px-2 py-2 gap-2">
-                  <input
-                    className="flex-1 border rounded-lg px-3 py-2 focus:outline-none"
-                    type="text"
-                    placeholder="Type your message..."
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    onKeyDown={handleKeyDown}
-                  />
-                  <button
-                    className="bg-black text-white px-4 py-2 rounded-lg font-semibold hover:bg-gray-800 transition"
-                    onClick={sendMessage}
-                    aria-label="Send"
-                    disabled={loading || !input.trim()}
-                  >
-                    {loading ? "..." : "Send"}
-                  </button>
-                </div>
-                <div className="flex justify-end px-2 pb-2">
-                  <button
-                    className="text-xs underline text-gray-500 hover:text-black transition"
-                    style={{
-                      background: "none",
-                      border: "none",
-                      padding: 0,
-                      marginTop: "2px",
-                    }}
-                    onClick={() => {
-                      setMessages([]);
-                      setGreeting("Hi, what can I do for you?");
-                      localStorage.removeItem(CHAT_KEY);
-                    }}
-                  >
-                    Reset chat
-                  </button>
-                </div>
+                  ×
+                </button>
               </div>
-            )}
+              <div style={{ flex: 1, width: "100%", height: "100%" }}>
+                {/* Microsoft Copilot Studio official embed code */}
+                <iframe
+                  ref={iframeRef}
+                  src="https://copilotstudio.microsoft.com/environments/Default-bc8ae832-0e7c-4850-970a-80e5f762c781/bots/cr10f_dynamicInfoBot/webchat?__version__=2"
+                  frameBorder="0"
+                  style={{ width: "100%", height: "100%" }}
+                ></iframe>
+              </div>
+            </div>
           </>
         );
       }

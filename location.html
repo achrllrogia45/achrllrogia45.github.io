@@ -54,6 +54,71 @@ function useFadeOnScroll(ref) {
 
   return fadeClass;
 }
+// --- ChatBot Component (iframe version, copied from index.html) ---
+const CHAT_IFRAME_KEY = "hg-chatbot-iframe-open";
+function ChatBot() {
+  const [open, setOpen] = React.useState(() => {
+    // Restore open state from localStorage for cross-page persistence
+    try {
+      return localStorage.getItem(CHAT_IFRAME_KEY) === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  React.useEffect(() => {
+    localStorage.setItem(CHAT_IFRAME_KEY, open ? "true" : "false");
+  }, [open]);
+
+  // Animation classes
+  const animationClass = open ? "animate-fade-in-up" : "animate-fade-out-down";
+
+  // Keep iframe always mounted, just hide/show modal UI
+  const iframeRef = React.useRef(null);
+  return (
+    <>
+      {!open && (
+        <button
+          className="fixed bottom-6 right-6 z-50 bg-black text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-gray-800 transition-all"
+          onClick={() => setOpen(true)}
+          aria-label="Open chat"
+        >
+          <span className="text-3xl font-bold">?</span>
+        </button>
+      )}
+      <div
+        className={`fixed bottom-6 right-6 z-50 w-[600px] max-w-[95vw] h-[650px] bg-white rounded-xl shadow-2xl flex flex-col ${animationClass}`}
+        style={{
+          animation: open ? "fadeInUp 0.4s" : "fadeOutDown 0.4s",
+          display: open ? "flex" : "none"
+        }}
+      >
+        <div className="flex items-center justify-between px-4 py-2 border-b">
+          <div className="flex items-center gap-2">
+            <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">?</span>
+            <span className="font-semibold text-black">Human's Bot</span>
+          </div>
+          <button
+            className="text-gray-400 hover:text-black text-xl"
+            onClick={() => setOpen(false)}
+            aria-label="Close chat"
+          >
+            ×
+          </button>
+        </div>
+        <div style={{ flex: 1, width: "100%", height: "100%" }}>
+          {/* Microsoft Copilot Studio official embed code */}
+          <iframe
+            ref={iframeRef}
+            src="https://copilotstudio.microsoft.com/environments/Default-bc8ae832-0e7c-4850-970a-80e5f762c781/bots/cr10f_dynamicInfoBot/webchat?__version__=2"
+            frameBorder="0"
+            style={{ width: "100%", height: "100%" }}
+          ></iframe>
+        </div>
+      </div>
+    </>
+  );
+}
       function LocationBreadcrumb() {
         return (
           <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
@@ -225,11 +290,9 @@ function useFadeOnScroll(ref) {
         React.useEffect(() => {
           let interval;
           if (isAutoSliding && reviews.length > 0 && !isAnimating) {
-            interval = setInterval(() => {
-              handleSlide("right");
-            }, 4000);
+            // auto-slide logic removed debug interval
           }
-          return () => clearInterval(interval);
+          return () => {};
         }, [isAutoSliding, reviews.length, isAnimating]);
 
         function handleSlide(direction, targetIndex = null) {
@@ -504,28 +567,9 @@ function useFadeOnScroll(ref) {
           window.addEventListener("scroll", onScroll);
           onScroll();
 
-          // Memory and event listener logging
-          if (window.__HG_DEBUG_INTERVAL)
-            clearInterval(window.__HG_DEBUG_INTERVAL);
-          window.__HG_DEBUG_INTERVAL = setInterval(() => {
-            if (window.performance && window.performance.memory) {
-              console.log(
-                "[HG DEBUG] JS Heap:",
-                window.performance.memory.usedJSHeapSize,
-                "/",
-                window.performance.memory.totalJSHeapSize
-              );
-            }
-            if (window.getEventListeners) {
-              const listeners = window.getEventListeners(window);
-              console.log("[HG DEBUG] Window event listeners:", listeners);
-            }
-          }, 10000);
 
           return () => {
             window.removeEventListener("scroll", onScroll);
-            if (window.__HG_DEBUG_INTERVAL)
-              clearInterval(window.__HG_DEBUG_INTERVAL);
           };
         }, []);
 
@@ -921,6 +965,11 @@ function useFadeOnScroll(ref) {
       }
 
       ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Mount chatbot modal at the end of body
+const chatbotDiv = document.createElement("div");
+chatbotDiv.id = "chatbot-root";
+document.body.appendChild(chatbotDiv);
+ReactDOM.createRoot(chatbotDiv).render(<ChatBot />);
     </script>
   </body>
 </html>
