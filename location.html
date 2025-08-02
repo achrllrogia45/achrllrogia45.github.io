@@ -26,6 +26,12 @@
       crossorigin
     ></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Bot Chat Component -->
+    <script type="text/babel" src="bot.js"></script>
+    <!-- Header Component -->
+    <script type="text/babel" src="header.js"></script>
+    <!-- Footer Component -->
+    <script type="text/babel" src="footer.js"></script>
   </head>
   <body class="font-roboto text-base">
     <div id="root"></div>
@@ -148,7 +154,7 @@ function ChatBot() {
         return (
           <>
             <div
-              className="w-full h-56 sm:h-64 md:h-80 lg:h-[400px] bg-gray-300 flex items-center justify-center relative group cursor-pointer"
+                className="w-full h-80 sm:h-96 md:h-[500px] lg:h-[600px] bg-gray-300 flex items-center justify-center relative group cursor-pointer"
               onClick={() => setOpen(true)}
             >
               <iframe
@@ -528,17 +534,16 @@ function ChatBot() {
         // Arrow scaling logic (in place)
         const [arrowScale, setArrowScale] = React.useState(1);
       
-        const footerRef = React.useRef(null);
-      
         // Fade classes
         const locationInfoFade = useFadeOnScroll(locationInfoRef);
         const reviewsFade = useFadeOnScroll(reviewsRef);
       
         React.useEffect(() => {
           function onScroll() {
-            if (arrowSectionRef.current && footerRef.current) {
+            const footerElement = document.querySelector('footer');
+            if (arrowSectionRef.current && footerElement) {
               const arrowRect = arrowSectionRef.current.getBoundingClientRect();
-              const footerRect = footerRef.current.getBoundingClientRect();
+              const footerRect = footerElement.getBoundingClientRect();
               const windowHeight = window.innerHeight;
 
               // Arrow section in view, not in footer
@@ -575,138 +580,9 @@ function ChatBot() {
 
         return (
           <>
-            {/* Header */}
-            <header className="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
-              <div className="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
-                {/* Logo */}
-                <a
-                  href="/"
-                  className="flex items-center hover:opacity-80 transition-opacity"
-                >
-                  <img
-                    src="images/hg_logo_header.svg"
-                    alt="HumanGreatness Logo"
-                    className="h-8 sm:h-10 w-auto"
-                  />
-                </a>
-                {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
-                  <a
-                    href="location"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    SHOP
-                  </a>
-                  <a
-                    href="aboutus"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    ABOUT US
-                  </a>
-                  <a
-                    href="#"
-                    className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base"
-                  >
-                    COOLNESS
-                  </a>
-                </nav>
-                {/* Language and Shop Icon - Desktop */}
-                <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
-                  <div className="flex items-center gap-[10px] text-sm lg:text-base">
-                    <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        EN
-                      </span>
-                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-                    </a>
-                    <span className="text-cream mx-1">/</span>
-                    <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        IN
-                      </span>
-                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-                    </a>
-                  </div>
-                  <img
-                    src="images/shop_icon_header.svg"
-                    alt="Shop"
-                    className="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors"
-                  />
-                </div>
-                {/* Mobile Header Right Group */}
-                <div className="flex lg:hidden items-center gap-4">
-                  <div className="flex items-center gap-[6px] text-sm">
-                    <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        EN
-                      </span>
-                      <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-                    </a>
-                    <span className="text-cream mx-1">/</span>
-                    <a href="#" className="text-cream relative group px-1">
-                      <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">
-                        IN
-                      </span>
-                      <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-                    </a>
-                  </div>
-                  <img
-                    src="images/shop_icon_header.svg"
-                    alt="Shop"
-                    className="h-5 w-5 invert"
-                  />
-                  {/* Mobile Menu Button */}
-                  <button
-                    className="text-cream hover:text-white transition-colors"
-                    aria-label="Toggle mobile menu"
-                    onClick={() => setMenuOpen((open) => !open)}
-                  >
-                    <svg
-                      className="h-6 w-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M4 6h16M4 12h16M4 18h16"
-                      ></path>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              {/* Mobile Navigation Menu */}
-              <div
-                className={`lg:hidden absolute top-full left-0 w-full bg-black/90 backdrop-blur-sm transition-all duration-300 ease-in-out ${
-                  menuOpen
-                    ? "translate-y-0 opacity-100 visible"
-                    : "-translate-y-full opacity-0 invisible"
-                }`}
-              >
-                <nav className="flex flex-col items-center py-8 space-y-6">
-                  <a
-                    href="location"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    SHOP
-                  </a>
-                  <a
-                    href="aboutus"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    ABOUT US
-                  </a>
-                  <a
-                    href="#"
-                    className="text-cream hover:text-white transition-colors nav-link text-lg"
-                  >
-                    COOLNESS
-                  </a>
-                </nav>
-              </div>
-            </header>
+            {/* Header (modularized) */}
+            <Header />
+
             <main className="relative">
               {/* Map Section - background goes behind header, header overlays absolutely */}
               <div className="relative w-full">
@@ -830,136 +706,7 @@ function ChatBot() {
               </section>
             </main>
             {/* Footer */}
-            <footer ref={footerRef} className="bg-black text-white">
-              <div className="max-w-6xl mx-auto px-4 py-16">
-                <div className="mb-12 text-center">
-                  <img
-                    src="images/hg_logo_header.svg"
-                    alt="HumanGreatness Logo"
-                    className="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert"
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-y-12 md:gap-x-8">
-                  <div className="footer-contact text-center md:text-left">
-                    <img
-                      src="images/hg_logotext.svg"
-                      alt="HGN Logo"
-                      className="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert"
-                    />
-                    <div className="space-y-4 flex flex-col items-center md:items-start">
-                      <p className="text-white text-sm text-center md:text-left">
-                        Online Customer Care:
-                        <br />
-                        <a
-                          href="tel:+6282126610201"
-                          className="underline hover:text-cream transition-colors"
-                        >
-                          +62 821 2661 0201
-                        </a>
-                      </p>
-                      <div className="social-links space-y-3 w-full">
-                        <div className="flex items-center space-x-3 justify-center md:justify-start">
-                          <svg
-                            className="social-icon"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M20.96 0.408203H3.03999C1.49439 0.408203 0.23999 1.6626 0.23999 3.2082V21.1282C0.23999 22.6738 1.49439 23.9282 3.03999 23.9282H20.96C22.5056 23.9282 23.76 22.6738 23.76 21.1282V3.2082C23.76 1.6626 22.5056 0.408203 20.96 0.408203ZM18.72 8.8082H17.6C16.4016 8.8082 15.92 9.0882 15.92 9.9282V11.6082H18.72L18.16 14.4082H15.92V22.8082H13.12V14.4082H10.88V11.6082H13.12V9.9282C13.12 7.6882 14.24 6.0082 16.48 6.0082C18.104 6.0082 18.72 6.5682 18.72 6.5682V8.8082Z"
-                              fill="#FFFCEE"
-                            />
-                          </svg>
-                          <a
-                            href="https://www.facebook.com/hgbasiclabs/"
-                            className="social-link text-white underline hover:text-cream transition-colors"
-                          >
-                            Human Greatness
-                          </a>
-                        </div>
-                        <div className="flex items-center space-x-3 justify-center md:justify-start">
-                          <svg
-                            className="social-icon"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M20.96 0.408203H3.03999C1.49607 0.408203 0.23999 1.66428 0.23999 3.2082V21.1282C0.23999 22.6721 1.49607 23.9282 3.03999 23.9282H20.96C22.5039 23.9282 23.76 22.6721 23.76 21.1282V3.2082C23.76 1.66428 22.5039 0.408203 20.96 0.408203ZM18.7233 10.6691C18.5962 10.6808 18.4674 10.6887 18.337 10.6887C16.8681 10.6887 15.5773 9.93324 14.8263 8.7914C14.8263 11.7868 14.8263 15.195 14.8263 15.2521C14.8263 17.8892 12.6882 20.0272 10.0512 20.0272C7.41415 20.0272 5.27607 17.8892 5.27607 15.2521C5.27607 12.6151 7.41415 10.477 10.0512 10.477C10.1509 10.477 10.2483 10.486 10.3463 10.4921V12.8452C10.2483 12.8335 10.152 12.8156 10.0512 12.8156C8.70495 12.8156 7.61407 13.9064 7.61407 15.2527C7.61407 16.5989 8.70495 17.6898 10.0512 17.6898C11.3974 17.6898 12.5863 16.6292 12.5863 15.2829C12.5863 15.2297 12.6098 4.31028 12.6098 4.31028H14.8588C15.0705 6.32124 16.6939 7.90828 18.7233 8.05388V10.6691Z"
-                              fill="#FFFCEE"
-                            />
-                          </svg>
-                          <a
-                            href="https://www.tiktok.com/@hgbasiclabs"
-                            className="social-link text-white underline hover:text-cream transition-colors"
-                          >
-                            @hgbasiclabs
-                          </a>
-                        </div>
-                        <div className="shopping-icons flex space-x-4 mt-6 justify-center md:justify-start"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="footer-nav text-center md:text-left">
-                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
-                      Navigation
-                    </h3>
-                    <nav className="space-y-3 flex flex-col items-center md:items-start">
-                      <a
-                        href="/"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Home
-                      </a>
-                      <a
-                        href="location"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Shop
-                      </a>
-                      <a
-                        href="#"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        Catalogues
-                      </a>
-
-                      <a
-                        href="aboutus"
-                        className="nav-item text-white hover:text-cream transition-colors text-sm"
-                      >
-                        About Us
-                      </a>
-                    </nav>
-                  </div>
-                  <div className="footer-address text-center md:text-left">
-                    <h3 className="text-xl sm:text-2xl font-medium text-white uppercase mb-6 tracking-wider">
-                      Address
-                    </h3>
-                    <address className="not-italic text-white text-sm leading-relaxed mx-auto md:mx-0 max-w-xs">
-                      Jl. Hasanudin No 9, Lebak Gede
-                      <br />
-                      Kota Bandung
-                      <br />
-                      Jawa Barat
-                      <br />
-                      Indonesia
-                    </address>
-                  </div>
-                </div>
-              </div>
-              <div className="copyright-section border-t border-cream bg-cream">
-                <div className="max-w-6xl mx-auto px-4 py-6 text-center">
-                  <p className="text-black text-sm">
-                    © 2025. Made in Bandung by Hilman Nur Firdaus
-                  </p>
-                </div>
-              </div>
-            </footer>
+            <Footer />
           </>
         );
       }
