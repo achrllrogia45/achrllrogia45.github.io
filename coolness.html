@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coolness - HumanGreatness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="styles.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- React, ReactDOM, Babel -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Bot Chat Component -->
+    <script type="text/babel" src="bot.js"></script>
+    <!-- Header Component -->
+    <script type="text/babel" src="header.js"></script>
+    <!-- Footer Component -->
+    <script type="text/babel" src="footer.js"></script>
+  </head>
+  <body class="font-roboto text-base">
+    <div id="root"></div>
+    <script type="text/babel">
+      function LocationBreadcrumb() {
+        return (
+          <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
+            <div className="max-w-6xl mx-auto">
+              <p className="text-sm sm:text-base">
+                <a
+                  href="/"
+                  className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
+                >
+                  HOME
+                </a>
+                /
+                <a
+                  href="coolness"
+                  className="text-cream hover:text-white hover:underline transition-colors ml-[10px]"
+                >
+                  COOLNESS
+                </a>
+              </p>
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        const arrowSectionRef = React.useRef(null);
+        const [arrowScale, setArrowScale] = React.useState(1);
+
+        React.useEffect(() => {
+          function onScroll() {
+            const footerElement = document.querySelector("footer");
+            if (arrowSectionRef.current && footerElement) {
+              const arrowRect = arrowSectionRef.current.getBoundingClientRect();
+              const footerRect = footerElement.getBoundingClientRect();
+              const windowHeight = window.innerHeight;
+
+              // Arrow section in view, not in footer
+              // Allow the arrow to remain scaled up for a buffer zone after the footer enters
+              const bufferPx = 120; // px to allow arrow to linger after footer appears
+              if (
+                arrowRect.top < windowHeight &&
+                arrowRect.bottom > 0 &&
+                footerRect.top > windowHeight - bufferPx // only start scaling down when footer is well into view
+              ) {
+                // Progress: 0 (just entering) to 1 (fully in center)
+                const sectionHeight = arrowRect.height;
+                const scrollProgress = Math.min(
+                  Math.max((windowHeight - arrowRect.top) / sectionHeight, 0),
+                  1
+                );
+                const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
+                setArrowScale(scaleValue);
+              }
+              // Footer in view or not in arrow section
+              else {
+                setArrowScale(1);
+              }
+            }
+          }
+          window.addEventListener("scroll", onScroll);
+          onScroll();
+          return () => {
+            window.removeEventListener("scroll", onScroll);
+          };
+        }, []);
+
+        return (
+          <>
+            <Header />
+
+            <main className=" bg-white">
+              <div className="absolute top-[115px] sm:top-[120px] md:top-[130px] w-full z-20 pointer-events-auto">
+                <LocationBreadcrumb />
+              </div>
+
+              <section className=" py-16 bg-white relative h-[20vh]">
+                {/* Divider */}
+                <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
+                <div className=" translate-y-[10vh] mx-16">
+                  {/* Heading */}
+                  <h2
+                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
+                    style={{ transform: "translate(0, 0px)", opacity: 1 }}
+                  >
+                    checkout our coolness
+                  </h2>
+                  <h2
+                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
+                    style={{ transform: "translate(0, 14px)", opacity: 0.7 }}
+                  >
+                    checkout our coolness
+                  </h2>
+                  <h2
+                    className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
+                    style={{ transform: "translate(0, 22px)", opacity: 0.4 }}
+                  >
+                    checkout our coolness
+                  </h2>
+                </div>
+              </section>
+
+              <div className="relative translate-y-[15vh] mt-5 w-auto h-auto ">
+                {/* Coolness Image */}
+                <img
+                  src="images/coolness_round.png"
+                  alt="Coolness Image"
+                  className="w-full max-w-2xl mx-auto mb-10 w-auto"
+                />
+              </div>
+
+              <div className="relative mt-[20vh] m-5">
+                {/* Coolness Image */}
+                <img
+                  src="images/hgn.svg"
+                  alt="Logo Image"
+                  className="w-full max-w-2xl mx-auto mb-16"
+                />
+              </div>
+
+              {/* Divider */}
+              <hr className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
+              <hr className="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
+              {/* Coolness Video */}
+              <div className="relative mt-[10vh] max-w-2xl mx-auto overflow-hidden mb-60">
+                <video
+                  src="images/coolness.mp4"
+                  className="w-full h-auto object-cover"
+                  controls
+                  preload="none"
+                  poster="images/coolness_thumb.png"
+                  alt="Check it out"
+                ></video>
+                <hr className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8 mt-[10vh]" />
+              <hr className="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
+              </div>
+
+              {/* Arrow Section above Footer */}
+              <section
+                ref={arrowSectionRef}
+                className="arrow-section-static"
+                style={{
+                  width: "100%",
+                  height: "60vh",
+                  background: "#111",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 10,
+                  position: "relative",
+                  overflow: "visible",
+                  transform: `scale(${arrowScale})`,
+                  transformOrigin: "center center",
+                  transition: "transform 0.3s ease-out",
+                }}
+              >
+                <svg
+                  className="arrow-popup-svg"
+                  width="156"
+                  height="110"
+                  viewBox="0 0 156 110"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+                    fill="white"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+                    fill="white"
+                  />
+                </svg>
+              </section>
+            </main>
+            <Footer />
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

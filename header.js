@@ -17,7 +17,7 @@ function Header() {
   }, [menuOpen]);
   return (
     <header className="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
-      <div className="flex items-center justify-between px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
+      <div className="flex items-center justify-center space-x-[40vh] px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
         {/* Logo */}
         <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
           <img src="images/hg_logo_header.svg" alt="HumanGreatness Logo" className="h-8 sm:h-10 w-auto" />
@@ -26,9 +26,9 @@ function Header() {
         <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
           <a href="location" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">SHOP</a>
           <a href="aboutus" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">ABOUT US</a>
-          <a href="#" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">COOLNESS</a>
+          <a href="coolness" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">COOLNESS</a>
         </nav>
-        {/* Language and Shop Icon - Desktop */}
+        {/* Language and Shop Icon - Desktop 
         <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
           <div className="flex items-center gap-[10px] text-sm lg:text-base">
             <a href="#" className="text-cream relative group px-1">
@@ -42,21 +42,10 @@ function Header() {
             </a>
           </div>
           <img src="images/shop_icon_header.svg" alt="Shop" className="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors" />
-        </div>
+        </div> */}
         {/* Mobile Header Right Group */}
         <div className="flex lg:hidden items-center gap-4">
-          <div className="flex items-center gap-[6px] text-sm">
-            <a href="#" className="text-cream relative group px-1">
-              <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
-              <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-            </a>
-            <span className="text-cream mx-1">/</span>
-            <a href="#" className="text-cream relative group px-1">
-              <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
-              <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-            </a>
-          </div>
-          <img src="images/shop_icon_header.svg" alt="Shop" className="h-5 w-5 invert" />
+          
           {/* Mobile Menu Button */}
           <button
             className="text-cream hover:text-white transition-colors"

@@ -60,71 +60,7 @@ function useFadeOnScroll(ref) {
 
   return fadeClass;
 }
-// --- ChatBot Component (iframe version, copied from index.html) ---
-const CHAT_IFRAME_KEY = "hg-chatbot-iframe-open";
-function ChatBot() {
-  const [open, setOpen] = React.useState(() => {
-    // Restore open state from localStorage for cross-page persistence
-    try {
-      return localStorage.getItem(CHAT_IFRAME_KEY) === "true";
-    } catch {
-      return false;
-    }
-  });
 
-  React.useEffect(() => {
-    localStorage.setItem(CHAT_IFRAME_KEY, open ? "true" : "false");
-  }, [open]);
-
-  // Animation classes
-  const animationClass = open ? "animate-fade-in-up" : "animate-fade-out-down";
-
-  // Keep iframe always mounted, just hide/show modal UI
-  const iframeRef = React.useRef(null);
-  return (
-    <>
-      {!open && (
-        <button
-          className="fixed bottom-6 right-6 z-50 bg-black text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-gray-800 transition-all"
-          onClick={() => setOpen(true)}
-          aria-label="Open chat"
-        >
-          <span className="text-3xl font-bold">?</span>
-        </button>
-      )}
-      <div
-        className={`fixed bottom-6 right-6 z-50 w-[600px] max-w-[95vw] h-[650px] bg-white rounded-xl shadow-2xl flex flex-col ${animationClass}`}
-        style={{
-          animation: open ? "fadeInUp 0.4s" : "fadeOutDown 0.4s",
-          display: open ? "flex" : "none"
-        }}
-      >
-        <div className="flex items-center justify-between px-4 py-2 border-b">
-          <div className="flex items-center gap-2">
-            <span className="bg-black text-white rounded-full w-8 h-8 flex items-center justify-center text-xl font-bold">?</span>
-            <span className="font-semibold text-black">Human's Bot</span>
-          </div>
-          <button
-            className="text-gray-400 hover:text-black text-xl"
-            onClick={() => setOpen(false)}
-            aria-label="Close chat"
-          >
-            ×
-          </button>
-        </div>
-        <div style={{ flex: 1, width: "100%", height: "100%" }}>
-          {/* Microsoft Copilot Studio official embed code */}
-          <iframe
-            ref={iframeRef}
-            src="https://copilotstudio.microsoft.com/environments/Default-bc8ae832-0e7c-4850-970a-80e5f762c781/bots/cr10f_dynamicInfoBot/webchat?__version__=2"
-            frameBorder="0"
-            style={{ width: "100%", height: "100%" }}
-          ></iframe>
-        </div>
-      </div>
-    </>
-  );
-}
       function LocationBreadcrumb() {
         return (
           <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
@@ -276,7 +212,7 @@ function ChatBot() {
                 {
                   name: "Fathul Bachri Sugara",
                   image:
-                    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+                    "https://lh3.googleusercontent.com/a-/ALV-UjVSGo_HYdG9JNXauhCPz6wQKzIDctggeocQiB5xKANvNA2-YAw=w36-h36-p-rp-mo-ba2-br100",
                   stars: 5,
                   comment:
                     "sama sekali ga nyesel beli pakaian disini. harga terjangkau tp kualitas bagus bgt; pokoknya klo butuh baju berkualitas langsung ke HG aja!",
@@ -288,6 +224,54 @@ function ChatBot() {
                   stars: 5,
                   comment:
                     "enaks! tempat belanjanya, crew ramah jugaa 😍 barangnya berkualitas dan harganya masuk akal banget. Recommended!",
+                },
+                {
+                  name: "Mapanji Wicaksono",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjWeJsUZ_n1-keLn4PXDskjX785Gjl2XOXieOGFntWS2ivu7IIng=w36-h36-p-rp-mo-ba3-br100",
+                  stars: 5,
+                  comment:
+                    "Harga barang offline storenya juga sama kaya harga di e-commerce. Bahkan sedikit lebih murah. Easy 5/5.",
+                },
+                {
+                  name: "Ferdy Bono",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjXL3NBTpf-dn6ohqci6h-qU45x8ulgnUH0p6RdDn5dE98ncNTJz=w36-h36-p-rp-mo-br100",
+                  stars: 4,
+                  comment:
+                    "Bajunya bagus, desainnya kekinian. Harganya masih oke sih.",
+                },
+                {
+                  name: "Hans KH",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjVkTCtsWK6JVMavLZJyNnWB5Egz2hgy3pqtzvdDmPiK_HlyTkKO=w36-h36-p-rp-mo-ba5-br100",
+                  stars: 5,
+                  comment:
+                    "Clothing store favorite sih ini, variasi baju maupun outer ada banyak banget disini dan bagus - bagus semua. Beberapa harga bajunya juga lebih murah dikit dibandingkan harga di online, jadi sebisa mungkin datang kesini!!",
+                },
+                {
+                  name: "Ahmad Faoji",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjVwJksdSwbtmjMl35RgoNkXIVnghNhiNYSinE6-jzC0C_F2XHG_=w36-h36-p-rp-mo-ba4-br100",
+                  stars: 5,
+                  comment:
+                    "Parkiran luas, pelayanan ketika datang baik dan membantu ketika hape lowbet. Akan kembali lagi ketika ke Bandung.",
+                },
+                {
+                  name: "Rhesa Salomo",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjX_Wqs2iayg8UWzhge6B9ZxeOTuE0K6NgQqFoLaKwQ82JyS9vc=w36-h36-p-rp-mo-ba4-br100",
+                  stars: 5,
+                  comment:
+                    "Min .. request Hoodie oversize dong .. saya seneng ni sama bahan nya . Btw ini saya pembelian kedua lho. Tgl 9 April kesini lg, Ramah2 pelayanannya .. rekomen banget",
+                },
+                {
+                  name: "Faris Sabilillah",
+                  image:
+                    "https://lh3.googleusercontent.com/a-/ALV-UjXtcnylyA2LorhIfCYmg2d6sm2ZvIEnPigLeKcirJFPUtZehY16=w36-h36-p-rp-mo-br100",
+                  stars: 5,
+                  comment:
+                    "Best! semenjak lewat masa remaja lebih suka pakaian simple & polos karena human Greatness Labs ini 🔥 …",
                 },
               ]);
             });
@@ -475,37 +459,19 @@ function ChatBot() {
                 onClick={prevSlide}
                 className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200 z-10"
                 aria-label="Previous review"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
                 >
-                  <polyline points="15,18 9,12 15,6"></polyline>
-                </svg>
-              </button>
-              <button
+                <img src="images/arrow-l.svg" alt="Previous" style={{ width: 24, height: 24, filter: 'brightness(0) invert(1)' }} />
+                </button>
+                <button
                 onClick={nextSlide}
                 className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-70 transition-all duration-200 z-10"
                 aria-label="Next review"
-              >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
                 >
-                  <polyline points="9,18 15,12 9,6"></polyline>
-                </svg>
+                <img src="images/arrow-r.svg" alt="Next" style={{ width: 24, height: 24, filter: 'brightness(0) invert(1)' }} />
               </button>
             </div>
             {/* Dots Indicator */}
-            {/* <div className="flex justify-center mt-6 space-x-2">
+             <div className="flex justify-center mt-6 space-x-2">
               {reviews.map((_, index) => (
               <button
                 key={index}
@@ -518,7 +484,7 @@ function ChatBot() {
                 aria-label={`Go to review ${index + 1}`}
               />
               ))}
-            </div> */}
+            </div> 
           </section>
         );
       }
@@ -712,11 +678,6 @@ function ChatBot() {
       }
 
       ReactDOM.createRoot(document.getElementById("root")).render(<App />);
-// Mount chatbot modal at the end of body
-const chatbotDiv = document.createElement("div");
-chatbotDiv.id = "chatbot-root";
-document.body.appendChild(chatbotDiv);
-ReactDOM.createRoot(chatbotDiv).render(<ChatBot />);
     </script>
   </body>
 </html>
