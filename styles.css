@@ -1,0 +1,154 @@
+/* Fade animations for scroll effects */
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-out {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Additional styles for the existing components */
+.text-cream {
+  color: #f5f5dc;
+}
+
+/* Hero section styles */
+.hero-title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Button styles */
+.button-primary {
+  transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel styles */
+.quality-carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.gradient-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.carousel-image {
+  filter: brightness(0.7);
+}
+
+.carousel-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.progress-bar {
+  cursor: pointer;
+}
+
+/* Product carousel styles */
+.product-carousel-container {
+  position: relative;
+}
+
+.carousel-prev,
+.carousel-next {
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+.product-card {
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.product-btn {
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.product-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.3);
+}
+
+/* Arrow section styles */
+.arrow-section-static {
+  background: linear-gradient(135deg, #111 0%, #222 100%);
+}
+
+.arrow-popup-svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Section dividers */
+.divider {
+  background: linear-gradient(to right, transparent, #000, transparent);
+}
+
+/* Font and text improvements */
+.section-title {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .fade-out {
+    transform: translateY(20px);
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Performance optimizations */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Utility classes */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
