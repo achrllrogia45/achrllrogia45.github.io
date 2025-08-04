@@ -32,6 +32,21 @@
     <script type="text/babel" src="header.js"></script>
     <!-- Footer Component -->
     <script type="text/babel" src="footer.js"></script>
+    
+    <!-- Fade Animation Styles -->
+    <style>
+      .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .fade-out {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+    </style>
   </head>
   <body class="font-roboto text-base">
     <div id="root"></div>
@@ -61,29 +76,6 @@ function useFadeOnScroll(ref) {
   return fadeClass;
 }
 
-      function LocationBreadcrumb() {
-        return (
-          <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
-            <div className="max-w-6xl mx-auto">
-              <p className="text-sm sm:text-base">
-                <a
-                  href="/"
-                  className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-                >
-                  HOME
-                </a>
-                /
-                <a
-                  href="location"
-                  className="text-cream hover:text-white hover:underline transition-colors ml-[10px]"
-                >
-                  LOCATION
-                </a>
-              </p>
-            </div>
-          </div>
-        );
-      }
 
       function MapSection() {
         const [open, setOpen] = React.useState(false);
@@ -363,7 +355,7 @@ function useFadeOnScroll(ref) {
 
         return (
           <section className="max-w-6xl mx-auto px-4 mb-20">
-            <h2 className="text-2xl md:text-3xl font-bold text-black mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-black mb-8 text-center uppercase tracking-wide">
               Customer Reviews
             </h2>
             <div className="relative h-64 flex items-center justify-center overflow-hidden">
@@ -380,7 +372,7 @@ function useFadeOnScroll(ref) {
                       className="w-12 h-12 rounded-full object-cover mr-4"
                       onError={(e) => {
                         e.target.src =
-                          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
+                          "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
                       }}
                     />
                     <div>
@@ -425,7 +417,7 @@ function useFadeOnScroll(ref) {
                           className="w-12 h-12 rounded-full object-cover mr-4"
                           onError={(e) => {
                             e.target.src =
-                              "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
+                              "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMjAiIGZpbGw9IiNFNUU3RUIiLz4KPHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1zbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDEyQzE0LjIwOTEgMTIgMTYgMTAuMjA5MSAxNiA4QzE2IDUuNzkwODYgMTQuMjA5MSA0IDEyIDRDOS43OTA4NiA0IDggNS43OTA4NiA4IDhDOCAxMC4yMDkxIDkuNzkwODYgMTIgMTIgMTJaIiBmaWxsPSIjOUM5Qzk5Ii8+CjxwYXRoIGQ9Ik0xMiAxNEM5LjMzMzMzIDE0IDQgMTUuMzMzMyA0IDIwVjIySDIwVjIwQzIwIDE1LjMzMzMgMTQuNjY2NyAxNCAxMiAxNFoiIGZpbGw9IiM5QzlDOTkiLz4KPC9zdmc+Cjwvc3ZnPgo=";
                           }}
                         />
                         <div>
@@ -546,81 +538,125 @@ function useFadeOnScroll(ref) {
 
         return (
           <>
-            {/* Header (modularized) */}
             <Header />
-
             <main className="relative">
-              {/* Map Section - background goes behind header, header overlays absolutely */}
-              <div className="relative w-full">
-                <MapSection />
-                {/* Breadcrumb overlays on top of map, below header */}
-                <div className="absolute top-[115px] sm:top-[120px] md:top-[130px] w-full z-20 pointer-events-auto">
-                  <LocationBreadcrumb />
-                </div>
-                {/* Header overlays on top, does not take up space */}
-                <div className="absolute top-0 left-0 w-full z-30 pointer-events-auto">
-                  <header className="bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
-                    {/* ...existing header content... */}
-                  </header>
-                </div>
-              </div>
 
               {/* Location Information Section */}
               <section ref={locationInfoRef} className={`w-full px-2 sm:px-4 md:px-0 ${locationInfoFade}`}>
                 <div className="max-w-full mx-auto bg-white shadow-md mb-12 overflow-hidden flex flex-col">
-                  <div className="relative h-32 sm:h-40 md:h-56 w-full bg-gray-400 flex items-center justify-center">
-                    {/* Replace with background image if available */}
-                    <img
+                    <div className="relative h-64 sm:h-80 md:h-96 lg:h-[840px] w-full bg-gray-400 flex items-center justify-center">
+                    {/* Top image - bandung.png with gradient to white and grayscale filter */}
+                    <div className="absolute top-0 left-0 w-full h-1/2 z-0">
+                      <img
                       src="images/bandung.png"
                       alt="Bandung Location"
-                      className="absolute inset-0 w-full h-full object-cover z-0"
-                    />
-                    <div className="absolute inset-0 bg-black/40"></div>
+                      className="absolute inset-0 w-full h-full object-cover filter grayscale"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-white"></div>
+                    </div>
+                    {/* Bottom image - hgplace.png with gradient from white and grayscale filter */}
+                    <div className="absolute bottom-0 left-0 w-full h-1/2 z-0">
+                      <img
+                      src="images/hgplace.png"
+                      alt="HG Place Location"
+                      className="absolute inset-0 w-full h-full object-cover filter grayscale"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-white to-transparent"></div>
+                    </div>
+                    {/* Overlay dark gradient from top to bottom */}
+                    <div className="absolute inset-0 pointer-events-none z-0 bg-gradient-to-b from-black/60 via-transparent to-white"></div>
+                    {/* Text content positioned in the middle white gradient area */}
                     <div
                       className="absolute inset-0 flex flex-col items-center justify-center z-10 px-2 text-center"
-                      style={{
-                        background:
-                          "linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.25) 20%, rgba(0,0,0,0.0) 50%)",
-                      }}
                     >
-                      <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-white uppercase tracking-wide mb-2">
-                        Location Information
+                      <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold text-black uppercase tracking-wide mb-4">
+                      Location Information
                       </h2>
-                      <p className="text-white text-xs sm:text-base md:text-lg">
-                        Kita berlokasi di Kota Bandung, dan bisa dikunjungi
-                        setiap hari.
+                      <p className="text-black text-lg sm:text-2xl md:text-3xl">
+                      Kita berlokasi di Kota Bandung, dan bisa dikunjungi
+                      setiap hari.
                       </p>
                     </div>
-                  </div>
-                  <div className="p-4 sm:p-8 text-center">
-                    <h3 className="text-base sm:text-xl font-semibold mb-2">
-                      Our Address
-                    </h3>
-                    <p className="text-xs sm:text-base mb-4">
-                      Human Greatness Labs, Jl. Hasanudin No.9, Lebakgede,
-                      Kecamatan Coblong, Bandung 40132
-                    </p>
-                    <h4 className="text-sm sm:text-lg font-medium mb-1">
-                      Opening Hours
-                    </h4>
-                    <p className="text-xs sm:text-base">
-                      Senin - Minggu: 10:00 WIB - 20:00 WIB
-                    </p>
+                    </div>
+                  <div className="p-8 sm:p-16 min-h-[280px] sm:min-h-[320px] flex flex-col justify-center items-center bg-gradient-to-br from-gray-50 to-white">
+                    {/* Address Section */}
+                    <div className="mb-12 w-full flex flex-col items-center">
+                      <div className="flex items-center justify-center mb-6">
+                        <div className="h-px bg-black w-12 mr-4"></div>
+                        <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                        <div className="h-px bg-black w-12 ml-4"></div>
+                      </div>
+                      <h3 className="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider uppercase text-center">
+                        Our Address
+                      </h3>
+                      <div className="max-w-2xl mx-auto text-center">
+                        <p className="text-lg sm:text-xl text-gray-800 leading-relaxed font-light">
+                          Human Greatness Labs<br />
+                          <span className="text-gray-600">Jl. Hasanudin No.9, Lebakgede</span><br />
+                          <span className="text-gray-600">Kecamatan Coblong, Bandung 40132</span>
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Opening Hours Section */}
+                    <div className="w-full flex flex-col items-center">
+                      <div className="flex items-center justify-center mb-6">
+                        <div className="h-px bg-black w-12 mr-4"></div>
+                        <svg className="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <div className="h-px bg-black w-12 ml-4"></div>
+                      </div>
+                      <h4 className="text-2xl sm:text-3xl font-light text-black mb-6 tracking-wider uppercase text-center">
+                        Opening Hours
+                      </h4>
+                      <div className="bg-white rounded-lg shadow-sm p-6 max-w-md mx-auto border border-gray-100 text-center">
+                        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+                          <span className="text-lg font-medium text-gray-800">Senin - Minggu</span>
+                          <div className="flex items-center space-x-2">
+                            <span className="text-lg font-light text-gray-600">10:00</span>
+                            <span className="text-gray-400">—</span>
+                            <span className="text-lg font-light text-gray-600">20:00 WIB</span>
+                          </div>
+                        </div>
+                        <div className="mt-3 text-center">
+                          <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
+                            Open Now
+                          </span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </section>
+
+              <MapSection />
 
               <hr className="mt-5 border-t-2 border-gray-200 w-3/4 mx-auto rounded" />
 
               {/* Spacer Section */}
               <section className="w-full bg-white">
-                <div style={{ height: "100px" }}></div>
+                <div style={{ height: "100px" }} />
               </section>
 
               {/* Customer Reviews Section */}
               <section ref={reviewsRef} className={reviewsFade}>
                 <CustomerReviews />
+              <div className="flex justify-center mt-10">
+                <a
+                  href="catalogues"
+                  className="bg-black text-center text-white px-10 py-4 text-2xl font-light shadow hover:bg-gray-800 transition-colors duration-200"
+                  style={{ minWidth: "420px" }}
+                >
+                  Shop Now
+                </a>
+              </div>
               </section>
+              
 
               <hr className="my-12 border-t-2 border-gray-200 w-3/4 mx-auto rounded" />
 

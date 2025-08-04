@@ -7,45 +7,145 @@
 
 function Header() {
   const [menuOpen, setMenuOpen] = React.useState(false);
-  React.useEffect(() => {
-    if (menuOpen) {
-      document.body.classList.add("overflow-hidden");
+  // --- Breadcrumb Component ---
+  function Breadcrumb() {
+    const [textColor, setTextColor] = React.useState("text-cream");
+    const breadcrumbRef = React.useRef(null);
+
+    // Map pathname to page name
+    const path = window.location.pathname.replace(/^\/+|\/+$/g, "");
+    let pageName = "";
+    if (path === "" || path === "index.html") {
+      pageName = "HOME";
+    } else if (path.includes("aboutus")) {
+      pageName = "ABOUT US";
+    } else if (path.includes("coolness")) {
+      pageName = "COOLNESS";
+    } else if (path.includes("location")) {
+      pageName = "LOCATION";
+    } else if (path.includes("catalogues")) {
+      pageName = "CATALOGUES";
     } else {
-      document.body.classList.remove("overflow-hidden");
+      pageName = path.toUpperCase();
     }
-    return () => document.body.classList.remove("overflow-hidden");
-  }, [menuOpen]);
-  return (
-    <header className="fixed z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5">
-      <div className="flex items-center justify-center space-x-[40vh] px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
-        {/* Logo */}
-        <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
-          <img src="images/hg_logo_header.svg" alt="HumanGreatness Logo" className="h-8 sm:h-10 w-auto" />
-        </a>
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
-          <a href="location" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">SHOP</a>
-          <a href="aboutus" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">ABOUT US</a>
-          <a href="coolness" className="text-cream hover:text-white transition-colors nav-link text-sm lg:text-base">COOLNESS</a>
-        </nav>
-        {/* Language and Shop Icon - Desktop 
-        <div className="hidden lg:flex items-center gap-4 sm:gap-6 lg:gap-[45px]">
-          <div className="flex items-center gap-[10px] text-sm lg:text-base">
-            <a href="#" className="text-cream relative group px-1">
-              <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">EN</span>
-              <span className="fi fi-gb absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-            </a>
-            <span className="text-cream mx-1">/</span>
-            <a href="#" className="text-cream relative group px-1">
-              <span className="inline-block group-hover:opacity-0 transition-opacity duration-300">IN</span>
-              <span className="fi fi-id absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"></span>
-            </a>
-          </div>
-          <img src="images/shop_icon_header.svg" alt="Shop" className="h-5 sm:h-6 w-5 sm:w-6 invert hover:invert-0 transition-colors" />
-        </div> */}
-        {/* Mobile Header Right Group */}
-        <div className="flex lg:hidden items-center gap-4">
+
+    // Function to get luminance of a color
+    function getLuminance(r, g, b) {
+      const [rs, gs, bs] = [r, g, b].map(c => {
+        c = c / 255;
+        return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * rs + 0.7152 * gs + 0.0722 * bs;
+    }
+
+    // Function to detect background color
+    function detectBackgroundColor() {
+      if (!breadcrumbRef.current) return;
+      
+      const rect = breadcrumbRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      // Get the element behind the breadcrumb
+      breadcrumbRef.current.style.pointerEvents = 'none';
+      const elementBehind = document.elementFromPoint(centerX, centerY);
+      breadcrumbRef.current.style.pointerEvents = 'auto';
+      
+      if (elementBehind) {
+        const computedStyle = window.getComputedStyle(elementBehind);
+        const bgColor = computedStyle.backgroundColor;
+        
+        // Parse RGB values
+        const rgbMatch = bgColor.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+        if (rgbMatch) {
+          const [, r, g, b] = rgbMatch.map(Number);
+          const luminance = getLuminance(r, g, b);
           
+          // If background is light (luminance > 0.5), use dark text
+          // If background is dark (luminance <= 0.5), use light text
+          if (luminance > 0.5) {
+            setTextColor("text-black");
+          } else {
+            setTextColor("text-white");
+          }
+        } else {
+          // Default to light text for gradient or complex backgrounds
+          setTextColor("text-white");
+        }
+      }
+    }
+
+    React.useEffect(() => {
+      detectBackgroundColor();
+      
+      // Re-detect on scroll and resize
+      const handleChange = () => {
+        setTimeout(detectBackgroundColor, 100);
+      };
+      
+      window.addEventListener('scroll', handleChange);
+      window.addEventListener('resize', handleChange);
+      
+      return () => {
+        window.removeEventListener('scroll', handleChange);
+        window.removeEventListener('resize', handleChange);
+      };
+    }, []);
+
+    return (
+      <div 
+        ref={breadcrumbRef}
+        className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-lg font-thin w-full z-10 px-4 sm:px-8 md:px-[60px]"
+      >
+        <div className="max-w-6xl mx-auto">
+          <p className="text-md sm:text-lg">
+            <a
+              href="/"
+              className={`${textColor} hover:opacity-75 hover:underline transition-all mr-[10px]`}
+            >
+              HOME 
+            </a>
+            {pageName !== "HOME" && (
+              <>
+                <span className={`mx-2 ${textColor}`}>/</span>
+                <span className={textColor}>{pageName}</span>
+              </>
+            )}
+          </p>
+        </div>
+      </div>
+    );
+  }
+  return (
+    <header className="fixed text-white z-50 bg-gradient-to-b from-black/80 to-transparent w-full flex flex-col gap-5 font-roboto" style={{ fontFamily: 'Roboto, Arial, sans-serif' }}>
+      <div className="flex items-center px-4 sm:px-8 md:px-[60px] py-4 w-full mx-auto h-[115px]">
+        {/* Logo at left */}
+        <div className="flex-shrink-0 flex items-center h-full">
+          <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <img src="/images/hg_logo_header_black.svg" alt="HumanGreatness Logo" className="h-8 sm:h-10 w-auto filter invert" />
+          </a>
+        </div>
+        {/* Centered navigation */}
+        <div className="flex-1 flex items-center justify-center h-full">
+          <nav className="hidden lg:flex items-center gap-8 xl:gap-[152px]">
+            <div className="w-px h-8 bg-white/30 mx-2"></div>
+            <a href="location" className="relative text-cream hover:text-white transition-colors nav-link text-base lg:text-lg group">
+              SHOP
+              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+            </a>
+            <a href="aboutus" className="relative text-cream hover:text-white transition-colors nav-link text-base lg:text-lg group">
+              ABOUT US
+              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+            </a>
+            <a href="coolness" className="relative text-cream hover:text-white transition-colors nav-link text-base lg:text-lg group">
+              COOLNESS
+              <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+            </a>
+            <div className="w-px h-8 bg-white/30 mx-2"></div>
+          </nav>
+        </div>
+        {/* Mobile Header Right Group */}
+        <div className="flex lg:hidden items-center gap-4 h-full">
           {/* Mobile Menu Button */}
           <button
             className="text-cream hover:text-white transition-colors"
@@ -65,11 +165,22 @@ function Header() {
         }`}
       >
         <nav className="flex flex-col items-center py-8 space-y-6">
-          <a href="location" className="text-cream hover:text-white transition-colors nav-link text-lg">SHOP</a>
-          <a href="aboutus" className="text-cream hover:text-white transition-colors nav-link text-lg">ABOUT US</a>
-          <a href="#" className="text-cream hover:text-white transition-colors nav-link text-lg">COOLNESS</a>
+          <a href="location" className="relative text-cream hover:text-white transition-colors nav-link text-lg group">
+            SHOP
+            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+          </a>
+          <a href="aboutus" className="relative text-cream hover:text-white transition-colors nav-link text-lg group">
+            ABOUT US
+            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+          </a>
+          <a href="coolness" className="relative text-cream hover:text-white transition-colors nav-link text-lg group">
+            COOLNESS
+            <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-white transition-all duration-300 ease-out group-hover:w-full group-hover:left-0"></span>
+          </a>
         </nav>
       </div>
+      {/* Breadcrumb below header */}
+      <Breadcrumb />
     </header>
   );
 }

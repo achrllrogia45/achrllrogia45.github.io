@@ -33,7 +33,7 @@
     <!-- Footer Component -->
     <script type="text/babel" src="footer.js"></script>
   </head>
-  <body class="font-roboto text-base">
+  <body class="font-roboto text-base" style="font-family: 'Roboto', Arial, sans-serif;">
     <div id="root"></div>
 
 <script type="text/babel">
@@ -398,7 +398,7 @@ function useFadeOnScroll(ref) {
             <Header />
             <main className="relative">
               {/* Hero Section */}
-              <section ref={heroRef} className={`relative min-h-[1020px] flex items-center justify-center bg-cover bg-center bg-no-repeat ${heroFade}`}>
+              <section ref={heroRef} className={`relative min-h-[1020px] text-white flex items-center justify-center bg-cover bg-center bg-no-repeat ${heroFade}`}>
                 {/* Background Image with Overlay */}
                 <div className="absolute inset-0 w-full h-full min-h-[1020px]">
                   <img
@@ -426,36 +426,22 @@ function useFadeOnScroll(ref) {
                     {/* Logo */}
                     <div className="mb-8">
                       <img
-                        src="images/hg_logotext.svg"
+                        src="images/hgn.svg"
                         alt="HeaderLogo"
                         className="mx-auto max-w-md h-auto filter brightness-0 invert"
                       />
                     </div>
                     {/* CTA Button */}
                     <a
-                      href="#"
-                      className="button-primary inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-bold text-xl uppercase hover:bg-white hover:text-black transition-all duration-300 tracking-[6px] -mr-1"
+                      href="/catalogues"
+                      className="button-primary inline-flex items-center justify-center px-20 py-4 border-2 border-white text-white font-light text-xl uppercase hover:bg-white hover:text-black transition-all duration-300 tracking-[6px] -mr-1"
                       style={{ fontSize: 20, lineHeight: "28px" }}
                     >
                       Shop now
                     </a>
                   </div>
                 </div>
-                {/* Breadcrumb */}
-                <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] w-full z-10 px-0 z-20">
-                  {/* Breadcrumb Container */}
-                  <div className="max-w-6xl mx-auto px-4 sm:px-8 md:px-[60px]">
-                    <p className="text-sm sm:text-base text-cream py-2">
-                      <a
-                        href="/"
-                        className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-                      >
-                        HOME
-                      </a>
-                      /
-                    </p>
-                  </div>
-                </div>
+                
               </section>
               {/* Section 2: COOLTECH */}
               <section ref={cooltechRef} className={`py-20 px-4 ${cooltechFade}`}>

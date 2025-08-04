@@ -386,25 +386,8 @@ function useFadeOnScroll(ref) {
             {/* Header (modularized) */}
             <Header />
 
-            {/* Breadcrumb */}
-            <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
-              <div className="max-w-6xl mx-auto">
-                <p className="text-sm sm:text-base">
-                  <a
-                    href="/"
-                    className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-                  >
-                    HOME
-                  </a>
-                  /{" "}
-                  <a href="aboutus" className="text-white">
-                    ABOUT US
-                  </a>
-                </p>
-              </div>
-            </div>
             {/* Hero Section */}
-            <section ref={heroRef} className={`relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat ${heroFade}`}>
+            <section ref={heroRef} className={`relative text-white min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat ${heroFade}`}>
               {/* Background Image with Overlay */}
               <div className="absolute inset-0 w-full h-full">
                 <img
@@ -422,7 +405,7 @@ function useFadeOnScroll(ref) {
                       Welcome to
                     </h1>
                     <img
-                      src="./images/hg_logotext.svg"
+                      src="./images/hgn.svg"
                       alt="Human Greatness"
                       className="h-10 md:h-12 filter brightness-0 invert"
                     />
@@ -432,7 +415,7 @@ function useFadeOnScroll(ref) {
                     that empowers your style.
                   </p>
                   <a
-                    href="#"
+                    href="catalogues"
                     className="inline-flex items-center justify-center px-10 py-4 border-2 border-white text-white font-bold text-lg uppercase hover:bg-white hover:text-black transition-all duration-300 tracking-wider"
                   >
                     Explore Our Catalogues

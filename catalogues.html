@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catalogues - HumanGreatness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.3.2/css/flag-icons.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- React, ReactDOM, Babel -->
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Bot Chat Component -->
+    <script type="text/babel" src="bot.js"></script>
+    <!-- Header Component -->
+    <script type="text/babel" src="header.js"></script>
+    <!-- Footer Component -->
+    <script type="text/babel" src="footer.js"></script>
+    
+    <!-- HG Basic Labs Store Integration -->
+    <script src="//hgbasiclabs.com/cdn/shop/t/5/assets/predictive-search.js?v=162273246065392412141715597433" defer="defer"></script>
+    
+    <script>
+      // HG Basic Labs Store Configuration
+      window.shopUrl = 'https://hgbasiclabs.com';
+      window.routes = {
+        cart_add_url: '/cart/add',
+        cart_change_url: '/cart/change',
+        cart_update_url: '/cart/update',
+        cart_url: '/cart',
+        predictive_search_url: '/search/suggest',
+      };
+
+      window.cartStrings = {
+        error: `There was an error while updating your cart. Please try again.`,
+        quantityError: `You can only add [quantity] of this item to your cart.`,
+      };
+
+      window.variantStrings = {
+        addToCart: `Add to cart`,
+        soldOut: `Sold out`,
+        unavailable: `Unavailable`,
+        unavailable_with_option: `[value] - Unavailable`,
+      };
+
+      window.quickOrderListStrings = {
+        itemsAdded: `[quantity] items added`,
+        itemAdded: `[quantity] item added`,
+        itemsRemoved: `[quantity] items removed`,
+        itemRemoved: `[quantity] item removed`,
+        viewCart: `View cart`,
+        each: `[money]/ea`,
+        min_error: `This item has a minimum of [min]`,
+        max_error: `This item has a maximum of [max]`,
+        step_error: `You can only add this item in increments of [step]`,
+      };
+
+      window.accessibilityStrings = {
+        imageAvailable: `Image [index] is now available in gallery view`,
+        shareSuccess: `Link copied to clipboard`,
+        pauseSlideshow: `Pause slideshow`,
+        playSlideshow: `Play slideshow`,
+        recipientFormExpanded: `Gift card recipient form expanded`,
+        recipientFormCollapsed: `Gift card recipient form collapsed`,
+        countrySelectorSearchCount: `[count] countries/regions found`,
+      };
+    </script>
+    
+    <!-- Fade Animation Styles -->
+    <style>
+      .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .fade-out {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="font-roboto text-base">
+    <div id="root"></div>
+    <script type="text/babel">
+      // --- Fade on Scroll Hook ---
+      function useFadeOnScroll(ref) {
+        const [fadeClass, setFadeClass] = React.useState("fade-out");
+
+        React.useEffect(() => {
+          function handleScroll() {
+            if (!ref.current) return;
+            const rect = ref.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+              setFadeClass("fade-in");
+            } else {
+              setFadeClass("fade-out");
+            }
+          }
+          window.addEventListener("scroll", handleScroll);
+          handleScroll();
+          return () => window.removeEventListener("scroll", handleScroll);
+        }, [ref]);
+        return fadeClass;
+      }
+
+
+      function CatalogueRedirect({ title, url, description, embedMode = false, height = "600px" }) {
+        const [isRedirecting, setIsRedirecting] = React.useState(false);
+        const [redirectProgress, setRedirectProgress] = React.useState(0);
+
+        const handleVisit = () => {
+          window.open(url, '_blank', 'noopener,noreferrer');
+        };
+
+        const handleBridgeRedirect = () => {
+          setIsRedirecting(true);
+          let progress = 0;
+          
+          // Animated progress bar
+          const progressInterval = setInterval(() => {
+            progress += 2;
+            setRedirectProgress(progress);
+            
+            if (progress >= 100) {
+              clearInterval(progressInterval);
+              // Redirect after animation
+              setTimeout(() => {
+                window.location.href = url;
+              }, 500);
+            }
+          }, 30);
+        };
+
+        if (isRedirecting) {
+          return (
+            <div className="mb-12">
+              <div className="bg-gradient-to-br from-gray-900 to-black rounded-2xl p-12 text-center shadow-lg border text-white">
+                <div className="mb-8">
+                  <div className="w-24 h-24 mx-auto mb-6 bg-white rounded-full flex items-center justify-center">
+                    <svg className="w-12 h-12 text-black animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                  </div>
+                  <h4 className="text-2xl font-bold mb-3">Connecting to Store...</h4>
+                  <p className="text-gray-300 mb-8">
+                    Taking you to HG Basic Labs collection
+                  </p>
+                </div>
+                
+                <div className="w-full bg-gray-700 rounded-full h-4 mb-6">
+                  <div 
+                    className="bg-white h-4 rounded-full transition-all duration-300 ease-out"
+                    style={{ width: `${redirectProgress}%` }}
+                  ></div>
+                </div>
+                
+                <p className="text-sm text-gray-400">
+                   Sedang Memuat :P  {/*<span className="font-mono text-white">{url}</span> */}
+                </p>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h3 className="text-3xl font-bold text-black mb-4">{title}</h3>
+              {description && (
+                <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-lg">{description}</p>
+              )}
+            </div>
+            
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100  p-12 text-center shadow-lg border">
+              <div className="mb-8">
+                <div className="w-24 h-24 mx-auto mb-6 bg-black rounded-full flex items-center justify-center">
+                  <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                  </svg>
+                </div>
+                <h4 className="text-2xl font-bold text-black mb-3">HG Basic Labs Store</h4>
+                <p className="text-gray-600 mb-8 max-w-md mx-auto">
+                  Browse our complete collection of premium streetwear and accessories.
+                </p>
+              </div>
+              
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
+                <button
+                  onClick={handleBridgeRedirect}
+                  className="bg-black text-white px-8 py-3 text-lg font-semibold hover:bg-gray-800 transition-all duration-300 transform hover:scale-105 shadow-lg"
+                >
+                  Shop Now
+                </button>
+                
+              </div>
+              
+              {/* <div className="mt-6 p-4 bg-white rounded-lg border">
+                <h5 className="font-semibold text-gray-800 mb-3">Featured Collections</h5>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                  {[
+                    { name: 'Hoodies & Sweatshirts', link: '/collections/hoodies' },
+                    { name: 'T-Shirts & Tops', link: '/collections/t-shirts' },
+                    { name: 'Accessories', link: '/collections/accessories' }
+                  ].map((collection, index) => (
+                    <button
+                      key={index}
+                      onClick={() => window.open(`https://hgbasiclabs.com${collection.link}`, '_blank')}
+                      className="bg-gray-50 hover:bg-gray-100 p-3 rounded text-sm font-medium text-gray-700 hover:text-black transition-colors"
+                    >
+                      {collection.name}
+                    </button>
+                  ))}
+                </div>
+              </div> */}
+              
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        const arrowSectionRef = React.useRef(null);
+        const [arrowScale, setArrowScale] = React.useState(1);
+
+        // Fade refs for main sections
+        const headingRef = React.useRef(null);
+        const cataloguesRef = React.useRef(null);
+
+        // Fade classes
+        const headingFade = useFadeOnScroll(headingRef);
+        const cataloguesFade = useFadeOnScroll(cataloguesRef);
+
+        React.useEffect(() => {
+          function onScroll() {
+            const footerElement = document.querySelector("footer");
+            if (arrowSectionRef.current && footerElement) {
+              const arrowRect = arrowSectionRef.current.getBoundingClientRect();
+              const footerRect = footerElement.getBoundingClientRect();
+              const windowHeight = window.innerHeight;
+              const bufferPx = 120;
+              if (
+                arrowRect.top < windowHeight &&
+                arrowRect.bottom > 0 &&
+                footerRect.top > windowHeight - bufferPx
+              ) {
+                const sectionHeight = arrowRect.height;
+                const scrollProgress = Math.min(
+                  Math.max((windowHeight - arrowRect.top) / sectionHeight, 0),
+                  1
+                );
+                const scaleValue = 1 + scrollProgress * 2;
+                setArrowScale(scaleValue);
+              } else {
+                setArrowScale(1);
+              }
+            }
+          }
+          window.addEventListener("scroll", onScroll);
+          onScroll();
+          return () => {
+            window.removeEventListener("scroll", onScroll);
+          };
+        }, []);
+
+        // Store catalogue sources with embedded options
+        const catalogues = [
+          {
+            title: "Complete Store Collection",
+            url: "https://hgbasiclabs.com/collections",
+            description: "Browse our complete collection of clothing and accessories",
+            embedMode: true,
+            height: "800px"
+          }
+        ];
+
+        return (
+          <>
+            <Header />
+
+            <main className="bg-white">
+              {/* Hero Section */}
+              <section ref={headingRef} className={`py-24 bg-white relative ${headingFade}`}>
+                <div className="max-w-6xl mx-auto px-4 text-center mt-24">
+                  <h1 className="text-4xl md:text-6xl font-bold text-black mb-6 uppercase tracking-tight">
+                    Our Catalogues
+                  </h1>
+                  <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Explore our complete collection through our interactive catalogues and lookbooks
+                  </p>
+                </div>
+              </section>
+
+              {/* Catalogues Section */}
+              <section ref={cataloguesRef} className={`py-16 px-4 mb-[24vh] ${cataloguesFade}`}>
+                <div className="max-w-6xl mx-auto">
+                  {catalogues.map((catalogue, index) => (
+                    <CatalogueRedirect
+                      key={index}
+                      title={catalogue.title}
+                      url={catalogue.url}
+                      description={catalogue.description}
+                      embedMode={catalogue.embedMode}
+                      height={catalogue.height}
+                    />
+                  ))}
+                </div>
+              </section>
+
+              {/* Arrow Section */}
+              <section
+                ref={arrowSectionRef}
+                className="arrow-section-static"
+                style={{
+                  width: "100%",
+                  height: "60vh",
+                  background: "#111",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  zIndex: 10,
+                  position: "relative",
+                  overflow: "visible",
+                  transform: `scale(${arrowScale})`,
+                  transformOrigin: "center center",
+                  transition: "transform 0.3s ease-out",
+                }}
+              >
+                <svg
+                  className="arrow-popup-svg"
+                  width="156"
+                  height="110"
+                  viewBox="0 0 156 110"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M132.416 12.0029L80.9322 78.0029H75.9005L24.4164 12.0029H32.5674L78.4164 70.7793L124.265 12.0029H132.416Z"
+                    fill="white"
+                  />
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M141.416 20.0029L80.8748 97.0029H74.9579L14.4164 20.0029H24.0014L77.9164 88.5753L131.831 20.0029H141.416Z"
+                    fill="white"
+                  />
+                </svg>
+              </section>
+            </main>
+            <Footer />
+          </>
+        );
+      }
+
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

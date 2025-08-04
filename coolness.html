@@ -32,37 +32,63 @@
     <script type="text/babel" src="header.js"></script>
     <!-- Footer Component -->
     <script type="text/babel" src="footer.js"></script>
+    
+    <!-- Fade Animation Styles -->
+    <style>
+      .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      
+      .fade-out {
+        opacity: 0;
+        transform: translateY(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+    </style>
   </head>
   <body class="font-roboto text-base">
     <div id="root"></div>
     <script type="text/babel">
-      function LocationBreadcrumb() {
-        return (
-          <div className="fixed top-[115px] sm:top-[120px] md:top-[130px] text-cream text-base w-full z-10 px-4 sm:px-8 md:px-[60px]">
-            <div className="max-w-6xl mx-auto">
-              <p className="text-sm sm:text-base">
-                <a
-                  href="/"
-                  className="text-cream hover:text-white hover:underline transition-colors mr-[10px]"
-                >
-                  HOME
-                </a>
-                /
-                <a
-                  href="coolness"
-                  className="text-cream hover:text-white hover:underline transition-colors ml-[10px]"
-                >
-                  COOLNESS
-                </a>
-              </p>
-            </div>
-          </div>
-        );
+      // --- Fade on Scroll Hook ---
+      function useFadeOnScroll(ref) {
+        const [fadeClass, setFadeClass] = React.useState("fade-out");
+
+        React.useEffect(() => {
+          function handleScroll() {
+            if (!ref.current) return;
+            const rect = ref.current.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+              setFadeClass("fade-in");
+            } else {
+              setFadeClass("fade-out");
+            }
+          }
+          window.addEventListener("scroll", handleScroll);
+          handleScroll();
+          return () => window.removeEventListener("scroll", handleScroll);
+        }, [ref]);
+        return fadeClass;
       }
+
 
       function App() {
         const arrowSectionRef = React.useRef(null);
         const [arrowScale, setArrowScale] = React.useState(1);
+
+        // Fade refs for main sections
+        const headingRef = React.useRef(null);
+        const coolnessImgRef = React.useRef(null);
+        const logoImgRef = React.useRef(null);
+        const videoRef = React.useRef(null);
+
+        // Fade classes
+        const headingFade = useFadeOnScroll(headingRef);
+        const coolnessImgFade = useFadeOnScroll(coolnessImgRef);
+        const logoImgFade = useFadeOnScroll(logoImgRef);
+        const videoFade = useFadeOnScroll(videoRef);
 
         React.useEffect(() => {
           function onScroll() {
@@ -71,26 +97,20 @@
               const arrowRect = arrowSectionRef.current.getBoundingClientRect();
               const footerRect = footerElement.getBoundingClientRect();
               const windowHeight = window.innerHeight;
-
-              // Arrow section in view, not in footer
-              // Allow the arrow to remain scaled up for a buffer zone after the footer enters
-              const bufferPx = 120; // px to allow arrow to linger after footer appears
+              const bufferPx = 120;
               if (
                 arrowRect.top < windowHeight &&
                 arrowRect.bottom > 0 &&
-                footerRect.top > windowHeight - bufferPx // only start scaling down when footer is well into view
+                footerRect.top > windowHeight - bufferPx
               ) {
-                // Progress: 0 (just entering) to 1 (fully in center)
                 const sectionHeight = arrowRect.height;
                 const scrollProgress = Math.min(
                   Math.max((windowHeight - arrowRect.top) / sectionHeight, 0),
                   1
                 );
-                const scaleValue = 1 + scrollProgress * 2; // scale from 1 to 3
+                const scaleValue = 1 + scrollProgress * 2;
                 setArrowScale(scaleValue);
-              }
-              // Footer in view or not in arrow section
-              else {
+              } else {
                 setArrowScale(1);
               }
             }
@@ -106,16 +126,10 @@
           <>
             <Header />
 
-            <main className=" bg-white">
-              <div className="absolute top-[115px] sm:top-[120px] md:top-[130px] w-full z-20 pointer-events-auto">
-                <LocationBreadcrumb />
-              </div>
+            <main className="bg-white">
 
-              <section className=" py-16 bg-white relative h-[20vh]">
-                {/* Divider */}
-                <div className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8"></div>
-                <div className=" translate-y-[10vh] mx-16">
-                  {/* Heading */}
+              <section ref={headingRef} className={`py-16 bg-white relative h-[20vh] ${headingFade}`}>
+                <div className="translate-y-[10vh] mx-16">
                   <h2
                     className="absolute section-title text-4xl md:text-5xl font-bold text-black text-center uppercase tracking-tight leading-tight mb-16 z-40"
                     style={{ transform: "translate(0, 0px)", opacity: 1 }}
@@ -137,8 +151,7 @@
                 </div>
               </section>
 
-              <div className="relative translate-y-[15vh] mt-5 w-auto h-auto ">
-                {/* Coolness Image */}
+              <div ref={coolnessImgRef} className={`relative translate-y-[15vh] mt-5 w-auto h-auto ${coolnessImgFade}`}>
                 <img
                   src="images/coolness_round.png"
                   alt="Coolness Image"
@@ -146,8 +159,7 @@
                 />
               </div>
 
-              <div className="relative mt-[20vh] m-5">
-                {/* Coolness Image */}
+              <div ref={logoImgRef} className={`relative mt-[20vh] m-5 ${logoImgFade}`}>
                 <img
                   src="images/hgn.svg"
                   alt="Logo Image"
@@ -155,11 +167,10 @@
                 />
               </div>
 
-              {/* Divider */}
               <hr className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
               <hr className="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
-              {/* Coolness Video */}
-              <div className="relative mt-[10vh] max-w-2xl mx-auto overflow-hidden mb-60">
+
+              <div ref={videoRef} className={`relative mt-[10vh] max-w-2xl mx-auto overflow-hidden mb-60 ${videoFade}`}>
                 <video
                   src="images/coolness.mp4"
                   className="w-full h-auto object-cover"
@@ -169,10 +180,9 @@
                   alt="Check it out"
                 ></video>
                 <hr className="divider w-full max-w-2xl mx-auto h-0.5 bg-black mb-8 mt-[10vh]" />
-              <hr className="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
+                <hr className="w-full max-w-2xl mx-auto h-0.5 bg-black mb-8" />
               </div>
 
-              {/* Arrow Section above Footer */}
               <section
                 ref={arrowSectionRef}
                 className="arrow-section-static"

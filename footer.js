@@ -30,9 +30,10 @@ function Footer() {
   return (
     <footer 
       ref={footerRef} 
-      className={`bg-black text-white transition-all duration-1000 ${
+      className={`bg-black text-white font-roboto transition-all duration-1000 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`}
+      style={{ fontFamily: 'Roboto, Arial, sans-serif' }}
     >
       <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Logo section above with animation */}
@@ -40,7 +41,7 @@ function Footer() {
           isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
         }`}>
           <img
-            src="images/hg_logo_header.svg"
+            src="images/hg_logo_header_black.svg"
             alt="HumanGreatness Logo"
             className="h-20 sm:h-24 lg:h-32 w-auto max-w-full mx-auto filter brightness-0 invert hover:scale-110 transition-transform duration-300"
           />
@@ -53,7 +54,7 @@ function Footer() {
           {/* Customer Care */}
           <div className="footer-contact text-center md:text-left group">
             <img
-              src="images/hg_logotext.svg"
+              src="images/hgn.svg"
               alt="HGN Logo"
               className="h-6 sm:h-8 mb-6 mx-auto md:mx-0 filter brightness-0 invert group-hover:scale-105 transition-transform duration-300"
             />
@@ -62,7 +63,7 @@ function Footer() {
                 Online Customer Care:
                 <br />
                 <a
-                  href="tel:+6282126610201"
+                  href="https://wa.me/6282126610201"
                   className="underline hover:text-cream transition-colors duration-300 hover:scale-105 inline-block transform"
                 >
                   +62 821 2661 0201
